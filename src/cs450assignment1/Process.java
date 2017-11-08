@@ -5,8 +5,6 @@
  */
 package cs450assignment1;
 
-import java.util.Queue;
-
 /**
  *
  * @author Paul Canada (https://github.com/PaulCanada)
