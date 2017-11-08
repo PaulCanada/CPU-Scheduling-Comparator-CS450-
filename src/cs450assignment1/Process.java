@@ -16,7 +16,7 @@ public class Process
 
     public Process(String name, int burstTime, int priority, int arrivalTime)
     {
-        this.name = name;
+        this.processName = name;
         this.burstTime = burstTime;
         this.priority = priority;
         this.arrivalTime = arrivalTime;
@@ -24,7 +24,7 @@ public class Process
 
     public Process(String name, int burst, int arrival)
     {
-        this.name = name;
+        this.processName = name;
         burstTime = burst;
         arrivalTime = arrival;
         waitTime = 0;
@@ -33,7 +33,7 @@ public class Process
 
     public Process()
     {
-        name = "";
+        processName = "";
         burstTime = 0;
         priority = 0;
         arrivalTime = 0;
@@ -41,7 +41,7 @@ public class Process
 
     public Process(Process toCopy)
     {
-        name = toCopy.name;
+        processName = toCopy.processName;
         burstTime = toCopy.burstTime;
         priority = toCopy.priority;
         arrivalTime = toCopy.arrivalTime;
@@ -53,7 +53,7 @@ public class Process
 
     public String getProcessName()
     {
-        return name;
+        return processName;
     }
 
     public int getBurstTime()
@@ -70,28 +70,53 @@ public class Process
     {
         return arrivalTime;
     }
+    
+    public void setArrivalTime(int arrivalTime)
+    {
+        this.arrivalTime = arrivalTime;
+    }
 
     public int getWaitTime()
     {
         return waitTime;
+    }
+    
+    public void setWaitTime(int waitTime)
+    {
+        this.waitTime = waitTime;
     }
 
     public int getTurnAroundTime()
     {
         return turnAroundTime;
     }
+    
+    public void setTurnAroundTime(int turnAroundTime)
+    {
+        this.turnAroundTime = turnAroundTime;
+    }
 
     public int getCompletionTime()
     {
         return completionTime;
+    }
+    
+    public void setCompletionTime(int completionTime)
+    {
+        this.completionTime = completionTime;
     }
 
     public int getStartTime()
     {
         return startTime;
     }
+    
+    public void setStartTime(int startTime)
+    {
+        this.startTime = startTime;
+    }
 
-    private final String name;
+    private final String processName;
     private final int burstTime;
     private final int priority;
     private int arrivalTime;
