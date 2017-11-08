@@ -41,7 +41,7 @@ public class Process {
         priority = toCopy.priority;
         arrivalTime = toCopy.arrivalTime;
         waitTime = toCopy.waitTime;
-        turnAroundTime = toCopy.arrivalTime;
+        turnAroundTime = toCopy.turnAroundTime;
         completionTime = toCopy.completionTime;
         startTime = toCopy.startTime;
     }
