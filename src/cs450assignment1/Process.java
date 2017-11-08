@@ -11,16 +11,19 @@ import java.util.Queue;
  *
  * @author Paul Canada (https://github.com/PaulCanada)
  */
-public class Process {
+public class Process
+{
 
-    public Process(String name, int burstTime, int priority, int arrivalTime) {
+    public Process(String name, int burstTime, int priority, int arrivalTime)
+    {
         this.name = name;
         this.burstTime = burstTime;
         this.priority = priority;
         this.arrivalTime = arrivalTime;
     }
 
-    public Process(String name, int burst, int arrival) {
+    public Process(String name, int burst, int arrival)
+    {
         this.name = name;
         burstTime = burst;
         arrivalTime = arrival;
@@ -28,14 +31,16 @@ public class Process {
         priority = 0;
     }
 
-    public Process() {
+    public Process()
+    {
         name = "";
         burstTime = 0;
         priority = 0;
         arrivalTime = 0;
     }
 
-    public Process(Process toCopy) {
+    public Process(Process toCopy)
+    {
         name = toCopy.name;
         burstTime = toCopy.burstTime;
         priority = toCopy.priority;
@@ -46,6 +51,45 @@ public class Process {
         startTime = toCopy.startTime;
     }
 
+    public String getProcessName()
+    {
+        return name;
+    }
+
+    public int getBurstTime()
+    {
+        return burstTime;
+    }
+
+    public int getPriority()
+    {
+        return priority;
+    }
+
+    public int getArrivalTime()
+    {
+        return arrivalTime;
+    }
+
+    public int getWaitTime()
+    {
+        return waitTime;
+    }
+
+    public int getTurnAroundTime()
+    {
+        return turnAroundTime;
+    }
+
+    public int getCompletionTime()
+    {
+        return completionTime;
+    }
+
+    public int getStartTime()
+    {
+        return startTime;
+    }
 
     private final String name;
     private final int burstTime;
