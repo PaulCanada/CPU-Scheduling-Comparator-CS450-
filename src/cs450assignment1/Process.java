@@ -28,9 +28,6 @@ public class Process {
         priority = 0;
     }
 
-    /**
-     * 
-     */
     public Process() {
         name = "";
         burstTime = 0;
@@ -43,16 +40,20 @@ public class Process {
         burstTime = toCopy.burstTime;
         priority = toCopy.priority;
         arrivalTime = toCopy.arrivalTime;
+        waitTime = toCopy.waitTime;
+        turnAroundTime = toCopy.arrivalTime;
+        completionTime = toCopy.completionTime;
+        startTime = toCopy.startTime;
     }
 
 
     private final String name;
     private final int burstTime;
     private final int priority;
-    private final int arrivalTime;
-    private int waitTime;
-    private int turnAroundTime;
-    private int completionTime;
-    private int startTime;
+    private int arrivalTime;
+    private int waitTime = 0;
+    private int turnAroundTime = 0;
+    private int completionTime = 0;
+    private int startTime = 0;
 
 }
