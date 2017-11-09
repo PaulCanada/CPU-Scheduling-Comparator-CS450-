@@ -14,7 +14,7 @@ import java.util.Random;
  *
  * @author Paul Canada (https://github.com/PaulCanada)
  */
-public class ProcessQueue 
+public class ProcessQueue
 {
 
     // Main constructor
@@ -30,7 +30,7 @@ public class ProcessQueue
         {
             initialList.add(new Process("P" + i, random.nextInt(5) + 3, random.nextInt(numberOfProcesses / 2), random.nextInt(30)));
         }
-        
+
         Collections.sort(initialList);
     }
 
@@ -86,14 +86,12 @@ public class ProcessQueue
             {
                 if (readyQueue.get(i - 1).getBurstTime() + readyQueue.get(i - 1).getArrivalTime() < currentProcess.getArrivalTime())
                 {
-                    System.out.println("a");
                     waitTime = 0;
                     startTime = currentProcess.getArrivalTime();
                     currentProcess.setWaitTime(waitTime);
 
                 } else
                 {
-                    System.out.println("b");
                     serviceTime = readyQueue.get(i - 1).getArrivalTime() + readyQueue.get(i - 1).getBurstTime() + readyQueue.get(i - 1).getWaitTime();
                     waitTime = serviceTime - currentProcess.getArrivalTime();
                     startTime = waitTime + currentProcess.getArrivalTime();
