@@ -9,7 +9,7 @@ package cs450assignment1;
  *
  * @author Paul Canada (https://github.com/PaulCanada)
  */
-public class Process
+public class Process implements Comparable
 {
 
     public Process(String name, int burstTime, int priority, int arrivalTime)
@@ -49,6 +49,14 @@ public class Process
         startTime = toCopy.startTime;
     }
 
+    @Override
+    public int compareTo(Object other)
+    {
+        int compareArrivalTime = ((Process) other).getArrivalTime();
+
+        return this.arrivalTime - compareArrivalTime;
+    }
+
     public String getProcessName()
     {
         return processName;
@@ -68,7 +76,7 @@ public class Process
     {
         return arrivalTime;
     }
-    
+
     public void setArrivalTime(int arrivalTime)
     {
         this.arrivalTime = arrivalTime;
@@ -78,7 +86,7 @@ public class Process
     {
         return waitTime;
     }
-    
+
     public void setWaitTime(int waitTime)
     {
         this.waitTime = waitTime;
@@ -88,7 +96,7 @@ public class Process
     {
         return turnAroundTime;
     }
-    
+
     public void setTurnAroundTime(int turnAroundTime)
     {
         this.turnAroundTime = turnAroundTime;
@@ -98,7 +106,7 @@ public class Process
     {
         return completionTime;
     }
-    
+
     public void setCompletionTime(int completionTime)
     {
         this.completionTime = completionTime;
@@ -108,7 +116,7 @@ public class Process
     {
         return startTime;
     }
-    
+
     public void setStartTime(int startTime)
     {
         this.startTime = startTime;

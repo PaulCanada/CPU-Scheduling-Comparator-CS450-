@@ -6,6 +6,7 @@
 package cs450assignment1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -13,7 +14,7 @@ import java.util.Random;
  *
  * @author Paul Canada (https://github.com/PaulCanada)
  */
-public class ProcessQueue
+public class ProcessQueue 
 {
 
     // Main constructor
@@ -29,6 +30,8 @@ public class ProcessQueue
         {
             initialList.add(new Process("P" + i, random.nextInt(5) + 3, random.nextInt(numberOfProcesses / 2), random.nextInt(30)));
         }
+        
+        Collections.sort(initialList);
     }
 
     // Testing constructor
