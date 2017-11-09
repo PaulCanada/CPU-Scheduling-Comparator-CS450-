@@ -6,6 +6,7 @@
 package cs450assignment1;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -52,6 +53,29 @@ public class ProcessQueue
         initialList.add(new Process("P2", 3, 0, 10));
         initialList.add(new Process("P3", 7, 1, 11));
          */
+    }
+
+    public void printInitialProcessInformation()
+    {
+        System.out.println("Initial process information:");
+        for (Iterator<Process> it = initialList.iterator(); it.hasNext();)
+        {
+            Process process = it.next();
+            System.out.println("Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
+                    + ", Arrival time: " + process.getArrivalTime() + ", Wait time: " + process.getWaitTime());
+        }
+    }
+
+    public void printReadyProcessInformation()
+    {
+        System.out.println("Ready process information:");
+        for (Iterator<Process> it = readyQueue.iterator(); it.hasNext();)
+        {
+            Process process = it.next();
+            System.out.println("Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
+                    + ", Arrival time: " + process.getArrivalTime() + ", Wait time: " + process.getWaitTime() + ", Start time: " + process.getStartTime()
+                    + ", Completion time: " + process.getCompletionTime());
+        }
     }
 
     private final String type;
