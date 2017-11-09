@@ -55,6 +55,65 @@ public class ProcessQueue
          */
     }
 
+    public void setupFCFSQueue()
+    {
+        // Clear the process list to start a fresh list.
+        readyQueue.clear();
+
+        // Starting value for the service time.
+        int serviceTime = 0;
+
+        int waitTime = 0;
+
+        int completionTime = 0;
+
+        int turnAroundTime = 0;
+
+        int startTime = 0;
+
+        for (int i = 0; i < numberOfProcesses; i++)
+        {
+            Process currentProcess;
+            currentProcess = new Process(initialList.get(i));
+
+            if (i == 0)
+            {
+                currentProcess.setWaitTime(waitTime);
+                completionTime = currentProcess.getBurstTime();
+                turnAroundTime = currentProcess.getBurstTime();
+
+            } else
+            {
+                if (readyQueue.get(i - 1).getBurstTime() + readyQueue.get(i - 1).getArrivalTime() < currentProcess.getArrivalTime())
+                {
+                    System.out.println("a");
+                    waitTime = 0;
+                    startTime = currentProcess.getArrivalTime();
+                    currentProcess.setWaitTime(waitTime);
+
+                } else
+                {
+                    System.out.println("b");
+                    serviceTime = readyQueue.get(i - 1).getArrivalTime() + readyQueue.get(i - 1).getBurstTime() + readyQueue.get(i - 1).getWaitTime();
+                    waitTime = serviceTime - currentProcess.getArrivalTime();
+                    startTime = waitTime + currentProcess.getArrivalTime();
+                    currentProcess.setWaitTime(waitTime);
+
+                }
+
+                completionTime = startTime + currentProcess.getBurstTime();
+                turnAroundTime = waitTime + currentProcess.getBurstTime();
+
+            }
+
+            currentProcess.setCompletionTime(completionTime);
+            currentProcess.setTurnAroundTime(turnAroundTime);
+            currentProcess.setStartTime(startTime);
+
+            readyQueue.add(currentProcess);
+        }
+    }
+
     public int calculateTotalFCFSWaitTime()
     {
         int total = 0;
