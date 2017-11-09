@@ -25,12 +25,9 @@ public class ProcessQueue
         initialList = new ArrayList<>();
         readyQueue = new ArrayList<>();
 
-        int arrivalTime = 0;
-
         for (int i = 0; i < this.numberOfProcesses; i++)
         {
-            arrivalTime = random.nextInt(30);
-            initialList.add(new Process("P" + i, random.nextInt(5) + 3, random.nextInt(numberOfProcesses / 2), arrivalTime));
+            initialList.add(new Process("P" + i, random.nextInt(5) + 3, random.nextInt(numberOfProcesses / 2), random.nextInt(30)));
         }
     }
 
@@ -146,7 +143,7 @@ public class ProcessQueue
         {
             Process process = it.next();
             System.out.println("Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
-                    + ", Arrival time: " + process.getArrivalTime() + ", Wait time: " + process.getWaitTime());
+                    + ", Arrival time: " + process.getArrivalTime());
         }
     }
 

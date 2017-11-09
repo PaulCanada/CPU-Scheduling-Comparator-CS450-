@@ -18,7 +18,7 @@ public class CS450Assignment1
     public static void main(String[] args) {
         // TODO code application logic here
         
-        ProcessQueue q = new ProcessQueue();
+        ProcessQueue q = new ProcessQueue(4, "FCFS");
         q.setupFCFSQueue();
         
         q.printInitialProcessInformation();
