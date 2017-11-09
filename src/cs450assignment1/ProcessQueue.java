@@ -55,6 +55,31 @@ public class ProcessQueue
          */
     }
 
+    public int calculateTotalFCFSWaitTime()
+    {
+        int total = 0;
+        for (Iterator<Process> it = readyQueue.iterator(); it.hasNext();)
+        {
+            Process process = it.next();
+            total += process.getWaitTime();
+        }
+
+        return total;
+    }
+
+    public int calculateAverageFCFSWaitTime()
+    {
+        int average = 0;
+
+        for (Iterator<Process> it = readyQueue.iterator(); it.hasNext();)
+        {
+            Process process = it.next();
+            average += process.getWaitTime();
+        }
+
+        return average / numberOfProcesses;
+    }
+
     public void printInitialProcessInformation()
     {
         System.out.println("Initial process information:");
