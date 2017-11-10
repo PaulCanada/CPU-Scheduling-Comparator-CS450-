@@ -43,10 +43,6 @@ public class Process implements Comparable
         burstTime = toCopy.burstTime;
         priority = toCopy.priority;
         arrivalTime = toCopy.arrivalTime;
-        waitTime = toCopy.waitTime;
-        turnAroundTime = toCopy.turnAroundTime;
-        completionTime = toCopy.completionTime;
-        startTime = toCopy.startTime;
     }
 
     @Override
@@ -131,6 +127,16 @@ public class Process implements Comparable
     {
         remainingTime = amount;
     }
+    
+    public boolean getCompletionStatus()
+    {
+        return completionStatus;
+    }
+    
+    public void setCompletionStatus(boolean status)
+    {
+        completionStatus = status;
+    }
 
     private final String processName;
     private final int burstTime;
@@ -141,4 +147,5 @@ public class Process implements Comparable
     private int completionTime = 0;
     private int startTime = 0;
     private int remainingTime = 0;
+    private boolean completionStatus = false;
 }
