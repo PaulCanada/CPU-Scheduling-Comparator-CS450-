@@ -122,6 +122,16 @@ public class Process implements Comparable
         this.startTime = startTime;
     }
 
+    public int getRemainingTime()
+    {
+        return remainingTime;
+    }
+
+    public void setRemainingTime(int amount)
+    {
+        remainingTime = amount;
+    }
+
     private final String processName;
     private final int burstTime;
     private final int priority;
@@ -130,5 +140,6 @@ public class Process implements Comparable
     private int turnAroundTime = 0;
     private int completionTime = 0;
     private int startTime = 0;
-
+    private int remainingTime = 0;
+    private boolean complete = false;
 }
