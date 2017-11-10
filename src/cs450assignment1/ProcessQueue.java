@@ -45,20 +45,27 @@ public class ProcessQueue
     {
         type = "FCFS";
         random = new Random();
-        numberOfProcesses = 4;
+        numberOfProcesses = 3;
         initialList = new ArrayList<>();
         readyQueue = new ArrayList<>();
 
+        /* //FCFS
         initialList.add(new Process("P0", 6, 1, 0));
         initialList.add(new Process("P1", 4, 0, 5));
         initialList.add(new Process("P2", 3, 0, 7));
         initialList.add(new Process("P3", 4, 1, 13));
-        /*
+         */
+        /* //FCFS
         initialList.add(new Process("P0", 4, 1, 0));
         initialList.add(new Process("P1", 3, 0, 5));
         initialList.add(new Process("P2", 3, 0, 10));
         initialList.add(new Process("P3", 7, 1, 11));
          */
+        //Round Robin
+        initialList.add(new Process("P1", 3, 1, 0));
+        initialList.add(new Process("P2", 4, 2, 0));
+        initialList.add(new Process("P3", 3, 3, 0));
+
     }
 
     public void setupRoundRobinQueue(int quantum)
@@ -80,7 +87,7 @@ public class ProcessQueue
             process.setRemainingTime(process.getBurstTime());
         }
 
-        // Loop through until process is finished
+        // Loop through until all processes are finished
         while (true)
         {
             boolean done = true;
@@ -99,18 +106,26 @@ public class ProcessQueue
                     {
                         // Increment current time by quantum
                         currentTime += quantum;
-                        
+
                         // Decrement process's remaining time by quantum
                         currentProcess.setRemainingTime(currentProcess.getRemainingTime() - quantum);
-                        
+
                     } else
                     {
+                        currentTime = currentTime + currentProcess.getRemainingTime();
+                        currentProcess.setCompletionTime(currentTime);
+
+                        currentProcess.setWaitTime(currentTime - currentProcess.getBurstTime());
+
+                        currentProcess.setRemainingTime(0);
 
                     }
-
                 }
             }
-
+            if (done == true)
+            {
+                break;
+            }
         }
 
     }
@@ -174,7 +189,7 @@ public class ProcessQueue
         }
     }
 
-    public int calculateTotalFCFSWaitTime()
+    public int calculateTotalWaitTime()
     {
         int total = 0;
         for (Iterator<Process> it = readyQueue.iterator(); it.hasNext();)
@@ -186,7 +201,7 @@ public class ProcessQueue
         return total;
     }
 
-    public int calculateAverageFCFSWaitTime()
+    public int calculateAverageWaitTime()
     {
         int average = 0;
 
@@ -220,6 +235,11 @@ public class ProcessQueue
                     + ", Arrival time: " + process.getArrivalTime() + ", Wait time: " + process.getWaitTime() + ", Start time: " + process.getStartTime()
                     + ", Completion time: " + process.getCompletionTime() + ", Turn around time: " + process.getTurnAroundTime());
         }
+    }
+
+    public String getType()
+    {
+        return type;
     }
 
     private String type;
