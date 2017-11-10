@@ -145,7 +145,7 @@ public class Process implements Comparable
     private int waitTime = 0;
     private int turnAroundTime = 0;
     private int completionTime = 0;
-    private int startTime = 0;
+    private int startTime = -1;
     private int remainingTime = 0;
     private boolean completionStatus = false;
 }
