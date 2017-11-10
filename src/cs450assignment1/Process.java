@@ -141,5 +141,4 @@ public class Process implements Comparable
     private int completionTime = 0;
     private int startTime = 0;
     private int remainingTime = 0;
-    private boolean complete = false;
 }

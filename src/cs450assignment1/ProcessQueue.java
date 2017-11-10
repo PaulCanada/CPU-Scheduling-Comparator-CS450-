@@ -70,28 +70,44 @@ public class ProcessQueue
         int completionTime = 0;
         int turnAroundTime = 0;
         int startTime = 0;
+        int currentTime = 0;
 
         readyQueue = new ArrayList<>(initialList);
 
         // Set time remaining for all processes to their burst time
         for (Process process : readyQueue)
         {
-            process.setTimeRemaining(process.getBurstTime());
+            process.setRemainingTime(process.getBurstTime());
         }
 
         // Loop through until process is finished
         while (true)
         {
             boolean done = true;
-            
+
             for (int i = 0; i < numberOfProcesses; i++)
             {
                 Process currentProcess;
                 currentProcess = readyQueue.get(i);
-                
-                if (currentProcess.getRemainingTime() > quantum)
+
+                // Process is not yet complete
+                if (currentProcess.getRemainingTime() > 0)
                 {
-                    
+                    done = false;
+
+                    if (currentProcess.getRemainingTime() > quantum)
+                    {
+                        // Increment current time by quantum
+                        currentTime += quantum;
+                        
+                        // Decrement process's remaining time by quantum
+                        currentProcess.setRemainingTime(currentProcess.getRemainingTime() - quantum);
+                        
+                    } else
+                    {
+
+                    }
+
                 }
             }
 
