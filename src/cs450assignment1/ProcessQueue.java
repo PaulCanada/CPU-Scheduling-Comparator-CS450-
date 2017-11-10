@@ -164,7 +164,7 @@ public class ProcessQueue
             Process process = it.next();
             System.out.println("Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
                     + ", Arrival time: " + process.getArrivalTime() + ", Wait time: " + process.getWaitTime() + ", Start time: " + process.getStartTime()
-                    + ", Completion time: " + process.getCompletionTime());
+                    + ", Completion time: " + process.getCompletionTime() + ", Turn around time: " + process.getTurnAroundTime());
         }
     }
 
