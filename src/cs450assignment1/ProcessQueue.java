@@ -45,38 +45,35 @@ public class ProcessQueue
     {
         type = "FCFS";
         random = new Random();
-        numberOfProcesses = 3;
+        numberOfProcesses = 4;
         initialList = new ArrayList<>();
         readyQueue = new ArrayList<>();
 
-        /* //FCFS
+        //FCFS
+        /*
         initialList.add(new Process("P0", 6, 1, 0));
         initialList.add(new Process("P1", 4, 0, 5));
         initialList.add(new Process("P2", 3, 0, 7));
         initialList.add(new Process("P3", 4, 1, 13));
-         */
-        /* //FCFS
+*/
+         //FCFS
         initialList.add(new Process("P0", 4, 1, 0));
         initialList.add(new Process("P1", 3, 0, 5));
         initialList.add(new Process("P2", 3, 0, 10));
         initialList.add(new Process("P3", 7, 1, 11));
-         */
-        //Round Robin
+         
+ /* //Round Robin
         initialList.add(new Process("P1", 3, 1, 0));
         initialList.add(new Process("P2", 4, 2, 0));
         initialList.add(new Process("P3", 3, 3, 0));
-
+         */
     }
 
     public void setupRoundRobinQueue(int quantum)
     {
         // Clear the ready queue to start fresh.
         readyQueue.clear();
-        int serviceTime = 0;
-        int waitTime = 0;
-        int completionTime = 0;
-        int turnAroundTime = 0;
-        int startTime = 0;
+
         int currentTime = 0;
 
         readyQueue = new ArrayList<>(initialList);
@@ -91,11 +88,12 @@ public class ProcessQueue
         while (true)
         {
             boolean done = true;
+            Process currentProcess;
 
             for (int i = 0; i < numberOfProcesses; i++)
             {
-                Process currentProcess;
                 currentProcess = readyQueue.get(i);
+                currentProcess.setStartTime(currentTime);
 
                 // Process is not yet complete
                 if (currentProcess.getRemainingTime() > 0)
@@ -138,54 +136,31 @@ public class ProcessQueue
         // Starting value for the service time.
         int serviceTime = 0;
 
-        int waitTime = 0;
+        Process currentProcess;
 
-        int completionTime = 0;
-
-        int turnAroundTime = 0;
-
-        int startTime = 0;
-
-        for (int i = 0; i < numberOfProcesses; i++)
+        // Loop through every process in the initial list
+        for (int i = 0; i < initialList.size(); i++)
         {
-            Process currentProcess;
-            currentProcess = new Process(initialList.get(i));
-
-            if (i == 0)
+            // Add a copy of the process at initialList[i] to readyQueue
+            readyQueue.add(new Process(initialList.get(i)));
+            currentProcess = readyQueue.get(i);
+            
+            // If first process in queue or if the process arrived after the prior process has already completed, set defaults
+            if (i == 0 || (readyQueue.get(i - 1).getBurstTime() + readyQueue.get(i - 1).getArrivalTime() < currentProcess.getArrivalTime()))
             {
-                startTime = currentProcess.getArrivalTime();
-                currentProcess.setStartTime(startTime);
-                currentProcess.setWaitTime(waitTime);
-                completionTime = currentProcess.getBurstTime() + currentProcess.getStartTime();
-                turnAroundTime = currentProcess.getBurstTime();
+                currentProcess.setStartTime(currentProcess.getArrivalTime());
+                currentProcess.setWaitTime(0);
+                currentProcess.setTurnAroundTime(currentProcess.getBurstTime());
 
             } else
             {
-                if (readyQueue.get(i - 1).getBurstTime() + readyQueue.get(i - 1).getArrivalTime() < currentProcess.getArrivalTime())
-                {
-                    waitTime = 0;
-                    startTime = currentProcess.getArrivalTime();
-                    currentProcess.setWaitTime(waitTime);
-
-                } else
-                {
-                    serviceTime = readyQueue.get(i - 1).getArrivalTime() + readyQueue.get(i - 1).getBurstTime() + readyQueue.get(i - 1).getWaitTime();
-                    waitTime = serviceTime - currentProcess.getArrivalTime();
-                    startTime = waitTime + currentProcess.getArrivalTime();
-                    currentProcess.setWaitTime(waitTime);
-
-                }
-
-                completionTime = startTime + currentProcess.getBurstTime();
-                turnAroundTime = waitTime + currentProcess.getBurstTime();
-
+                serviceTime = readyQueue.get(i - 1).getArrivalTime() + readyQueue.get(i - 1).getBurstTime() + readyQueue.get(i - 1).getWaitTime();
+                currentProcess.setWaitTime(serviceTime - currentProcess.getArrivalTime());
+                currentProcess.setStartTime(currentProcess.getWaitTime() + currentProcess.getArrivalTime());
             }
 
-            currentProcess.setCompletionTime(completionTime);
-            currentProcess.setTurnAroundTime(turnAroundTime);
-            currentProcess.setStartTime(startTime);
-
-            readyQueue.add(currentProcess);
+            currentProcess.setTurnAroundTime(currentProcess.getWaitTime() + currentProcess.getBurstTime());
+            currentProcess.setCompletionTime(currentProcess.getStartTime() + currentProcess.getBurstTime());
         }
     }
 
