@@ -21,10 +21,16 @@ public class ProcessQueue
     public ProcessQueue(int numberOfProcesses, String type)
     {
         random = new Random();
-        this.type = type;
-        this.numberOfProcesses = numberOfProcesses;
         initialList = new ArrayList<>();
         readyQueue = new ArrayList<>();
+        
+        setupInitialList(numberOfProcesses, type);
+    }
+
+    public void setupInitialList(int numberOfProcesses, String input)
+    {
+        this.type = type;
+        this.numberOfProcesses = numberOfProcesses;
 
         for (int i = 0; i < this.numberOfProcesses; i++)
         {
@@ -78,8 +84,10 @@ public class ProcessQueue
 
             if (i == 0)
             {
+                startTime = currentProcess.getArrivalTime();
+                currentProcess.setStartTime(startTime);
                 currentProcess.setWaitTime(waitTime);
-                completionTime = currentProcess.getBurstTime();
+                completionTime = currentProcess.getBurstTime() + currentProcess.getStartTime();
                 turnAroundTime = currentProcess.getBurstTime();
 
             } else
@@ -156,11 +164,11 @@ public class ProcessQueue
             Process process = it.next();
             System.out.println("Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
                     + ", Arrival time: " + process.getArrivalTime() + ", Wait time: " + process.getWaitTime() + ", Start time: " + process.getStartTime()
-                    + ", Completion time: " + process.getCompletionTime());
+                    + ", Completion time: " + process.getCompletionTime() + ", Turn around time: " + process.getTurnAroundTime());
         }
     }
 
-    private final String type;
+    private String type;
     private ArrayList<Process> initialList;
     private ArrayList<Process> readyQueue;
     private int numberOfProcesses;
