@@ -23,11 +23,11 @@ public class ProcessQueue
         random = new Random();
         initialList = new ArrayList<>();
         readyQueue = new ArrayList<>();
-        
+
         setupInitialList(numberOfProcesses, type);
     }
 
-    public void setupInitialList(int numberOfProcesses, String input)
+    public void setupInitialList(int numberOfProcesses, String type)
     {
         this.type = type;
         this.numberOfProcesses = numberOfProcesses;
@@ -61,9 +61,47 @@ public class ProcessQueue
          */
     }
 
+    public void setupRoundRobinQueue(int quantum)
+    {
+        // Clear the ready queue to start fresh.
+        readyQueue.clear();
+        int serviceTime = 0;
+        int waitTime = 0;
+        int completionTime = 0;
+        int turnAroundTime = 0;
+        int startTime = 0;
+
+        readyQueue = new ArrayList<>(initialList);
+
+        // Set time remaining for all processes to their burst time
+        for (Process process : readyQueue)
+        {
+            process.setTimeRemaining(process.getBurstTime());
+        }
+
+        // Loop through until process is finished
+        while (true)
+        {
+            boolean done = true;
+            
+            for (int i = 0; i < numberOfProcesses; i++)
+            {
+                Process currentProcess;
+                currentProcess = readyQueue.get(i);
+                
+                if (currentProcess.getRemainingTime() > quantum)
+                {
+                    
+                }
+            }
+
+        }
+
+    }
+
     public void setupFCFSQueue()
     {
-        // Clear the process list to start a fresh list.
+        // Clear the ready queue to start fresh.
         readyQueue.clear();
 
         // Starting value for the service time.
