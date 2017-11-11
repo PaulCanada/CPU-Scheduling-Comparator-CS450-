@@ -18,14 +18,15 @@ public class CS450Assignment1
     public static void main(String[] args) {
         // TODO code application logic here
         
-        ProcessQueue q = new ProcessQueue(4, "FCFS");
-        q.setupFCFSQueue();
+        ProcessQueue q = new ProcessQueue();
+        //q.setupFCFSQueue();
+        q.setupRoundRobinQueue(3);
         
         q.printInitialProcessInformation();
         q.printReadyProcessInformation();
         
-        System.out.println("Total wait time for FCFS: " + q.calculateTotalFCFSWaitTime());
-        System.out.println("Average wait time for FCFS: " + q.calculateAverageFCFSWaitTime());
+        System.out.println("Total wait time for " + q.getType() + ": " + q.calculateTotalWaitTime());
+        System.out.println("Average wait time for " + q.getType() + ": " + q.calculateAverageWaitTime());
     }
 
 }
