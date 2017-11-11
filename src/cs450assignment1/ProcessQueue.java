@@ -107,23 +107,17 @@ public class ProcessQueue
         readyQueue.clear();
 
         int currentTime = 0;
-        int quantumPassed = 0;
 
+        // Make a shallow copy of initialList and put it in readyQueue.
         readyQueue = new ArrayList<>(initialList);
 
-        // Set time remaining for all processes to their burst time
-        /*
-        for (Process process : readyQueue)
-        {
-            process.setRemainingTime(process.getBurstTime());
-        }
-         */
         Process currentProcess;
 
         // Loop through until all processes are finished.
         while (hasUnfinishedProcess(readyQueue))
         {
 
+            // Loop through all processes in readyQueue.
             for (int i = 0; i < numberOfProcesses; i++)
             {
                 currentProcess = readyQueue.get(i);
