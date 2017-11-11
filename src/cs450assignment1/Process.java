@@ -29,14 +29,6 @@ public class Process implements Comparable
         priority = 0;
     }
 
-    public Process()
-    {
-        processName = "";
-        burstTime = 0;
-        priority = 0;
-        arrivalTime = 0;
-    }
-
     public Process(Process toCopy)
     {
         processName = toCopy.processName;
