@@ -18,9 +18,9 @@ public class CS450Assignment1
     public static void main(String[] args) {
         // TODO code application logic here
         
-        ProcessQueue q = new ProcessQueue();
+        ProcessQueue q = new ProcessQueue(5, "Round Robin");
         //q.setupFCFSQueue();
-        q.setupRoundRobinQueue(3);
+        q.setupRoundRobinQueue(4);
         
         q.printInitialProcessInformation();
         q.printReadyProcessInformation();

@@ -87,6 +87,7 @@ public class ProcessQueue
         initialList.add(new Process("P5", 16, 13, 42));
         */
         // Round Robin
+        
         initialList.add(new Process("P1", 5, 1, 5));
         initialList.add(new Process("P2", 6, 2, 14));
         initialList.add(new Process("P3", 5, 3, 17));
@@ -182,6 +183,18 @@ public class ProcessQueue
                     if (currentProcess.getRemainingTime() == 0)
                     {
                         currentProcess.setCompletionStatus(true);
+                    }
+                    
+                    try
+                    {
+                        if (currentTime < readyQueue.get(i + 1).getArrivalTime())
+                        {
+                            break;
+                        }
+                    } catch (IndexOutOfBoundsException e)
+                    {
+                        System.out.println("Index out of bounds. Caught.");
+                        break;
                     }
                 }
             }
