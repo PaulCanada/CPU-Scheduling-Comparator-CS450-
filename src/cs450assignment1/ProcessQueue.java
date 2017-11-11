@@ -79,11 +79,20 @@ public class ProcessQueue
         initialList.add(new Process("P3", 7, 1, 11));
          */
         //Round Robin
+        /*
         initialList.add(new Process("P1", 1, 1, 15));
         initialList.add(new Process("P2", 14, 2, 18));
         initialList.add(new Process("P3", 1, 3, 23));
         initialList.add(new Process("P4", 14, 3, 39));
         initialList.add(new Process("P5", 16, 13, 42));
+        */
+        // Round Robin
+        initialList.add(new Process("P1", 5, 1, 5));
+        initialList.add(new Process("P2", 6, 2, 14));
+        initialList.add(new Process("P3", 5, 3, 17));
+        initialList.add(new Process("P4", 3, 3, 20));
+        initialList.add(new Process("P5", 6, 1, 23));
+        
         numberOfProcesses = initialList.size();
 
     }
@@ -132,7 +141,6 @@ public class ProcessQueue
                          */
                         //currentTime += quantum; // Advance by whole quantum
                         currentTime++; // Advance by 1
-                        quantumPassed = 0;
                         break;
                     }
 
@@ -154,7 +162,6 @@ public class ProcessQueue
                         {
                             // Increment current time by quantum
                             currentTime += quantum;
-                            quantumPassed += quantum;
 
                             // Decrement process's remaining time by quantum
                             currentProcess.setRemainingTime(currentProcess.getRemainingTime() - quantum);
@@ -165,11 +172,7 @@ public class ProcessQueue
                         {
                             currentTime += currentProcess.getRemainingTime();
                             currentProcess.setCompletionTime(currentTime);
-                            quantumPassed += currentProcess.getRemainingTime();
-                            //quantumPassed += quantum;
 
-                            //currentProcess.setWaitTime(currentTime - currentProcess.getBurstTime());
-                            //currentProcess.setWaitTime(quantumPassed - currentProcess.getBurstTime());
                             currentProcess.setWaitTime(currentProcess.getCompletionTime() - currentProcess.getStartTime() - currentProcess.getBurstTime());
 
                             currentProcess.setRemainingTime(0);
