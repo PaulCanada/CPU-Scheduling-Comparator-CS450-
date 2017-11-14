@@ -18,16 +18,27 @@ public class ProcessQueue
 {
 
     // Main constructor
+
+    /**
+     *
+     * @param numberOfProcesses
+     * @param type
+     */
     public ProcessQueue(int numberOfProcesses, String type)
     {
         random = new Random();
         initialList = new ArrayList<>();
         readyQueue = new ArrayList<>();
-        
+
         setupInitialList(numberOfProcesses, type);
     }
 
-    public void setupInitialList(int numberOfProcesses, String input)
+    /**
+     *
+     * @param numberOfProcesses
+     * @param type
+     */
+    public void setupInitialList(int numberOfProcesses, String type)
     {
         this.type = type;
         this.numberOfProcesses = numberOfProcesses;
@@ -41,86 +52,201 @@ public class ProcessQueue
     }
 
     // Testing constructor
+
+    /**
+     *
+     */
     public ProcessQueue()
     {
         type = "FCFS";
         random = new Random();
-        numberOfProcesses = 4;
+
         initialList = new ArrayList<>();
         readyQueue = new ArrayList<>();
 
+        //FCFS
+        /*
         initialList.add(new Process("P0", 6, 1, 0));
         initialList.add(new Process("P1", 4, 0, 5));
         initialList.add(new Process("P2", 3, 0, 7));
         initialList.add(new Process("P3", 4, 1, 13));
+         */
+        //FCFS
         /*
         initialList.add(new Process("P0", 4, 1, 0));
         initialList.add(new Process("P1", 3, 0, 5));
         initialList.add(new Process("P2", 3, 0, 10));
         initialList.add(new Process("P3", 7, 1, 11));
          */
+        //Round Robin
+        /*
+        initialList.add(new Process("P1", 1, 1, 15));
+        initialList.add(new Process("P2", 14, 2, 18));
+        initialList.add(new Process("P3", 1, 3, 23));
+        initialList.add(new Process("P4", 14, 3, 39));
+        initialList.add(new Process("P5", 16, 13, 42));
+        */
+        // Round Robin
+        
+        initialList.add(new Process("P1", 5, 1, 5));
+        initialList.add(new Process("P2", 6, 2, 14));
+        initialList.add(new Process("P3", 5, 3, 17));
+        initialList.add(new Process("P4", 3, 3, 20));
+        initialList.add(new Process("P5", 6, 1, 23));
+        
+        numberOfProcesses = initialList.size();
+
     }
 
+    /**
+     *
+     * @param quantum
+     */
+    public void setupRoundRobinQueue(int quantum)
+    {
+        // Clear the ready queue to start fresh.
+        readyQueue.clear();
+
+        int currentTime = 0;
+
+        // Make a shallow copy of initialList and put it in readyQueue.
+        readyQueue = new ArrayList<>(initialList);
+
+        Process currentProcess;
+
+        // Loop through until all processes are finished.
+        while (hasUnfinishedProcess(readyQueue))
+        {
+
+            // Loop through all processes in readyQueue.
+            for (int i = 0; i < numberOfProcesses; i++)
+            {
+                currentProcess = readyQueue.get(i);
+
+                // If the process is already done, skip it.
+                if (!currentProcess.getCompletionStatus())
+                {
+                    // If the current time is less than the arrival time of the process, increment the current time and skip the whole process.
+                    if (currentTime < currentProcess.getArrivalTime())
+                    {
+                        /**
+                         * TODO: Determine if the CPU will advance a whole
+                         * quantum, or just increment by 1. This affects start
+                         * and completion time of the process.
+                         */
+                        //currentTime += quantum; // Advance by whole quantum
+                        currentTime++; // Advance by 1
+                        break;
+                    }
+
+                    // If the startTime of the process is -1, this is the first time seeing 
+                    // the process. Set values.
+                    if (currentProcess.getStartTime() == -1)
+                    {
+                        currentProcess.setStartTime(currentTime);
+                        currentProcess.setRemainingTime(currentProcess.getBurstTime());
+                    }
+
+                    // If the remaining time is greater than 0, then the process is not yet complete.
+                    if (currentProcess.getRemainingTime() > 0)
+                    {
+
+                        // If the remaining time is greater than the quantum, increase current
+                        // time by quantum and reduce remaining time by quantum.
+                        if (currentProcess.getRemainingTime() > quantum)
+                        {
+                            // Increment current time by quantum
+                            currentTime += quantum;
+
+                            // Decrement process's remaining time by quantum
+                            currentProcess.setRemainingTime(currentProcess.getRemainingTime() - quantum);
+
+                        } else
+                            // Otherwise, the remaining time is less than the quantum and we need to set
+                            // ending values.
+                        {
+                            currentTime += currentProcess.getRemainingTime();
+                            currentProcess.setCompletionTime(currentTime);
+
+                            currentProcess.setWaitTime(currentProcess.getCompletionTime() - currentProcess.getStartTime() - currentProcess.getBurstTime());
+
+                            currentProcess.setRemainingTime(0);
+                            //currentProcess.setTurnAroundTime(currentProcess.getCompletionTime() - currentProcess.getStartTime());
+                            currentProcess.setTurnAroundTime(currentProcess.getWaitTime() + currentProcess.getBurstTime());
+
+                        }
+
+                    }
+
+                    // If the remaining time of the process is 0, then the process
+                    // is complete.
+                    if (currentProcess.getRemainingTime() == 0)
+                    {
+                        currentProcess.setCompletionStatus(true);
+                    }
+                    
+                    try
+                    {
+                        if (currentTime < readyQueue.get(i + 1).getArrivalTime())
+                        {
+                            break;
+                        }
+                    } catch (IndexOutOfBoundsException e)
+                    {
+                        System.out.println("Index out of bounds. Caught.");
+                        break;
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    /**
+     *
+     */
     public void setupFCFSQueue()
     {
-        // Clear the process list to start a fresh list.
+        // Clear the ready queue to start fresh.
         readyQueue.clear();
 
         // Starting value for the service time.
         int serviceTime = 0;
 
-        int waitTime = 0;
+        Process currentProcess;
 
-        int completionTime = 0;
-
-        int turnAroundTime = 0;
-
-        int startTime = 0;
-
-        for (int i = 0; i < numberOfProcesses; i++)
+        // Loop through every process in the initial list
+        for (int i = 0; i < initialList.size(); i++)
         {
-            Process currentProcess;
-            currentProcess = new Process(initialList.get(i));
+            // Add a copy of the process at initialList[i] to readyQueue
+            readyQueue.add(new Process(initialList.get(i)));
+            currentProcess = readyQueue.get(i);
 
-            if (i == 0)
+            // If first process in queue or if the process arrived after the prior process has already completed, set defaults
+            if (i == 0 || (readyQueue.get(i - 1).getBurstTime() + readyQueue.get(i - 1).getArrivalTime() < currentProcess.getArrivalTime()))
             {
-                startTime = currentProcess.getArrivalTime();
-                currentProcess.setStartTime(startTime);
-                currentProcess.setWaitTime(waitTime);
-                completionTime = currentProcess.getBurstTime() + currentProcess.getStartTime();
-                turnAroundTime = currentProcess.getBurstTime();
+                currentProcess.setStartTime(currentProcess.getArrivalTime());
+                currentProcess.setWaitTime(0);
+                currentProcess.setTurnAroundTime(currentProcess.getBurstTime());
 
             } else
             {
-                if (readyQueue.get(i - 1).getBurstTime() + readyQueue.get(i - 1).getArrivalTime() < currentProcess.getArrivalTime())
-                {
-                    waitTime = 0;
-                    startTime = currentProcess.getArrivalTime();
-                    currentProcess.setWaitTime(waitTime);
-
-                } else
-                {
-                    serviceTime = readyQueue.get(i - 1).getArrivalTime() + readyQueue.get(i - 1).getBurstTime() + readyQueue.get(i - 1).getWaitTime();
-                    waitTime = serviceTime - currentProcess.getArrivalTime();
-                    startTime = waitTime + currentProcess.getArrivalTime();
-                    currentProcess.setWaitTime(waitTime);
-
-                }
-
-                completionTime = startTime + currentProcess.getBurstTime();
-                turnAroundTime = waitTime + currentProcess.getBurstTime();
-
+                serviceTime = readyQueue.get(i - 1).getArrivalTime() + readyQueue.get(i - 1).getBurstTime() + readyQueue.get(i - 1).getWaitTime();
+                currentProcess.setWaitTime(serviceTime - currentProcess.getArrivalTime());
+                currentProcess.setStartTime(currentProcess.getWaitTime() + currentProcess.getArrivalTime());
             }
 
-            currentProcess.setCompletionTime(completionTime);
-            currentProcess.setTurnAroundTime(turnAroundTime);
-            currentProcess.setStartTime(startTime);
-
-            readyQueue.add(currentProcess);
+            currentProcess.setTurnAroundTime(currentProcess.getWaitTime() + currentProcess.getBurstTime());
+            currentProcess.setCompletionTime(currentProcess.getStartTime() + currentProcess.getBurstTime());
         }
     }
 
-    public int calculateTotalFCFSWaitTime()
+    /**
+     *
+     * @return
+     */
+    public int calculateTotalWaitTime()
     {
         int total = 0;
         for (Iterator<Process> it = readyQueue.iterator(); it.hasNext();)
@@ -132,9 +258,13 @@ public class ProcessQueue
         return total;
     }
 
-    public int calculateAverageFCFSWaitTime()
+    /**
+     *
+     * @return
+     */
+    public float calculateAverageWaitTime()
     {
-        int average = 0;
+        float average = 0;
 
         for (Iterator<Process> it = readyQueue.iterator(); it.hasNext();)
         {
@@ -145,6 +275,27 @@ public class ProcessQueue
         return average / numberOfProcesses;
     }
 
+    /**
+     *
+     * @param list
+     * @return
+     */
+    public boolean hasUnfinishedProcess(ArrayList<Process> list)
+    {
+        for (Process process : list)
+        {
+            if (!process.getCompletionStatus())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     *
+     */
     public void printInitialProcessInformation()
     {
         System.out.println("Initial process information:");
@@ -156,6 +307,9 @@ public class ProcessQueue
         }
     }
 
+    /**
+     *
+     */
     public void printReadyProcessInformation()
     {
         System.out.println("Ready process information:");
@@ -166,6 +320,15 @@ public class ProcessQueue
                     + ", Arrival time: " + process.getArrivalTime() + ", Wait time: " + process.getWaitTime() + ", Start time: " + process.getStartTime()
                     + ", Completion time: " + process.getCompletionTime() + ", Turn around time: " + process.getTurnAroundTime());
         }
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getType()
+    {
+        return type;
     }
 
     private String type;

@@ -29,24 +29,12 @@ public class Process implements Comparable
         priority = 0;
     }
 
-    public Process()
-    {
-        processName = "";
-        burstTime = 0;
-        priority = 0;
-        arrivalTime = 0;
-    }
-
     public Process(Process toCopy)
     {
         processName = toCopy.processName;
         burstTime = toCopy.burstTime;
         priority = toCopy.priority;
         arrivalTime = toCopy.arrivalTime;
-        waitTime = toCopy.waitTime;
-        turnAroundTime = toCopy.turnAroundTime;
-        completionTime = toCopy.completionTime;
-        startTime = toCopy.startTime;
     }
 
     @Override
@@ -129,6 +117,6 @@ public class Process implements Comparable
     private int waitTime = 0;
     private int turnAroundTime = 0;
     private int completionTime = 0;
-    private int startTime = 0;
+    private int startTime = -1;
 
 }
