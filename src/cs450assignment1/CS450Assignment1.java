@@ -16,8 +16,7 @@ public class CS450Assignment1
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        
+
         ProcessQueue q = new ProcessQueue(5, "Round Robin");
         //q.setupFCFSQueue();
         q.setupRoundRobinQueue(4);
