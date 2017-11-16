@@ -8,6 +8,7 @@ package cs450assignment1;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Random;
 
 /**
  *
@@ -16,8 +17,44 @@ import java.util.Iterator;
 public class RRQueue extends ProcessQueue
 {
 
+    public RRQueue(int numberOfProcesses, String type)
+    {
+        random = new Random();
+        initialList = new ArrayList<>();
+        readyQueue = new ArrayList<>();
+        this.type = type;
+
+        setupInitialList(numberOfProcesses, type);
+    }
+
+    // Testing constructor
+    /**
+     *
+     */
     public RRQueue()
     {
+        type = "RR";
+        random = new Random();
+
+        initialList = new ArrayList<>();
+        readyQueue = new ArrayList<>();
+
+        // Round Robin
+        initialList.add(new ExtendedProcess("P1", 5, 1, 5));
+        initialList.add(new ExtendedProcess("P2", 6, 2, 14));
+        initialList.add(new ExtendedProcess("P3", 5, 3, 17));
+        initialList.add(new ExtendedProcess("P4", 3, 3, 20));
+        initialList.add(new ExtendedProcess("P5", 6, 1, 23));
+
+        /*
+        initialList.add(new Process("P1", 1, 1, 15));
+        initialList.add(new Process("P2", 14, 2, 18));
+        initialList.add(new Process("P3", 1, 3, 23));
+        initialList.add(new Process("P4", 14, 3, 39));
+        initialList.add(new Process("P5", 16, 13, 42));
+         */
+        numberOfProcesses = initialList.size();
+
     }
 
     /**
@@ -31,7 +68,7 @@ public class RRQueue extends ProcessQueue
 
         for (int i = 0; i < this.numberOfProcesses; i++)
         {
-            initialList.add(new Process("P" + i, random.nextInt(5) + 3, random.nextInt(numberOfProcesses / 2), random.nextInt(30)));
+            initialList.add(new ExtendedProcess("P" + i, random.nextInt(5) + 3, random.nextInt(numberOfProcesses / 2), random.nextInt(30)));
         }
 
         Collections.sort(initialList);
@@ -51,14 +88,14 @@ public class RRQueue extends ProcessQueue
         // Make a shallow copy of initialList and put it in readyQueue.
         readyQueue = new ArrayList<>(initialList);
 
-        Process currentProcess;
+        ExtendedProcess currentProcess;
 
         // Loop through until all processes are finished.
         while (hasUnfinishedProcess(readyQueue))
         {
 
             // Loop through all processes in readyQueue.
-            for (int i = 0; i < numberOfProcesses; i++)
+            for (int i = 0; i < readyQueue.size(); i++)
             {
                 currentProcess = readyQueue.get(i);
 
@@ -110,7 +147,6 @@ public class RRQueue extends ProcessQueue
                             currentProcess.setWaitTime(currentProcess.getCompletionTime() - currentProcess.getStartTime() - currentProcess.getBurstTime());
 
                             currentProcess.setRemainingTime(0);
-                            //currentProcess.setTurnAroundTime(currentProcess.getCompletionTime() - currentProcess.getStartTime());
                             currentProcess.setTurnAroundTime(currentProcess.getWaitTime() + currentProcess.getBurstTime());
 
                         }
@@ -149,9 +185,9 @@ public class RRQueue extends ProcessQueue
     public int calculateTotalWaitTime()
     {
         int total = 0;
-        for (Iterator<Process> it = readyQueue.iterator(); it.hasNext();)
+        for (Iterator<ExtendedProcess> it = readyQueue.iterator(); it.hasNext();)
         {
-            Process process = it.next();
+            ExtendedProcess process = it.next();
             total += process.getWaitTime();
         }
 
@@ -162,9 +198,9 @@ public class RRQueue extends ProcessQueue
     {
         float average = 0;
 
-        for (Iterator<Process> it = readyQueue.iterator(); it.hasNext();)
+        for (Iterator<ExtendedProcess> it = readyQueue.iterator(); it.hasNext();)
         {
-            Process process = it.next();
+            ExtendedProcess process = it.next();
             average += process.getWaitTime();
         }
 
@@ -176,9 +212,9 @@ public class RRQueue extends ProcessQueue
      * @param list
      * @return
      */
-    public boolean hasUnfinishedProcess(ArrayList<Process> list)
+    public boolean hasUnfinishedProcess(ArrayList<ExtendedProcess> list)
     {
-        for (Process process : list)
+        for (ExtendedProcess process : list)
         {
             if (!process.getCompletionStatus())
             {
@@ -192,9 +228,9 @@ public class RRQueue extends ProcessQueue
     public void printInitialProcessInformation()
     {
         System.out.println("Initial process information:");
-        for (Iterator<Process> it = initialList.iterator(); it.hasNext();)
+        for (Iterator<ExtendedProcess> it = initialList.iterator(); it.hasNext();)
         {
-            Process process = it.next();
+            ExtendedProcess process = it.next();
             System.out.println("Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
                     + ", Arrival time: " + process.getArrivalTime());
         }
@@ -203,9 +239,9 @@ public class RRQueue extends ProcessQueue
     public void printReadyProcessInformation()
     {
         System.out.println("Ready process information:");
-        for (Iterator<Process> it = readyQueue.iterator(); it.hasNext();)
+        for (Iterator<ExtendedProcess> it = readyQueue.iterator(); it.hasNext();)
         {
-            Process process = it.next();
+            ExtendedProcess process = it.next();
             System.out.println("Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
                     + ", Arrival time: " + process.getArrivalTime() + ", Wait time: " + process.getWaitTime() + ", Start time: " + process.getStartTime()
                     + ", Completion time: " + process.getCompletionTime() + ", Turn around time: " + process.getTurnAroundTime());
@@ -213,5 +249,7 @@ public class RRQueue extends ProcessQueue
     }
 
     private int quantum = 0;
+    private ArrayList<ExtendedProcess> initialList;
+    private ArrayList<ExtendedProcess> readyQueue;
 
 }

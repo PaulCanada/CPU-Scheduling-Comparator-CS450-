@@ -6,8 +6,6 @@
 package cs450assignment1;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -60,9 +58,10 @@ public abstract class ProcessQueue
         return type;
     }
 
-    private String type;
-    private ArrayList<Process> initialList;
-    private ArrayList<Process> readyQueue;
-    private int numberOfProcesses;
+    protected String type;
+    //private ArrayList<Process> initialList;
+    //private ArrayList<Process> readyQueue;
+    protected int numberOfProcesses;
+    protected Random random;
 
 }

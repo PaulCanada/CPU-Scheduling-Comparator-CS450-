@@ -40,12 +40,12 @@ public class FCFSQueue extends ProcessQueue
         readyQueue = new ArrayList<>();
 
         //FCFS
-        /*
+        
         initialList.add(new Process("P0", 6, 1, 0));
         initialList.add(new Process("P1", 4, 0, 5));
         initialList.add(new Process("P2", 3, 0, 7));
         initialList.add(new Process("P3", 4, 1, 13));
-         */
+        
         //FCFS
         /*
         initialList.add(new Process("P0", 4, 1, 0));
@@ -53,20 +53,6 @@ public class FCFSQueue extends ProcessQueue
         initialList.add(new Process("P2", 3, 0, 10));
         initialList.add(new Process("P3", 7, 1, 11));
          */
-        //Round Robin
-        /*
-        initialList.add(new Process("P1", 1, 1, 15));
-        initialList.add(new Process("P2", 14, 2, 18));
-        initialList.add(new Process("P3", 1, 3, 23));
-        initialList.add(new Process("P4", 14, 3, 39));
-        initialList.add(new Process("P5", 16, 13, 42));
-         */
-        // Round Robin
-        initialList.add(new Process("P1", 5, 1, 5));
-        initialList.add(new Process("P2", 6, 2, 14));
-        initialList.add(new Process("P3", 5, 3, 17));
-        initialList.add(new Process("P4", 3, 3, 20));
-        initialList.add(new Process("P5", 6, 1, 23));
 
         numberOfProcesses = initialList.size();
 
@@ -180,10 +166,9 @@ public class FCFSQueue extends ProcessQueue
         }
     }
 
-    private String type;
+    //private String type;
     private ArrayList<Process> initialList;
     private ArrayList<Process> readyQueue;
-    private int numberOfProcesses;
-    private final Random random;
+
 
 }
