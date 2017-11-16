@@ -33,15 +33,15 @@ public class CS450Assignment1
         FCFSQueue fcfs = new FCFSQueue();
         RRQueue rr = new RRQueue(4, "RR");
         fcfs.setupAlgorithm();
-        //rr.setupAlgorithm();
+        rr.setupAlgorithm();
         
         System.out.println("First come first serve algorithm:");
         fcfs.printInitialProcessInformation();
         fcfs.printReadyProcessInformation();
         
         System.out.println("Round Robin algorithm:");
-        //rr.printInitialProcessInformation();
-        //rr.printReadyProcessInformation();
+        rr.printInitialProcessInformation();
+        rr.printReadyProcessInformation();
     }
 
 }

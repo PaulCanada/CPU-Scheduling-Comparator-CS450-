@@ -59,8 +59,6 @@ public abstract class ProcessQueue
     }
 
     protected String type;
-    //private ArrayList<Process> initialList;
-    //private ArrayList<Process> readyQueue;
     protected int numberOfProcesses;
     protected Random random;
 

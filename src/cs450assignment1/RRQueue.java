@@ -19,12 +19,18 @@ public class RRQueue extends ProcessQueue
 
     public RRQueue(int numberOfProcesses, String type)
     {
+        System.out.println("Start.");
         random = new Random();
+        System.out.println("Random created.");
         initialList = new ArrayList<>();
+        System.out.println("Initial list initialized.");
         readyQueue = new ArrayList<>();
+        System.out.println("readyQueue initialized");
         this.type = type;
 
+        System.out.println("Initial list setup start");
         setupInitialList(numberOfProcesses, type);
+        System.out.println("Initial list setup completed.");
     }
 
     // Testing constructor
@@ -80,6 +86,7 @@ public class RRQueue extends ProcessQueue
      */
     public void setupAlgorithm()
     {
+        System.out.println("setupAlgorithm started");
         // Clear the ready queue to start fresh.
         readyQueue.clear();
 
@@ -87,13 +94,13 @@ public class RRQueue extends ProcessQueue
 
         // Make a shallow copy of initialList and put it in readyQueue.
         readyQueue = new ArrayList<>(initialList);
+        System.out.println("Ready queue copied.");
 
         ExtendedProcess currentProcess;
 
         // Loop through until all processes are finished.
         while (hasUnfinishedProcess(readyQueue))
         {
-
             // Loop through all processes in readyQueue.
             for (int i = 0; i < readyQueue.size(); i++)
             {
@@ -105,6 +112,7 @@ public class RRQueue extends ProcessQueue
                     // If the current time is less than the arrival time of the process, increment the current time and skip the whole process.
                     if (currentTime < currentProcess.getArrivalTime())
                     {
+                        System.out.println("Current time: " + currentTime + " < process arrival time: " + currentProcess.getArrivalTime() );
                         /**
                          * TODO: Determine if the CPU will advance a whole
                          * quantum, or just increment by 1. This affects start
@@ -141,6 +149,7 @@ public class RRQueue extends ProcessQueue
                         // Otherwise, the remaining time is less than the quantum and we need to set
                         // ending values.
                         {
+                            System.out.println("sdfgd");
                             currentTime += currentProcess.getRemainingTime();
                             currentProcess.setCompletionTime(currentTime);
 
@@ -153,11 +162,13 @@ public class RRQueue extends ProcessQueue
 
                     }
 
+                   // System.out.println("current process remaining time: " + currentProcess.getRemainingTime());
                     // If the remaining time of the process is 0, then the process
                     // is complete.
                     if (currentProcess.getRemainingTime() == 0)
                     {
                         currentProcess.setCompletionStatus(true);
+                        System.out.println("Set process completion to true.");
                     }
 
                     try
