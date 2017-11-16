@@ -17,20 +17,15 @@ import java.util.Random;
 public class RRQueue extends ProcessQueue
 {
 
-    public RRQueue(int numberOfProcesses, String type)
+    public RRQueue(int numberOfProcesses, int quantum, String type)
     {
-        System.out.println("Start.");
         random = new Random();
-        System.out.println("Random created.");
         initialList = new ArrayList<>();
-        System.out.println("Initial list initialized.");
         readyQueue = new ArrayList<>();
-        System.out.println("readyQueue initialized");
+        this.quantum = quantum;
         this.type = type;
 
-        System.out.println("Initial list setup start");
         setupInitialList(numberOfProcesses, type);
-        System.out.println("Initial list setup completed.");
     }
 
     // Testing constructor
@@ -40,7 +35,7 @@ public class RRQueue extends ProcessQueue
     public RRQueue()
     {
         type = "RR";
-        random = new Random();
+        quantum = 4;
 
         initialList = new ArrayList<>();
         readyQueue = new ArrayList<>();
@@ -68,6 +63,7 @@ public class RRQueue extends ProcessQueue
      * @param numberOfProcesses
      * @param type
      */
+    @Override
     public void setupInitialList(int numberOfProcesses, String type)
     {
         this.numberOfProcesses = numberOfProcesses;
@@ -84,9 +80,9 @@ public class RRQueue extends ProcessQueue
      *
      * @param quantum
      */
+    @Override
     public void setupAlgorithm()
     {
-        System.out.println("setupAlgorithm started");
         // Clear the ready queue to start fresh.
         readyQueue.clear();
 
@@ -94,7 +90,6 @@ public class RRQueue extends ProcessQueue
 
         // Make a shallow copy of initialList and put it in readyQueue.
         readyQueue = new ArrayList<>(initialList);
-        System.out.println("Ready queue copied.");
 
         ExtendedProcess currentProcess;
 
@@ -112,7 +107,6 @@ public class RRQueue extends ProcessQueue
                     // If the current time is less than the arrival time of the process, increment the current time and skip the whole process.
                     if (currentTime < currentProcess.getArrivalTime())
                     {
-                        System.out.println("Current time: " + currentTime + " < process arrival time: " + currentProcess.getArrivalTime() );
                         /**
                          * TODO: Determine if the CPU will advance a whole
                          * quantum, or just increment by 1. This affects start
@@ -149,7 +143,6 @@ public class RRQueue extends ProcessQueue
                         // Otherwise, the remaining time is less than the quantum and we need to set
                         // ending values.
                         {
-                            System.out.println("sdfgd");
                             currentTime += currentProcess.getRemainingTime();
                             currentProcess.setCompletionTime(currentTime);
 
@@ -168,7 +161,6 @@ public class RRQueue extends ProcessQueue
                     if (currentProcess.getRemainingTime() == 0)
                     {
                         currentProcess.setCompletionStatus(true);
-                        System.out.println("Set process completion to true.");
                     }
 
                     try
@@ -193,6 +185,7 @@ public class RRQueue extends ProcessQueue
      *
      * @return
      */
+    @Override
     public int calculateTotalWaitTime()
     {
         int total = 0;
@@ -205,6 +198,7 @@ public class RRQueue extends ProcessQueue
         return total;
     }
 
+    @Override
     public float calculateAverageWaitTime()
     {
         float average = 0;
@@ -236,6 +230,7 @@ public class RRQueue extends ProcessQueue
         return false;
     }
 
+    @Override
     public void printInitialProcessInformation()
     {
         System.out.println("Initial process information:");
@@ -247,6 +242,7 @@ public class RRQueue extends ProcessQueue
         }
     }
 
+    @Override
     public void printReadyProcessInformation()
     {
         System.out.println("Ready process information:");

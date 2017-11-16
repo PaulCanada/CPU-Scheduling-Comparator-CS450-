@@ -63,6 +63,7 @@ public class FCFSQueue extends ProcessQueue
      * @param numberOfProcesses
      * @param type
      */
+    @Override
     public void setupInitialList(int numberOfProcesses, String type)
     {
         this.numberOfProcesses = numberOfProcesses;
@@ -78,6 +79,7 @@ public class FCFSQueue extends ProcessQueue
     /**
      *
      */
+    @Override
     public void setupAlgorithm()
     {
         // Clear the ready queue to start fresh.
@@ -118,6 +120,7 @@ public class FCFSQueue extends ProcessQueue
      *
      * @return
      */
+    @Override
     public int calculateTotalWaitTime()
     {
         int total = 0;
@@ -130,6 +133,7 @@ public class FCFSQueue extends ProcessQueue
         return total;
     }
 
+    @Override
     public float calculateAverageWaitTime()
     {
         float average = 0;
@@ -143,6 +147,7 @@ public class FCFSQueue extends ProcessQueue
         return average / numberOfProcesses;
     }
 
+    @Override
     public void printInitialProcessInformation()
     {
         System.out.println("Initial process information:");
@@ -154,6 +159,7 @@ public class FCFSQueue extends ProcessQueue
         }
     }
 
+    @Override
     public void printReadyProcessInformation()
     {
         System.out.println("Ready process information:");
