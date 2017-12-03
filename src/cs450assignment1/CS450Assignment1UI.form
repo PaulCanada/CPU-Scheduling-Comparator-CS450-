@@ -204,7 +204,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jButtonChangeProcess" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonGenerateProcess" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jButtonClearProcessData" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -225,7 +225,7 @@
                           <Component id="jPanelParameters" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButtonChangeProcess" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
+                              <Component id="jButtonGenerateProcess" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
                               <Component id="jButtonClearProcessData" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="57" max="32767" attributes="0"/>
@@ -524,10 +524,13 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButtonChangeProcess">
+        <Component class="javax.swing.JButton" name="jButtonGenerateProcess">
           <Properties>
             <Property name="text" type="java.lang.String" value="Generate &#xa;New Processes"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGenerateProcessActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonClearProcessData">
           <Properties>

@@ -5,8 +5,9 @@
  */
 package cs450assignment1;
 
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -18,6 +19,9 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
      * Creates new form CS450Assignment1UI
      */
     public CS450Assignment1UI() {
+        random = new Random();
+        this.initialList = new ArrayList<Process>();
+
         initComponents();
     }
 
@@ -53,7 +57,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         jComboBoxQuantum = new javax.swing.JComboBox<>();
         jLabelQuantum = new javax.swing.JLabel();
         jCheckBoxSaveToFile = new javax.swing.JCheckBox();
-        jButtonChangeProcess = new javax.swing.JButton();
+        jButtonGenerateProcess = new javax.swing.JButton();
         jButtonClearProcessData = new javax.swing.JButton();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
@@ -239,7 +243,12 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
-        jButtonChangeProcess.setText("Generate \nNew Processes");
+        jButtonGenerateProcess.setText("Generate \nNew Processes");
+        jButtonGenerateProcess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGenerateProcessActionPerformed(evt);
+            }
+        });
 
         jButtonClearProcessData.setText("Clear Process Data \nOutput");
         jButtonClearProcessData.addActionListener(new java.awt.event.ActionListener() {
@@ -275,7 +284,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelMainLayout.createSequentialGroup()
-                                .addComponent(jButtonChangeProcess)
+                                .addComponent(jButtonGenerateProcess)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonClearProcessData))
                             .addComponent(jPanelAlgorithmSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -290,7 +299,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
                         .addComponent(jPanelParameters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonChangeProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonGenerateProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonClearProcessData, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 57, Short.MAX_VALUE))
                     .addComponent(jScrollPaneProcessData))
@@ -389,7 +398,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
 
     private void jComboBoxProcessNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProcessNumActionPerformed
         // TODO add your handling code here:
-        numberOfProcesses = Integer.parseInt((String)jComboBoxProcessNum.getSelectedItem());
+        numberOfProcesses = Integer.parseInt((String) jComboBoxProcessNum.getSelectedItem());
         jTextAreaProcessData.setText(jTextAreaProcessData.getText() + "Setting number of processes to : " + Integer.toString(numberOfProcesses) + ".\n");
     }//GEN-LAST:event_jComboBoxProcessNumActionPerformed
 
@@ -400,15 +409,21 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
 
     private void jComboBoxQuantumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxQuantumActionPerformed
         // TODO add your handling code here:
-        quantum = Integer.parseInt((String)jComboBoxQuantum.getSelectedItem());
+        quantum = Integer.parseInt((String) jComboBoxQuantum.getSelectedItem());
         jTextAreaProcessData.setText(jTextAreaProcessData.getText() + "Setting quantum to : " + Integer.toString(quantum) + ".\n");
     }//GEN-LAST:event_jComboBoxQuantumActionPerformed
 
     private void jButtonClearProcessDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearProcessDataActionPerformed
         // TODO add your handling code here:
-        
+
         jTextAreaProcessData.setText("");
     }//GEN-LAST:event_jButtonClearProcessDataActionPerformed
+
+    private void jButtonGenerateProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerateProcessActionPerformed
+        // TODO add your handling code here:
+        rr = new RRQueue();
+
+    }//GEN-LAST:event_jButtonGenerateProcessActionPerformed
 
     /**
      * @param args the command line arguments
@@ -449,9 +464,9 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupProcessRun;
     private javax.swing.JButton jButtonAboutClose;
-    private javax.swing.JButton jButtonChangeProcess;
     private javax.swing.JButton jButtonClearOutput;
     private javax.swing.JButton jButtonClearProcessData;
+    private javax.swing.JButton jButtonGenerateProcess;
     private javax.swing.JButton jButtonRun;
     private javax.swing.JCheckBox jCheckBoxSaveToFile;
     private javax.swing.JComboBox<String> jComboBoxProcessNum;
@@ -480,8 +495,29 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     // User variable declaration
-    private int numberOfProcesses;
-    private int quantum;
-
+    private static int releaseTime = 0;
+    private Random random;
+    private int numberOfProcesses = 0;
+    private int quantum = 0;
+    private List<Process> initialList;
+    private FCFSQueue fcfs;
+    private RRQueue rr;
     // End of user declaration
+
+    // User method declaration
+    
+    private void setupList(int numberOfProcesses, int quantum)
+    {
+        // Create a new process and store it in the initial list
+        for (int i = 1; i < numberOfProcesses; i++)
+        {
+            releaseTime += random.nextInt(10);
+            initialList.add(new Process("P" + i, random.nextInt(5) + 3, random.nextInt(numberOfProcesses / 2), releaseTime));
+        }
+        
+        
+        // Reset release time for fresh processes in the future
+        releaseTime = 0;
+    }
+    // End of user method delcaration
 }
