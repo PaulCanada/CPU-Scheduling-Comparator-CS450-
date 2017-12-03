@@ -8,6 +8,7 @@ package cs450assignment1;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -25,6 +26,17 @@ public class FCFSQueue extends ProcessQueue
         this.type = type;
 
         setupInitialList(numberOfProcesses, type);
+    }
+    
+    public FCFSQueue(ArrayList<Process> processList)
+    {
+        initialList = new ArrayList<>();
+        readyQueue = new ArrayList<>();
+        for (int i = 0; i < processList.size(); i++)
+        {
+            initialList.add(new Process(processList.get(i)));
+        }
+        numberOfProcesses = initialList.size();
     }
 
     // Testing constructor
@@ -136,15 +148,7 @@ public class FCFSQueue extends ProcessQueue
     @Override
     public float calculateAverageWaitTime()
     {
-        float average = 0;
-
-        for (Iterator<Process> it = readyQueue.iterator(); it.hasNext();)
-        {
-            Process process = it.next();
-            average += process.getWaitTime();
-        }
-
-        return average / numberOfProcesses;
+        return (float) calculateTotalWaitTime() / numberOfProcesses;
     }
 
     @Override
@@ -171,10 +175,35 @@ public class FCFSQueue extends ProcessQueue
                     + ", Completion time: " + process.getCompletionTime() + ", Turn around time: " + process.getTurnAroundTime());
         }
     }
+    
+    @Override
+    public String getOutputText()
+    {
+        String output = "";
+        
+        for (Process process : readyQueue)
+        {
+            output += "Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
+                    + ", Arrival time: " + process.getArrivalTime() + ", Wait time: " + process.getWaitTime() + ", Start time: " + process.getStartTime()
+                    + ", Completion time: " + process.getCompletionTime() + ", Turn around time: " + process.getTurnAroundTime() + ".\n";
+        }
+        
+        output += "\nAverage wait time: " + calculateAverageWaitTime() + ".\n\n";
+        
+        return output;
+    }
+    
+        @Override
+    public int getNumberOfProcesses() {
+        return initialList.size();
+    }
+    
 
     //private String type;
     private ArrayList<Process> initialList;
     private ArrayList<Process> readyQueue;
+
+
 
 
 }
