@@ -12,14 +12,12 @@ import javax.swing.JOptionPane;
  *
  * @author Paul
  */
-public class CS450Assignment1UI extends javax.swing.JFrame
-{
+public class CS450Assignment1UI extends javax.swing.JFrame {
 
     /**
      * Creates new form CS450Assignment1UI
      */
-    public CS450Assignment1UI()
-    {
+    public CS450Assignment1UI() {
         initComponents();
     }
 
@@ -41,7 +39,6 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jLabelInfo = new javax.swing.JLabel();
         jScrollPaneProcessData = new javax.swing.JScrollPane();
         jTextAreaProcessData = new javax.swing.JTextArea();
-        jButtonChangeProcess = new javax.swing.JButton();
         jPanelAlgorithmSelector = new javax.swing.JPanel();
         jRadioButtonFCFS = new javax.swing.JRadioButton();
         jRadioButtonRR = new javax.swing.JRadioButton();
@@ -50,6 +47,14 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jTextAreaOutput = new javax.swing.JTextArea();
         jButtonRun = new javax.swing.JButton();
         jButtonClearOutput = new javax.swing.JButton();
+        jPanelParameters = new javax.swing.JPanel();
+        jLabelProcesses = new javax.swing.JLabel();
+        jComboBoxProcessNum = new javax.swing.JComboBox<>();
+        jComboBoxQuantum = new javax.swing.JComboBox<>();
+        jLabelQuantum = new javax.swing.JLabel();
+        jCheckBoxSaveToFile = new javax.swing.JCheckBox();
+        jButtonChangeProcess = new javax.swing.JButton();
+        jButtonClearProcessData = new javax.swing.JButton();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemNewData = new javax.swing.JMenuItem();
@@ -57,7 +62,6 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jMenuItemQuit = new javax.swing.JMenuItem();
 
         jDialogAbout.setTitle("About");
-        jDialogAbout.setLocationByPlatform(true);
         jDialogAbout.setMinimumSize(new java.awt.Dimension(500, 400));
         jDialogAbout.setModal(true);
 
@@ -106,7 +110,10 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(java.awt.SystemColor.controlDkShadow);
         setLocationByPlatform(true);
-        setMinimumSize(new java.awt.Dimension(750, 700));
+        setMinimumSize(new java.awt.Dimension(800, 800));
+
+        jPanelMain.setMinimumSize(new java.awt.Dimension(700, 700));
+        jPanelMain.setPreferredSize(new java.awt.Dimension(700, 700));
 
         jLabelInfo.setText("Made by Paul Canada");
 
@@ -117,11 +124,10 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jTextAreaProcessData.setRows(5);
         jScrollPaneProcessData.setViewportView(jTextAreaProcessData);
 
-        jButtonChangeProcess.setText("Generate \nNew Processes");
-
         jPanelAlgorithmSelector.setBorder(javax.swing.BorderFactory.createTitledBorder("Algorithm Type"));
 
         buttonGroupProcessRun.add(jRadioButtonFCFS);
+        jRadioButtonFCFS.setSelected(true);
         jRadioButtonFCFS.setText("First Come First Serve");
 
         buttonGroupProcessRun.add(jRadioButtonRR);
@@ -140,7 +146,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
                     .addComponent(jRadioButtonFCFS)
                     .addComponent(jRadioButtonRR, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jRadioButtonBoth, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         jPanelAlgorithmSelectorLayout.setVerticalGroup(
             jPanelAlgorithmSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +157,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
                 .addComponent(jRadioButtonRR)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButtonBoth)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jScrollPaneOutput.setBorder(javax.swing.BorderFactory.createTitledBorder("Output"));
@@ -164,52 +170,143 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jButtonRun.setText("Run");
 
         jButtonClearOutput.setText("Clear Output");
+        jButtonClearOutput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearOutputActionPerformed(evt);
+            }
+        });
+
+        jPanelParameters.setBorder(javax.swing.BorderFactory.createTitledBorder("Parameters"));
+
+        jLabelProcesses.setText("Number of Processes");
+
+        jComboBoxProcessNum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        jComboBoxProcessNum.setToolTipText("The number of processes to utilize.");
+        jComboBoxProcessNum.setBorder(null);
+        jComboBoxProcessNum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxProcessNumActionPerformed(evt);
+            }
+        });
+
+        jComboBoxQuantum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        jComboBoxQuantum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxQuantumActionPerformed(evt);
+            }
+        });
+
+        jLabelQuantum.setText("Quantum");
+
+        jCheckBoxSaveToFile.setText("Save to file");
+
+        javax.swing.GroupLayout jPanelParametersLayout = new javax.swing.GroupLayout(jPanelParameters);
+        jPanelParameters.setLayout(jPanelParametersLayout);
+        jPanelParametersLayout.setHorizontalGroup(
+            jPanelParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelParametersLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanelParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelProcesses)
+                    .addGroup(jPanelParametersLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanelParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBoxSaveToFile)
+                            .addComponent(jComboBoxProcessNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(98, 98, 98)
+                .addGroup(jPanelParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelParametersLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jComboBoxQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(71, Short.MAX_VALUE))
+                    .addGroup(jPanelParametersLayout.createSequentialGroup()
+                        .addComponent(jLabelQuantum)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        jPanelParametersLayout.setVerticalGroup(
+            jPanelParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelParametersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelProcesses)
+                    .addComponent(jLabelQuantum))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxProcessNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBoxSaveToFile)
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+
+        jButtonChangeProcess.setText("Generate \nNew Processes");
+
+        jButtonClearProcessData.setText("Clear Process Data \nOutput");
+        jButtonClearProcessData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearProcessDataActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
         jPanelMain.setLayout(jPanelMainLayout);
         jPanelMainLayout.setHorizontalGroup(
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelInfo)
+                .addGap(45, 45, 45))
+            .addGroup(jPanelMainLayout.createSequentialGroup()
+                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPaneOutput)
-                    .addComponent(jScrollPaneProcessData, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPaneProcessData, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonChangeProcess)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
-                                .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonClearOutput))
-                            .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jPanelAlgorithmSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelInfo)))
-                        .addGap(42, 42, 42))))
+                        .addGap(28, 28, 28)
+                        .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonClearOutput))
+                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jPanelParameters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelMainLayout.createSequentialGroup()
+                                .addComponent(jButtonChangeProcess)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonClearProcessData))
+                            .addComponent(jPanelAlgorithmSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(29, 29, 29))
         );
         jPanelMainLayout.setVerticalGroup(
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneProcessData, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonChangeProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                        .addComponent(jPanelParameters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonChangeProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonClearProcessData, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 57, Short.MAX_VALUE))
+                    .addComponent(jScrollPaneProcessData))
+                .addGap(130, 130, 130)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addComponent(jScrollPaneOutput)
-                        .addGap(35, 35, 35))
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
                         .addComponent(jPanelAlgorithmSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonRun)
-                            .addComponent(jButtonClearOutput))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)))
-                .addComponent(jLabelInfo)
+                            .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonClearOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelInfo))
+                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                        .addComponent(jScrollPaneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 139, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -251,14 +348,14 @@ public class CS450Assignment1UI extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -279,7 +376,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
     private void jMenuItemAboutActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemAboutActionPerformed
     {//GEN-HEADEREND:event_jMenuItemAboutActionPerformed
         // TODO add your handling code here:
-        
+
         jDialogAbout.setVisible(true);
         //JDialog.showMessageDialog(this, "Poop");
     }//GEN-LAST:event_jMenuItemAboutActionPerformed
@@ -290,49 +387,63 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jDialogAbout.dispose();
     }//GEN-LAST:event_jButtonAboutCloseActionPerformed
 
+    private void jComboBoxProcessNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProcessNumActionPerformed
+        // TODO add your handling code here:
+        numberOfProcesses = Integer.parseInt((String)jComboBoxProcessNum.getSelectedItem());
+        jTextAreaProcessData.setText(jTextAreaProcessData.getText() + "Setting number of processes to : " + Integer.toString(numberOfProcesses) + ".\n");
+    }//GEN-LAST:event_jComboBoxProcessNumActionPerformed
+
+    private void jButtonClearOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearOutputActionPerformed
+        // TODO add your handling code here:
+        jTextAreaOutput.setText("");
+    }//GEN-LAST:event_jButtonClearOutputActionPerformed
+
+    private void jComboBoxQuantumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxQuantumActionPerformed
+        // TODO add your handling code here:
+        quantum = Integer.parseInt((String)jComboBoxQuantum.getSelectedItem());
+        jTextAreaProcessData.setText(jTextAreaProcessData.getText() + "Setting quantum to : " + Integer.toString(quantum) + ".\n");
+    }//GEN-LAST:event_jComboBoxQuantumActionPerformed
+
+    private void jButtonClearProcessDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearProcessDataActionPerformed
+        // TODO add your handling code here:
+        
+        jTextAreaProcessData.setText("");
+    }//GEN-LAST:event_jButtonClearProcessDataActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(CS450Assignment1UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(CS450Assignment1UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(CS450Assignment1UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CS450Assignment1UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
                 new CS450Assignment1UI().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -340,9 +451,15 @@ public class CS450Assignment1UI extends javax.swing.JFrame
     private javax.swing.JButton jButtonAboutClose;
     private javax.swing.JButton jButtonChangeProcess;
     private javax.swing.JButton jButtonClearOutput;
+    private javax.swing.JButton jButtonClearProcessData;
     private javax.swing.JButton jButtonRun;
+    private javax.swing.JCheckBox jCheckBoxSaveToFile;
+    private javax.swing.JComboBox<String> jComboBoxProcessNum;
+    private javax.swing.JComboBox<String> jComboBoxQuantum;
     private javax.swing.JDialog jDialogAbout;
     private javax.swing.JLabel jLabelInfo;
+    private javax.swing.JLabel jLabelProcesses;
+    private javax.swing.JLabel jLabelQuantum;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenuItem jMenuItemAbout;
@@ -350,6 +467,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItemQuit;
     private javax.swing.JPanel jPanelAlgorithmSelector;
     private javax.swing.JPanel jPanelMain;
+    private javax.swing.JPanel jPanelParameters;
     private javax.swing.JRadioButton jRadioButtonBoth;
     private javax.swing.JRadioButton jRadioButtonFCFS;
     private javax.swing.JRadioButton jRadioButtonRR;
@@ -360,4 +478,10 @@ public class CS450Assignment1UI extends javax.swing.JFrame
     private javax.swing.JTextArea jTextAreaOutput;
     private javax.swing.JTextArea jTextAreaProcessData;
     // End of variables declaration//GEN-END:variables
+
+    // User variable declaration
+    private int numberOfProcesses;
+    private int quantum;
+
+    // End of user declaration
 }
