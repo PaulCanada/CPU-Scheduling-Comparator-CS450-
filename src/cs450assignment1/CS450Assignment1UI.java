@@ -30,8 +30,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         buttonGroupProcessRun = new javax.swing.ButtonGroup();
         jDialogAbout = new javax.swing.JDialog();
@@ -40,21 +39,27 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jButtonAboutClose = new javax.swing.JButton();
         jPanelMain = new javax.swing.JPanel();
         jLabelInfo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextFieldInitialList = new javax.swing.JTextField();
+        jScrollPaneProcessData = new javax.swing.JScrollPane();
+        jTextAreaProcessData = new javax.swing.JTextArea();
         jButtonChangeProcess = new javax.swing.JButton();
+        jPanelAlgorithmSelector = new javax.swing.JPanel();
         jRadioButtonFCFS = new javax.swing.JRadioButton();
         jRadioButtonRR = new javax.swing.JRadioButton();
         jRadioButtonBoth = new javax.swing.JRadioButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jScrollPaneOutput = new javax.swing.JScrollPane();
+        jTextAreaOutput = new javax.swing.JTextArea();
+        jButtonRun = new javax.swing.JButton();
+        jButtonClearOutput = new javax.swing.JButton();
+        jMenuBar = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemNewData = new javax.swing.JMenuItem();
         jMenuItemAbout = new javax.swing.JMenuItem();
         jMenuItemQuit = new javax.swing.JMenuItem();
 
         jDialogAbout.setTitle("About");
+        jDialogAbout.setLocationByPlatform(true);
         jDialogAbout.setMinimumSize(new java.awt.Dimension(500, 400));
+        jDialogAbout.setModal(true);
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -69,10 +74,8 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jScrollPane2.setViewportView(jTextAreaAbout);
 
         jButtonAboutClose.setText("Close");
-        jButtonAboutClose.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButtonAboutClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAboutCloseActionPerformed(evt);
             }
         });
@@ -102,20 +105,21 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(java.awt.SystemColor.controlDkShadow);
-        setPreferredSize(new java.awt.Dimension(800, 700));
+        setLocationByPlatform(true);
+        setMinimumSize(new java.awt.Dimension(750, 700));
 
         jLabelInfo.setText("Made by Paul Canada");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jScrollPaneProcessData.setBorder(javax.swing.BorderFactory.createTitledBorder("Process Data"));
 
-        jTextFieldInitialList.setEditable(false);
-        jTextFieldInitialList.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldInitialList.setText("Process Data");
-        jTextFieldInitialList.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTextAreaProcessData.setEditable(false);
+        jTextAreaProcessData.setColumns(20);
+        jTextAreaProcessData.setRows(5);
+        jScrollPaneProcessData.setViewportView(jTextAreaProcessData);
 
         jButtonChangeProcess.setText("Generate \nNew Processes");
+
+        jPanelAlgorithmSelector.setBorder(javax.swing.BorderFactory.createTitledBorder("Algorithm Type"));
 
         buttonGroupProcessRun.add(jRadioButtonFCFS);
         jRadioButtonFCFS.setText("First Come First Serve");
@@ -126,50 +130,85 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         buttonGroupProcessRun.add(jRadioButtonBoth);
         jRadioButtonBoth.setText("Compare");
 
-        javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
-        jPanelMain.setLayout(jPanelMainLayout);
-        jPanelMainLayout.setHorizontalGroup(
-            jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jRadioButtonFCFS)
-                                .addComponent(jRadioButtonRR, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jRadioButtonBoth, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jLabelInfo)))
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonChangeProcess)
-                        .addGap(0, 105, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanelMainLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelAlgorithmSelectorLayout = new javax.swing.GroupLayout(jPanelAlgorithmSelector);
+        jPanelAlgorithmSelector.setLayout(jPanelAlgorithmSelectorLayout);
+        jPanelAlgorithmSelectorLayout.setHorizontalGroup(
+            jPanelAlgorithmSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAlgorithmSelectorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextFieldInitialList, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanelAlgorithmSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jRadioButtonFCFS)
+                    .addComponent(jRadioButtonRR, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButtonBoth, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
-        jPanelMainLayout.setVerticalGroup(
-            jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jTextFieldInitialList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(jButtonChangeProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(175, 175, 175)
+        jPanelAlgorithmSelectorLayout.setVerticalGroup(
+            jPanelAlgorithmSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAlgorithmSelectorLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addComponent(jRadioButtonFCFS)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButtonRR)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButtonBoth)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        jScrollPaneOutput.setBorder(javax.swing.BorderFactory.createTitledBorder("Output"));
+
+        jTextAreaOutput.setEditable(false);
+        jTextAreaOutput.setColumns(20);
+        jTextAreaOutput.setRows(5);
+        jScrollPaneOutput.setViewportView(jTextAreaOutput);
+
+        jButtonRun.setText("Run");
+
+        jButtonClearOutput.setText("Clear Output");
+
+        javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
+        jPanelMain.setLayout(jPanelMainLayout);
+        jPanelMainLayout.setHorizontalGroup(
+            jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMainLayout.createSequentialGroup()
+                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPaneOutput)
+                    .addComponent(jScrollPaneProcessData, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonChangeProcess)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
+                                .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonClearOutput))
+                            .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jPanelAlgorithmSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelInfo)))
+                        .addGap(42, 42, 42))))
+        );
+        jPanelMainLayout.setVerticalGroup(
+            jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPaneProcessData, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonChangeProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                        .addComponent(jScrollPaneOutput)
+                        .addGap(35, 35, 35))
+                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                        .addComponent(jPanelAlgorithmSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonRun)
+                            .addComponent(jButtonClearOutput))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)))
                 .addComponent(jLabelInfo)
                 .addContainerGap())
         );
@@ -178,20 +217,16 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
         jMenuItemNewData.setText("Generate New Data");
         jMenuItemNewData.setToolTipText("Creates a new set of processes.");
-        jMenuItemNewData.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemNewData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemNewDataActionPerformed(evt);
             }
         });
         jMenuFile.add(jMenuItemNewData);
 
         jMenuItemAbout.setText("About");
-        jMenuItemAbout.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemAboutActionPerformed(evt);
             }
         });
@@ -199,18 +234,16 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
         jMenuItemQuit.setText("Close");
         jMenuItemQuit.setToolTipText("Closes the application.");
-        jMenuItemQuit.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemQuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemQuitActionPerformed(evt);
             }
         });
         jMenuFile.add(jMenuItemQuit);
 
-        jMenuBar1.add(jMenuFile);
+        jMenuBar.add(jMenuFile);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -306,21 +339,25 @@ public class CS450Assignment1UI extends javax.swing.JFrame
     private javax.swing.ButtonGroup buttonGroupProcessRun;
     private javax.swing.JButton jButtonAboutClose;
     private javax.swing.JButton jButtonChangeProcess;
+    private javax.swing.JButton jButtonClearOutput;
+    private javax.swing.JButton jButtonRun;
     private javax.swing.JDialog jDialogAbout;
     private javax.swing.JLabel jLabelInfo;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenuItem jMenuItemAbout;
     private javax.swing.JMenuItem jMenuItemNewData;
     private javax.swing.JMenuItem jMenuItemQuit;
+    private javax.swing.JPanel jPanelAlgorithmSelector;
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JRadioButton jRadioButtonBoth;
     private javax.swing.JRadioButton jRadioButtonFCFS;
     private javax.swing.JRadioButton jRadioButtonRR;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPaneOutput;
+    private javax.swing.JScrollPane jScrollPaneProcessData;
     private javax.swing.JTextArea jTextAreaAbout;
-    private javax.swing.JTextField jTextFieldInitialList;
+    private javax.swing.JTextArea jTextAreaOutput;
+    private javax.swing.JTextArea jTextAreaProcessData;
     // End of variables declaration//GEN-END:variables
 }
