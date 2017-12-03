@@ -5,6 +5,7 @@
  */
 package cs450assignment1;
 
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,6 +37,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jDialogAbout = new javax.swing.JDialog();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaAbout = new javax.swing.JTextArea();
+        jButtonAboutClose = new javax.swing.JButton();
         jPanelMain = new javax.swing.JPanel();
         jLabelInfo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -51,6 +53,9 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jMenuItemAbout = new javax.swing.JMenuItem();
         jMenuItemQuit = new javax.swing.JMenuItem();
 
+        jDialogAbout.setTitle("About");
+        jDialogAbout.setMinimumSize(new java.awt.Dimension(500, 400));
+
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jTextAreaAbout.setEditable(false);
@@ -60,23 +65,39 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jTextAreaAbout.setText("This program tests the efficiency and performance of the First Come First Serve and Round Robin CPU scheduling algorithms.\n\nAssignment 1 for WCSU's CS450 Operating Systems class.\n\nMade by Paul Canada.");
         jTextAreaAbout.setWrapStyleWord(true);
         jTextAreaAbout.setAutoscrolls(false);
+        jTextAreaAbout.setMargin(new java.awt.Insets(5, 5, 5, 5));
         jScrollPane2.setViewportView(jTextAreaAbout);
+
+        jButtonAboutClose.setText("Close");
+        jButtonAboutClose.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButtonAboutCloseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jDialogAboutLayout = new javax.swing.GroupLayout(jDialogAbout.getContentPane());
         jDialogAbout.getContentPane().setLayout(jDialogAboutLayout);
         jDialogAboutLayout.setHorizontalGroup(
             jDialogAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialogAboutLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane2)
+                .addGap(19, 19, 19))
+            .addGroup(jDialogAboutLayout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addComponent(jButtonAboutClose, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                .addGap(157, 157, 157))
         );
         jDialogAboutLayout.setVerticalGroup(
             jDialogAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialogAboutLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                .addGap(73, 73, 73)
+                .addComponent(jButtonAboutClose, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -226,9 +247,15 @@ public class CS450Assignment1UI extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jMenuItemAboutActionPerformed
         // TODO add your handling code here:
         
-        //jDialogAbout.setEnabled(true);
-        JOptionPane.showMessageDialog(, "Poop");
+        jDialogAbout.setVisible(true);
+        //JDialog.showMessageDialog(this, "Poop");
     }//GEN-LAST:event_jMenuItemAboutActionPerformed
+
+    private void jButtonAboutCloseActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonAboutCloseActionPerformed
+    {//GEN-HEADEREND:event_jButtonAboutCloseActionPerformed
+        // TODO add your handling code here:
+        jDialogAbout.dispose();
+    }//GEN-LAST:event_jButtonAboutCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,6 +304,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupProcessRun;
+    private javax.swing.JButton jButtonAboutClose;
     private javax.swing.JButton jButtonChangeProcess;
     private javax.swing.JDialog jDialogAbout;
     private javax.swing.JLabel jLabelInfo;
