@@ -16,7 +16,7 @@ public class CS450Assignment1 {
      */
     public static void main(String[] args) {
         {
-
+/*
             FCFSQueue fcfs = new FCFSQueue();
             RRQueue rr = new RRQueue();
             fcfs.setupAlgorithm();
@@ -33,7 +33,7 @@ public class CS450Assignment1 {
             rr.printReadyProcessInformation();
             System.out.println("Total wait time for " + rr.getType() + ": " + rr.calculateTotalWaitTime());
             System.out.println("Average wait time for " + rr.getType() + ": " + rr.calculateAverageWaitTime());
-
+*/
         }
     }
      

@@ -9,31 +9,30 @@ package cs450assignment1;
  *
  * @author Paul Canada (https://github.com/PaulCanada)
  */
-public class ExtendedProcess extends Process
-{
+public class ExtendedProcess extends Process {
 
-    public ExtendedProcess(String name, int burstTime, int priority, int arrivalTime)
-    {
+    public ExtendedProcess(String name, int burstTime, int priority, int arrivalTime) {
         super(name, burstTime, priority, arrivalTime);
     }
 
-    public int getRemainingTime()
-    {
+    public ExtendedProcess(Process toCopy) {
+        super(toCopy.getProcessName(), toCopy.getBurstTime(), toCopy.getPriority(), toCopy.getArrivalTime());
+
+    }
+
+    public int getRemainingTime() {
         return remainingTime;
     }
 
-    public void setRemainingTime(int amount)
-    {
+    public void setRemainingTime(int amount) {
         remainingTime = amount;
     }
 
-    public boolean getCompletionStatus()
-    {
+    public boolean getCompletionStatus() {
         return completionStatus;
     }
 
-    public void setCompletionStatus(boolean status)
-    {
+    public void setCompletionStatus(boolean status) {
         completionStatus = status;
     }
 
