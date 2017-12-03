@@ -15,6 +15,7 @@ public class ExtendedProcess extends Process
     public ExtendedProcess(String name, int burstTime, int priority, int arrivalTime)
     {
         super(name, burstTime, priority, arrivalTime);
+        remainingTime = burstTime;
     }
 
     public int getRemainingTime()
