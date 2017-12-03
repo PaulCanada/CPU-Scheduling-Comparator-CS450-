@@ -19,10 +19,11 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
      * Creates new form CS450Assignment1UI
      */
     public CS450Assignment1UI() {
-        random = new Random();
-        this.initialList = new ArrayList<Process>();
+        this.initialProcessList = new ArrayList<Process>();
 
         initComponents();
+        numberOfProcesses = Integer.parseInt((String) jComboBoxProcessNum.getSelectedItem());
+        quantum = Integer.parseInt((String) jComboBoxQuantum.getSelectedItem());
     }
 
     /**
@@ -172,6 +173,11 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         jScrollPaneOutput.setViewportView(jTextAreaOutput);
 
         jButtonRun.setText("Run");
+        jButtonRun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRunActionPerformed(evt);
+            }
+        });
 
         jButtonClearOutput.setText("Clear Output");
         jButtonClearOutput.addActionListener(new java.awt.event.ActionListener() {
@@ -262,60 +268,59 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         jPanelMainLayout.setHorizontalGroup(
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelInfo)
-                .addGap(45, 45, 45))
+                .addGap(486, 486, 486)
+                .addComponent(jButtonGenerateProcess)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonClearProcessData)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanelMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPaneProcessData, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelParameters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneOutput)
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPaneProcessData, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelInfo))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
+                        .addComponent(jScrollPaneOutput)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonClearOutput))
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jPanelParameters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelMainLayout.createSequentialGroup()
-                                .addComponent(jButtonGenerateProcess)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonClearProcessData))
-                            .addComponent(jPanelAlgorithmSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(29, 29, 29))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
+                                .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonClearOutput)
+                                .addGap(23, 23, 23))
+                            .addComponent(jPanelAlgorithmSelector, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(45, 45, 45))
         );
         jPanelMainLayout.setVerticalGroup(
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPaneProcessData, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
                         .addComponent(jPanelParameters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonGenerateProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonClearProcessData, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 57, Short.MAX_VALUE))
-                    .addComponent(jScrollPaneProcessData))
-                .addGap(130, 130, 130)
+                            .addComponent(jButtonClearProcessData, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
                         .addComponent(jPanelAlgorithmSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonClearOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonClearOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabelInfo))
                     .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addComponent(jScrollPaneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 139, Short.MAX_VALUE)))
+                        .addComponent(jScrollPaneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 47, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -421,9 +426,40 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
 
     private void jButtonGenerateProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerateProcessActionPerformed
         // TODO add your handling code here:
-        rr = new RRQueue();
+        System.out.println("Setting up initial list.");
+        setupList(numberOfProcesses);
+        System.out.println("Done setting up initial List.");
+
+        System.out.println("Setting up FCFSQueue.");
+        fcfs = new FCFSQueue(initialProcessList);
+        fcfs.setupAlgorithm();
+        System.out.println("Done setting up FCFSQueue.");
+
+        System.out.println("Setting up RRQueue.");
+        rr = new RRQueue(initialProcessList, quantum);
+        rr.setupAlgorithm();
+        System.out.println("Done setting up RRQueue.");
+
+        jTextAreaProcessData.setText("");
+
+        for (int i = 0; i < numberOfProcesses; i++) {
+            jTextAreaProcessData.setText(jTextAreaProcessData.getText() + 
+                    
+                    initialProcessList.get(i).getProcessName() + 
+                    "\n---Burst time:  " + initialProcessList.get(i).getBurstTime() + 
+                    "\n---Priority:        " + initialProcessList.get(i).getPriority() +
+                    "\n---Arrival time: " + initialProcessList.get(i).getArrivalTime() + "\n");
+                    
+        }
+
 
     }//GEN-LAST:event_jButtonGenerateProcessActionPerformed
+
+    private void jButtonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRunActionPerformed
+        // TODO add your handling code here:
+        generateAlgorithmOutput();
+
+    }//GEN-LAST:event_jButtonRunActionPerformed
 
     /**
      * @param args the command line arguments
@@ -499,25 +535,50 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
     private Random random;
     private int numberOfProcesses = 0;
     private int quantum = 0;
-    private List<Process> initialList;
+    private ArrayList<Process> initialProcessList;
+    private ArrayList<ExtendedProcess> initialEProcessList;
     private FCFSQueue fcfs;
     private RRQueue rr;
     // End of user declaration
 
     // User method declaration
-    
-    private void setupList(int numberOfProcesses, int quantum)
-    {
+    private void setupList(int numberOfProcesses) {
+        int bt = 0;
+        int pr = 0;
+        random = new Random();
+        initialProcessList.clear();
+
         // Create a new process and store it in the initial list
-        for (int i = 1; i < numberOfProcesses; i++)
-        {
+        for (int i = 1; i <= numberOfProcesses; i++) {
             releaseTime += random.nextInt(10);
-            initialList.add(new Process("P" + i, random.nextInt(5) + 3, random.nextInt(numberOfProcesses / 2), releaseTime));
+            bt = random.nextInt(5) + 3;
+            pr = random.nextInt(numberOfProcesses / 2);
+
+            initialProcessList.add(new Process("P" + i, bt, pr, releaseTime));
+
         }
-        
-        
+
         // Reset release time for fresh processes in the future
         releaseTime = 0;
+    }
+
+    private void generateAlgorithmOutput() {
+        try {
+            if ((fcfs.getNumberOfProcesses() < 10) || (rr.getNumberOfProcesses() < 10)) {
+                jTextAreaOutput.setText("Must have at least 10 processes.\n");
+            } else {
+
+                if (jRadioButtonFCFS.isSelected()) {
+                    jTextAreaOutput.setText(jTextAreaOutput.getText() + "-------------Start of First Come First Serve Algorithm----------\n\n"
+                            + fcfs.getOutputText() + "-----------End of First Come First Serve Algorithm-----------\n\n");
+                } else if (jRadioButtonRR.isSelected()) {
+                    jTextAreaOutput.setText(jTextAreaOutput.getText() + "-------------------Start of Round Robin Algorithm---------------\n\n"
+                            + rr.getOutputText() + "---------------------End of Round Robin Algorithm---------------\n\n");
+                }
+            }
+        } catch (NullPointerException e) {
+            jTextAreaProcessData.setText(jTextAreaOutput.getText() + "Please generate process data first.\n");
+        }
     }
     // End of user method delcaration
 }
