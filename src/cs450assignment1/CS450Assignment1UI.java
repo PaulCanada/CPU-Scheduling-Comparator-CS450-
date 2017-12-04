@@ -72,13 +72,14 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         jLabelInfo = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
-        jMenuItemNewData = new javax.swing.JMenuItem();
         jMenuItemAbout = new javax.swing.JMenuItem();
         jMenuItemQuit = new javax.swing.JMenuItem();
 
         jDialogAbout.setTitle("About");
+        jDialogAbout.setLocation(new java.awt.Point(0, 0));
+        jDialogAbout.setLocationByPlatform(true);
         jDialogAbout.setMinimumSize(new java.awt.Dimension(500, 400));
-        jDialogAbout.setModal(true);
+        jDialogAbout.setResizable(false);
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -122,10 +123,12 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
                 .addGap(41, 41, 41))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(java.awt.SystemColor.controlDkShadow);
         setBounds(new java.awt.Rectangle(0, 0, 750, 800));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setLocation(getLocation());
+        setLocationByPlatform(true);
         setMaximumSize(new java.awt.Dimension(750, 1500));
         setMinimumSize(new java.awt.Dimension(745, 800));
         setPreferredSize(new java.awt.Dimension(745, 800));
@@ -163,7 +166,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
 
         jLabelQuantum.setText("Quantum");
 
-        jCheckBoxSaveToFile.setText("Save to file");
+        jCheckBoxSaveToFile.setText("Save comparison to file");
 
         jButtonClearProcessData.setText("Clear Output");
         jButtonClearProcessData.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +182,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
             }
         });
 
-        jCheckBoxVerbose.setText("Verbose Comparison");
+        jCheckBoxVerbose.setText("Verbose comparison");
 
         jLabelNumSets.setText("Number Of Sets");
 
@@ -251,7 +254,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
             jPanelProcessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProcessLayout.createSequentialGroup()
                 .addGroup(jPanelProcessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelParameters, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanelParameters, javax.swing.GroupLayout.PREFERRED_SIZE, 273, Short.MAX_VALUE)
                     .addComponent(jScrollPaneProcessData, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -360,15 +363,6 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
 
         jMenuFile.setText("File");
 
-        jMenuItemNewData.setText("Generate New Data");
-        jMenuItemNewData.setToolTipText("Creates a new set of processes.");
-        jMenuItemNewData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemNewDataActionPerformed(evt);
-            }
-        });
-        jMenuFile.add(jMenuItemNewData);
-
         jMenuItemAbout.setText("About");
         jMenuItemAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,6 +412,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemQuitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemQuitActionPerformed
@@ -425,11 +420,6 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         // Close out of the application
         this.dispose();
     }//GEN-LAST:event_jMenuItemQuitActionPerformed
-
-    private void jMenuItemNewDataActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemNewDataActionPerformed
-    {//GEN-HEADEREND:event_jMenuItemNewDataActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemNewDataActionPerformed
 
     private void jMenuItemAboutActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemAboutActionPerformed
     {//GEN-HEADEREND:event_jMenuItemAboutActionPerformed
@@ -551,7 +541,6 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenuItem jMenuItemAbout;
-    private javax.swing.JMenuItem jMenuItemNewData;
     private javax.swing.JMenuItem jMenuItemQuit;
     private javax.swing.JPanel jPanelAlgorithm;
     private javax.swing.JPanel jPanelAlgorithmSelector;
@@ -643,13 +632,13 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
 
             if (jCheckBoxVerbose.isSelected()) {
                 algorithmOutput += "--Start of Set #" + (i + 1) + "--\r\n\r\n";
-                
+
                 algorithmOutput += "---Start of First Come First Serve Algorithm---\r\n\r\n"
                         + fcfs.getOutputText() + "\r\nAverage wait time: " + fcfs.calculateAverageWaitTime() + "\r\n\r\n" + "----End of First Come First Serve Algorithm----\r\n\r\n";
-                
+
                 algorithmOutput += "----Start of Round Robin Algorithm----\r\n\r\n"
                         + "\r\n\r\n" + rr.getOutputText() + "\r\nAverage wait time: " + rr.calculateAverageWaitTime() + "\r\n\r\n----End of Round Robin Algorithm----\r\n\r\n";
-                
+
                 algorithmOutput += "\r\n--End of Set #" + (i + 1) + "--\r\n\r\n";
             }
 
@@ -710,6 +699,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
                     runComparator();
                 }
             }
+
         } catch (NullPointerException e) {
             jTextAreaOutput.setText(jTextAreaOutput.getText() + "Please generate process data first.\r\n");
         }
