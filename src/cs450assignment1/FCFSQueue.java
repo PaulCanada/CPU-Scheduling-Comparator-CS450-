@@ -17,15 +17,6 @@ import java.util.Random;
  */
 public class FCFSQueue extends ProcessQueue {
 
-    public FCFSQueue(int numberOfProcesses, String type) {
-        random = new Random();
-        initialList = new ArrayList<>();
-        readyQueue = new ArrayList<>();
-        this.type = type;
-
-        setupInitialList(numberOfProcesses, type);
-    }
-
     public FCFSQueue(ArrayList<Process> processList) {
         initialList = new ArrayList<>();
         readyQueue = new ArrayList<>();
@@ -35,52 +26,9 @@ public class FCFSQueue extends ProcessQueue {
         numberOfProcesses = initialList.size();
     }
 
-    // Testing constructor
-    /**
-     *
-     */
-    public FCFSQueue() {
-        type = "FCFS";
-        random = new Random();
-
-        initialList = new ArrayList<>();
-        readyQueue = new ArrayList<>();
-
-        //FCFS
-        initialList.add(new Process("P0", 6, 1, 0));
-        initialList.add(new Process("P1", 4, 0, 5));
-        initialList.add(new Process("P2", 3, 0, 7));
-        initialList.add(new Process("P3", 4, 1, 13));
-
-        //FCFS
-        /*
-        initialList.add(new Process("P0", 4, 1, 0));
-        initialList.add(new Process("P1", 3, 0, 5));
-        initialList.add(new Process("P2", 3, 0, 10));
-        initialList.add(new Process("P3", 7, 1, 11));
-         */
-        numberOfProcesses = initialList.size();
-
-    }
 
     /**
-     *
-     * @param numberOfProcesses
-     * @param type
-     */
-    @Override
-    public void setupInitialList(int numberOfProcesses, String type) {
-        this.numberOfProcesses = numberOfProcesses;
-
-        for (int i = 0; i < this.numberOfProcesses; i++) {
-            initialList.add(new Process("P" + i, random.nextInt(5) + 3, random.nextInt(numberOfProcesses / 2), random.nextInt(30)));
-        }
-
-        Collections.sort(initialList);
-    }
-
-    /**
-     *
+     * 
      */
     @Override
     public void setupAlgorithm() {
@@ -133,27 +81,6 @@ public class FCFSQueue extends ProcessQueue {
     @Override
     public float calculateAverageWaitTime() {
         return (float) calculateTotalWaitTime() / numberOfProcesses;
-    }
-
-    @Override
-    public void printInitialProcessInformation() {
-        System.out.println("Initial process information:");
-        for (Iterator<Process> it = initialList.iterator(); it.hasNext();) {
-            Process process = it.next();
-            System.out.println("Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
-                    + ", Arrival time: " + process.getArrivalTime());
-        }
-    }
-
-    @Override
-    public void printReadyProcessInformation() {
-        System.out.println("Ready process information:");
-        for (Iterator<Process> it = readyQueue.iterator(); it.hasNext();) {
-            Process process = it.next();
-            System.out.println("Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
-                    + ", Arrival time: " + process.getArrivalTime() + ", Wait time: " + process.getWaitTime() + ", Start time: " + process.getStartTime()
-                    + ", Completion time: " + process.getCompletionTime() + ", Turn around time: " + process.getTurnAroundTime());
-        }
     }
 
     @Override

@@ -32,22 +32,6 @@ public class RRQueue extends ProcessQueue {
 
     /**
      *
-     * @param numberOfProcesses
-     * @param type
-     */
-    @Override
-    public void setupInitialList(int numberOfProcesses, String type) {
-        this.numberOfProcesses = numberOfProcesses;
-
-        for (int i = 0; i < this.numberOfProcesses; i++) {
-            initialList.add(new ExtendedProcess("P" + i, random.nextInt(5) + 3, random.nextInt(numberOfProcesses / 2), random.nextInt(30)));
-        }
-
-        Collections.sort(initialList);
-    }
-
-    /**
-     *
      * @param quantum
      */
     @Override
@@ -172,27 +156,6 @@ public class RRQueue extends ProcessQueue {
         }
 
         return false;
-    }
-
-    @Override
-    public void printInitialProcessInformation() {
-        System.out.println("Initial process information:");
-        for (Iterator<ExtendedProcess> it = initialList.iterator(); it.hasNext();) {
-            ExtendedProcess process = it.next();
-            System.out.println("Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
-                    + ", Arrival time: " + process.getArrivalTime());
-        }
-    }
-
-    @Override
-    public void printReadyProcessInformation() {
-        System.out.println("Ready process information:");
-        for (Iterator<ExtendedProcess> it = readyQueue.iterator(); it.hasNext();) {
-            ExtendedProcess process = it.next();
-            System.out.println("Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
-                    + ", Arrival time: " + process.getArrivalTime() + ", Wait time: " + process.getWaitTime() + ", Start time: " + process.getStartTime()
-                    + ", Completion time: " + process.getCompletionTime() + ", Turn around time: " + process.getTurnAroundTime());
-        }
     }
 
     @Override
