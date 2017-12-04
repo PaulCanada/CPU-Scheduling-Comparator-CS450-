@@ -5,6 +5,9 @@
  */
 package cs450assignment1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -319,7 +322,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
                 .addComponent(jRadioButtonRR)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButtonComparator)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(jPanelAlgorithmSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonClearOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -348,7 +351,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
             jPanelAlgorithmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAlgorithmLayout.createSequentialGroup()
                 .addComponent(jScrollPaneOutput, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelAlgorithmSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -457,9 +460,9 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         for (int i = 0; i < numberOfProcesses; i++) {
             jTextAreaProcessData.setText(jTextAreaProcessData.getText()
                     + initialProcessList.get(i).getProcessName()
-                    + "\n---Arrival time:  " + initialProcessList.get(i).getArrivalTime()
-                    + "\n---Burst time:    " + initialProcessList.get(i).getBurstTime()
-                    + "\n---Priority:          " + initialProcessList.get(i).getPriority() + "\n\n");
+                    + "\r\n---Arrival time:  " + initialProcessList.get(i).getArrivalTime()
+                    + "\r\n---Burst time:    " + initialProcessList.get(i).getBurstTime()
+                    + "\r\n---Priority:          " + initialProcessList.get(i).getPriority() + "\r\n\r\n");
 
         }
     }//GEN-LAST:event_jButtonGenerateProcessActionPerformed
@@ -621,42 +624,61 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
 
             setupList();
 
-            processOutput += "--Start of Set #" + (i + 1) + "--\n\n";
+            processOutput += "--Start of Set #" + (i + 1) + "--\r\n\r\n";
             jTextAreaProcessData.setText(jTextAreaProcessData.getText() + processOutput);
             for (int j = 0; j < numberOfProcesses; j++) {
                 processOutput += initialProcessList.get(j).getProcessName()
-                        + "\n---Arrival time:  " + initialProcessList.get(j).getArrivalTime()
-                        + "\n---Burst time:    " + initialProcessList.get(j).getBurstTime()
-                        + "\n---Priority:          " + initialProcessList.get(j).getPriority() + "\n";
+                        + "\r\n---Arrival time:  " + initialProcessList.get(j).getArrivalTime()
+                        + "\r\n---Burst time:    " + initialProcessList.get(j).getBurstTime()
+                        + "\r\n---Priority:      " + initialProcessList.get(j).getPriority() + "\r\n\r\n";
 
                 jTextAreaProcessData.setText(jTextAreaProcessData.getText() + processOutput);
             }
-            processOutput += "\n--End of Set #" + (i + 1) + "--\n\n";
+            processOutput += "\r\n--End of Set #" + (i + 1) + "--\r\n\r\n";
             jTextAreaProcessData.setText(jTextAreaProcessData.getText() + processOutput);
 
             setupAlgorithms();
             totalWaitTimeRR += rr.calculateTotalWaitTime();
             totalWaitTimeFCFS += fcfs.calculateTotalWaitTime();
 
-            algorithmOutput += "---Start of First Come First Serve Algorithm---\n\n"
-                    + fcfs.getOutputText() + "\nAverage wait time: " + fcfs.calculateAverageWaitTime() + ".\n\n" + "----End of First Come First Serve Algorithm----\n\n";
-            algorithmOutput += "----Start of Round Robin Algorithm----\n\n"
-                    + ".\n\n" + rr.getOutputText() + "\nAverage wait time: " + rr.calculateAverageWaitTime() + "\n\n----End of Round Robin Algorithm----\n\n";
-
             if (jCheckBoxVerbose.isSelected()) {
-                jTextAreaOutput.setText(jTextAreaOutput.getText() + algorithmOutput);
-
+                algorithmOutput += "--Start of Set #" + (i + 1) + "--\r\n\r\n";
+                
+                algorithmOutput += "---Start of First Come First Serve Algorithm---\r\n\r\n"
+                        + fcfs.getOutputText() + "\r\nAverage wait time: " + fcfs.calculateAverageWaitTime() + "\r\n\r\n" + "----End of First Come First Serve Algorithm----\r\n\r\n";
+                
+                algorithmOutput += "----Start of Round Robin Algorithm----\r\n\r\n"
+                        + "\r\n\r\n" + rr.getOutputText() + "\r\nAverage wait time: " + rr.calculateAverageWaitTime() + "\r\n\r\n----End of Round Robin Algorithm----\r\n\r\n";
+                
+                algorithmOutput += "\r\n--End of Set #" + (i + 1) + "--\r\n\r\n";
             }
 
         }
 
-        algorithmOutput += "\nAverage wait time for all data sets:\nFirst Come First Serve: "
-                + ((float) (totalWaitTimeFCFS / (float) numberOfProcesses) / numberOfSets) + "\nRound Robin: " + ((float) (totalWaitTimeRR / (float) numberOfProcesses) / numberOfSets) + "\n";
+        algorithmOutput += "\r\nAverage wait time for all data sets:\r\nFirst Come First Serve: "
+                + ((float) (totalWaitTimeFCFS / (float) numberOfProcesses) / numberOfSets) + "\r\nRound Robin: " + ((float) (totalWaitTimeRR / (float) numberOfProcesses) / numberOfSets) + "\r\n";
 
         jTextAreaOutput.setText(jTextAreaOutput.getText() + algorithmOutput);
 
         totalWaitTimeRR = 0;
         totalWaitTimeFCFS = 0;
+
+        if (jCheckBoxSaveToFile.isSelected()) {
+            File file = new File("./output.txt");
+            PrintWriter printWriter = null;
+
+            try {
+
+                printWriter = new PrintWriter(file);
+                printWriter.println(processOutput);
+                printWriter.println(algorithmOutput);
+
+            } catch (FileNotFoundException e) {
+                System.out.println("File not found.");
+            } finally {
+                printWriter.close();
+            }
+        }
 
     }
 
@@ -666,21 +688,21 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
 
         try {
             if (initialProcessList.isEmpty() && !jRadioButtonComparator.isSelected()) {
-                jTextAreaOutput.setText("Process list is empty.\nPlease generate process data first.\n");
+                jTextAreaOutput.setText("Process list is empty.\r\nPlease generate process data first.\r\n");
             } else {
 
                 if (jRadioButtonFCFS.isSelected()) {
 
                     setupAlgorithms();
-                    output = "---Start of First Come First Serve Algorithm---\n\n" + fcfs.getOutputText() + "\nAverage wait time: "
-                            + fcfs.calculateAverageWaitTime() + ".\n\n" + "----End of First Come First Serve Algorithm----\n\n";
+                    output = "---Start of First Come First Serve Algorithm---\r\n\r\n" + fcfs.getOutputText() + "\r\nAverage wait time: "
+                            + fcfs.calculateAverageWaitTime() + "\r\n\r\n" + "----End of First Come First Serve Algorithm----\r\n\r\n";
 
                     jTextAreaOutput.setText(jTextAreaOutput.getText() + output);
                 } else if (jRadioButtonRR.isSelected()) {
 
                     setupAlgorithms();
-                    output = "----Start of Round Robin Algorithm----\n\n" + ".\n\n" + rr.getOutputText() + "\nAverage wait time: "
-                            + rr.calculateAverageWaitTime() + "\n\n----End of Round Robin Algorithm----\n\n";
+                    output = "----Start of Round Robin Algorithm----\r\n\r\n" + ".\r\n\r\n" + rr.getOutputText() + "\r\nAverage wait time: "
+                            + rr.calculateAverageWaitTime() + "\r\n\r\n----End of Round Robin Algorithm----\r\n\r\n";
 
                     jTextAreaOutput.setText(jTextAreaOutput.getText() + output);
                 } else if (jRadioButtonComparator.isSelected()) {
@@ -689,7 +711,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
                 }
             }
         } catch (NullPointerException e) {
-            jTextAreaOutput.setText(jTextAreaOutput.getText() + "Please generate process data first.\n");
+            jTextAreaOutput.setText(jTextAreaOutput.getText() + "Please generate process data first.\r\n");
         }
     }
     // End of user method delcaration

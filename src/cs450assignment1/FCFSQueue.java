@@ -162,11 +162,11 @@ public class FCFSQueue extends ProcessQueue {
 
         for (Process process : readyQueue) {
             output += process.getProcessName()
-                    + "\n---Arrival time:    " + process.getArrivalTime()
-                    + "\n---Start time:      " + process.getStartTime()
-                    + "\n---Completion time: " + process.getCompletionTime()
-                    + "\n---Wait time:       " + process.getWaitTime() 
-                    + "\n---Turnaround time: " + process.getTurnAroundTime() + "\n\n";
+                    + "\r\n---Arrival time:    " + process.getArrivalTime()
+                    + "\r\n---Start time:      " + process.getStartTime()
+                    + "\r\n---Completion time: " + process.getCompletionTime()
+                    + "\r\n---Wait time:       " + process.getWaitTime() 
+                    + "\r\n---Turnaround time: " + process.getTurnAroundTime() + "\r\n\r\n";
 
         }
         return output;
