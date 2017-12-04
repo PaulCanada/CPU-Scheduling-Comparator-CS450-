@@ -40,18 +40,9 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaAbout = new javax.swing.JTextArea();
         jButtonAboutClose = new javax.swing.JButton();
-        jPanelMain = new javax.swing.JPanel();
-        jLabelInfo = new javax.swing.JLabel();
+        jPanelProcess = new javax.swing.JPanel();
         jScrollPaneProcessData = new javax.swing.JScrollPane();
         jTextAreaProcessData = new javax.swing.JTextArea();
-        jPanelAlgorithmSelector = new javax.swing.JPanel();
-        jRadioButtonFCFS = new javax.swing.JRadioButton();
-        jRadioButtonRR = new javax.swing.JRadioButton();
-        jRadioButtonBoth = new javax.swing.JRadioButton();
-        jButtonRun = new javax.swing.JButton();
-        jButtonClearOutput = new javax.swing.JButton();
-        jScrollPaneOutput = new javax.swing.JScrollPane();
-        jTextAreaOutput = new javax.swing.JTextArea();
         jPanelParameters = new javax.swing.JPanel();
         jLabelProcesses = new javax.swing.JLabel();
         jComboBoxProcessNum = new javax.swing.JComboBox<>();
@@ -60,6 +51,16 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         jCheckBoxSaveToFile = new javax.swing.JCheckBox();
         jButtonClearProcessData = new javax.swing.JButton();
         jButtonGenerateProcess = new javax.swing.JButton();
+        jPanelAlgorithm = new javax.swing.JPanel();
+        jPanelAlgorithmSelector = new javax.swing.JPanel();
+        jRadioButtonFCFS = new javax.swing.JRadioButton();
+        jRadioButtonRR = new javax.swing.JRadioButton();
+        jRadioButtonBoth = new javax.swing.JRadioButton();
+        jButtonRun = new javax.swing.JButton();
+        jButtonClearOutput = new javax.swing.JButton();
+        jScrollPaneOutput = new javax.swing.JScrollPane();
+        jTextAreaOutput = new javax.swing.JTextArea();
+        jLabelInfo = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemNewData = new javax.swing.JMenuItem();
@@ -112,15 +113,17 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
                 .addGap(41, 41, 41))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(java.awt.SystemColor.controlDkShadow);
-        setLocationByPlatform(true);
-        setMinimumSize(new java.awt.Dimension(800, 800));
+        setBounds(new java.awt.Rectangle(0, 0, 775, 800));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(800, 1500));
+        setMinimumSize(new java.awt.Dimension(775, 800));
+        setPreferredSize(new java.awt.Dimension(775, 800));
+        setResizable(false);
+        setSize(new java.awt.Dimension(775, 800));
 
-        jPanelMain.setMinimumSize(new java.awt.Dimension(700, 700));
-        jPanelMain.setPreferredSize(new java.awt.Dimension(700, 700));
-
-        jLabelInfo.setText("Made by Paul Canada");
+        jPanelProcess.setMaximumSize(new java.awt.Dimension(775, 32767));
 
         jScrollPaneProcessData.setBorder(javax.swing.BorderFactory.createTitledBorder("Process Data"));
 
@@ -128,74 +131,6 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         jTextAreaProcessData.setColumns(20);
         jTextAreaProcessData.setRows(5);
         jScrollPaneProcessData.setViewportView(jTextAreaProcessData);
-
-        jPanelAlgorithmSelector.setBorder(javax.swing.BorderFactory.createTitledBorder("Algorithm Type"));
-
-        buttonGroupProcessRun.add(jRadioButtonFCFS);
-        jRadioButtonFCFS.setSelected(true);
-        jRadioButtonFCFS.setText("First Come First Serve");
-
-        buttonGroupProcessRun.add(jRadioButtonRR);
-        jRadioButtonRR.setText("Round Robin");
-
-        buttonGroupProcessRun.add(jRadioButtonBoth);
-        jRadioButtonBoth.setText("Compare");
-
-        jButtonRun.setText("Run");
-        jButtonRun.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRunActionPerformed(evt);
-            }
-        });
-
-        jButtonClearOutput.setText("Clear Output");
-        jButtonClearOutput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonClearOutputActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelAlgorithmSelectorLayout = new javax.swing.GroupLayout(jPanelAlgorithmSelector);
-        jPanelAlgorithmSelector.setLayout(jPanelAlgorithmSelectorLayout);
-        jPanelAlgorithmSelectorLayout.setHorizontalGroup(
-            jPanelAlgorithmSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAlgorithmSelectorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelAlgorithmSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelAlgorithmSelectorLayout.createSequentialGroup()
-                        .addGroup(jPanelAlgorithmSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButtonFCFS)
-                            .addComponent(jRadioButtonRR, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButtonBoth, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanelAlgorithmSelectorLayout.createSequentialGroup()
-                        .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                        .addComponent(jButtonClearOutput)))
-                .addContainerGap())
-        );
-        jPanelAlgorithmSelectorLayout.setVerticalGroup(
-            jPanelAlgorithmSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAlgorithmSelectorLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jRadioButtonFCFS)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButtonRR)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButtonBoth)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelAlgorithmSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonClearOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
-
-        jScrollPaneOutput.setBorder(javax.swing.BorderFactory.createTitledBorder("Algorithm Output"));
-
-        jTextAreaOutput.setEditable(false);
-        jTextAreaOutput.setColumns(20);
-        jTextAreaOutput.setRows(5);
-        jScrollPaneOutput.setViewportView(jTextAreaOutput);
 
         jPanelParameters.setBorder(javax.swing.BorderFactory.createTitledBorder("Parameters"));
 
@@ -280,47 +215,118 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
-        javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
-        jPanelMain.setLayout(jPanelMainLayout);
-        jPanelMainLayout.setHorizontalGroup(
-            jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPaneProcessData, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))
-                    .addComponent(jScrollPaneOutput))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
-                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelAlgorithmSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanelParameters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
-                        .addComponent(jLabelInfo)
-                        .addGap(45, 45, 45))))
+        javax.swing.GroupLayout jPanelProcessLayout = new javax.swing.GroupLayout(jPanelProcess);
+        jPanelProcess.setLayout(jPanelProcessLayout);
+        jPanelProcessLayout.setHorizontalGroup(
+            jPanelProcessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelProcessLayout.createSequentialGroup()
+                .addGroup(jPanelProcessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPaneProcessData, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelParameters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanelMainLayout.setVerticalGroup(
-            jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(jPanelParameters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE))
-                    .addComponent(jScrollPaneProcessData))
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jPanelAlgorithmSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96)
-                        .addComponent(jLabelInfo))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
-                        .addComponent(jScrollPaneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)))
+        jPanelProcessLayout.setVerticalGroup(
+            jPanelProcessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelProcessLayout.createSequentialGroup()
+                .addComponent(jScrollPaneProcessData)
+                .addGap(12, 12, 12)
+                .addComponent(jPanelParameters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jPanelAlgorithm.setMaximumSize(new java.awt.Dimension(775, 32767));
+        jPanelAlgorithm.setMinimumSize(new java.awt.Dimension(700, 700));
+        jPanelAlgorithm.setPreferredSize(new java.awt.Dimension(700, 700));
+
+        jPanelAlgorithmSelector.setBorder(javax.swing.BorderFactory.createTitledBorder("Algorithm Type"));
+
+        buttonGroupProcessRun.add(jRadioButtonFCFS);
+        jRadioButtonFCFS.setSelected(true);
+        jRadioButtonFCFS.setText("First Come First Serve");
+
+        buttonGroupProcessRun.add(jRadioButtonRR);
+        jRadioButtonRR.setText("Round Robin");
+
+        buttonGroupProcessRun.add(jRadioButtonBoth);
+        jRadioButtonBoth.setText("Compare");
+
+        jButtonRun.setText("Run");
+        jButtonRun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRunActionPerformed(evt);
+            }
+        });
+
+        jButtonClearOutput.setText("Clear Output");
+        jButtonClearOutput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearOutputActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelAlgorithmSelectorLayout = new javax.swing.GroupLayout(jPanelAlgorithmSelector);
+        jPanelAlgorithmSelector.setLayout(jPanelAlgorithmSelectorLayout);
+        jPanelAlgorithmSelectorLayout.setHorizontalGroup(
+            jPanelAlgorithmSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAlgorithmSelectorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelAlgorithmSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelAlgorithmSelectorLayout.createSequentialGroup()
+                        .addGroup(jPanelAlgorithmSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jRadioButtonFCFS)
+                            .addComponent(jRadioButtonRR, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButtonBoth, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanelAlgorithmSelectorLayout.createSequentialGroup()
+                        .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonClearOutput)))
+                .addContainerGap())
+        );
+        jPanelAlgorithmSelectorLayout.setVerticalGroup(
+            jPanelAlgorithmSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAlgorithmSelectorLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jRadioButtonFCFS)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButtonRR)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButtonBoth)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelAlgorithmSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonClearOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        jScrollPaneOutput.setBorder(javax.swing.BorderFactory.createTitledBorder("Algorithm Output"));
+
+        jTextAreaOutput.setEditable(false);
+        jTextAreaOutput.setColumns(20);
+        jTextAreaOutput.setRows(5);
+        jScrollPaneOutput.setViewportView(jTextAreaOutput);
+
+        javax.swing.GroupLayout jPanelAlgorithmLayout = new javax.swing.GroupLayout(jPanelAlgorithm);
+        jPanelAlgorithm.setLayout(jPanelAlgorithmLayout);
+        jPanelAlgorithmLayout.setHorizontalGroup(
+            jPanelAlgorithmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAlgorithmLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelAlgorithmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanelAlgorithmSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneOutput, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelAlgorithmLayout.setVerticalGroup(
+            jPanelAlgorithmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAlgorithmLayout.createSequentialGroup()
+                .addComponent(jScrollPaneOutput, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanelAlgorithmSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jLabelInfo.setText("Made by Paul Canada");
 
         jMenuFile.setText("File");
 
@@ -360,15 +366,25 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+                .addComponent(jPanelProcess, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelInfo)
+                .addGap(12, 12, 12)
+                .addComponent(jPanelAlgorithm, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelProcess, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelAlgorithm, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelInfo)
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -409,24 +425,14 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         setupList(numberOfProcesses);
         System.out.println("Done setting up initial List.");
 
-        System.out.println("Setting up FCFSQueue.");
-        fcfs = new FCFSQueue(initialProcessList);
-        fcfs.setupAlgorithm();
-        System.out.println("Done setting up FCFSQueue.");
-
-        System.out.println("Setting up RRQueue.");
-        rr = new RRQueue(initialProcessList, quantum);
-        rr.setupAlgorithm();
-        System.out.println("Done setting up RRQueue.");
-
         jTextAreaProcessData.setText("");
 
         for (int i = 0; i < numberOfProcesses; i++) {
             jTextAreaProcessData.setText(jTextAreaProcessData.getText()
-                + initialProcessList.get(i).getProcessName()
-                + "\n---Burst time:  " + initialProcessList.get(i).getBurstTime()
-                + "\n---Priority:        " + initialProcessList.get(i).getPriority()
-                + "\n---Arrival time: " + initialProcessList.get(i).getArrivalTime() + "\n\n");
+                    + initialProcessList.get(i).getProcessName()
+                    + "\n---Arrival time:  " + initialProcessList.get(i).getArrivalTime()
+                    + "\n---Burst time:    " + initialProcessList.get(i).getBurstTime()
+                    + "\n---Priority:          " + initialProcessList.get(i).getPriority() + "\n\n");
 
         }
     }//GEN-LAST:event_jButtonGenerateProcessActionPerformed
@@ -434,13 +440,13 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
     private void jComboBoxQuantumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxQuantumActionPerformed
         // TODO add your handling code here:
         quantum = Integer.parseInt((String) jComboBoxQuantum.getSelectedItem());
-        jTextAreaProcessData.setText(jTextAreaProcessData.getText() + "Setting quantum to : " + Integer.toString(quantum) + ".\n");
+        jTextAreaProcessData.setText(jTextAreaProcessData.getText() + "Setting quantum to: " + Integer.toString(quantum) + ".\n");
     }//GEN-LAST:event_jComboBoxQuantumActionPerformed
 
     private void jComboBoxProcessNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProcessNumActionPerformed
         // TODO add your handling code here:
         numberOfProcesses = Integer.parseInt((String) jComboBoxProcessNum.getSelectedItem());
-        jTextAreaProcessData.setText(jTextAreaProcessData.getText() + "Setting number of processes to : " + Integer.toString(numberOfProcesses) + ".\n");
+        jTextAreaProcessData.setText(jTextAreaProcessData.getText() + "Setting number of processes to: " + Integer.toString(numberOfProcesses) + ".\n");
     }//GEN-LAST:event_jComboBoxProcessNumActionPerformed
 
     private void jButtonClearOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearOutputActionPerformed
@@ -508,9 +514,10 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemAbout;
     private javax.swing.JMenuItem jMenuItemNewData;
     private javax.swing.JMenuItem jMenuItemQuit;
+    private javax.swing.JPanel jPanelAlgorithm;
     private javax.swing.JPanel jPanelAlgorithmSelector;
-    private javax.swing.JPanel jPanelMain;
     private javax.swing.JPanel jPanelParameters;
+    private javax.swing.JPanel jPanelProcess;
     private javax.swing.JRadioButton jRadioButtonBoth;
     private javax.swing.JRadioButton jRadioButtonFCFS;
     private javax.swing.JRadioButton jRadioButtonRR;
@@ -556,16 +563,26 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
 
     private void generateAlgorithmOutput() {
         try {
-            if ((fcfs.getNumberOfProcesses() < 10) || (rr.getNumberOfProcesses() < 10)) {
-                jTextAreaOutput.setText("Must have at least 10 processes.\n");
+            if (initialProcessList.isEmpty()) {
+                jTextAreaOutput.setText("Process list is empty.\nPlease generate process data first.\n");
             } else {
 
                 if (jRadioButtonFCFS.isSelected()) {
-                    jTextAreaOutput.setText(jTextAreaOutput.getText() + "-------------Start of First Come First Serve Algorithm----------\n\n"
-                            + fcfs.getOutputText() + "-----------End of First Come First Serve Algorithm-----------\n\n");
+                    System.out.println("Setting up FCFSQueue.");
+                    fcfs = new FCFSQueue(initialProcessList);
+                    fcfs.setupAlgorithm();
+                    System.out.println("Done setting up FCFSQueue.");
+
+                    jTextAreaOutput.setText(jTextAreaOutput.getText() + "---Start of First Come First Serve Algorithm---\n\n"
+                            + fcfs.getOutputText() + "----End of First Come First Serve Algorithm----\n\n");
                 } else if (jRadioButtonRR.isSelected()) {
-                    jTextAreaOutput.setText(jTextAreaOutput.getText() + "-------------------Start of Round Robin Algorithm---------------\n\n"
-                            + rr.getOutputText() + "---------------------End of Round Robin Algorithm---------------\n\n");
+                    System.out.println("Setting up RRQueue.");
+                    rr = new RRQueue(initialProcessList, quantum);
+                    rr.setupAlgorithm();
+                    System.out.println("Done setting up RRQueue.");
+                    
+                    jTextAreaOutput.setText(jTextAreaOutput.getText() + "----Start of Round Robin Algorithm----\n\n"
+                            + rr.getOutputText() + "----End of Round Robin Algorithm----\n\n");
                 }
             }
         } catch (NullPointerException e) {

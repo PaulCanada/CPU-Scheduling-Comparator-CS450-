@@ -21,12 +21,12 @@ public class RRQueue extends ProcessQueue {
         readyQueue = new ArrayList<>();
         this.quantum = quantum;
         System.out.println("Start");
-        
+
         for (int i = 0; i < processList.size(); i++) {
             initialList.add(new ExtendedProcess(processList.get(i)));
         }
         numberOfProcesses = initialList.size();
-        
+
         System.out.println("End");
     }
 
@@ -204,10 +204,14 @@ public class RRQueue extends ProcessQueue {
     public String getOutputText() {
         String output = "";
 
-        for (ExtendedProcess process : readyQueue) {
-            output += "Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
-                    + ", Arrival time: " + process.getArrivalTime() + ", Wait time: " + process.getWaitTime() + ", Start time: " + process.getStartTime()
-                    + ", Completion time: " + process.getCompletionTime() + ", Turn around time: " + process.getTurnAroundTime() + ".\n";
+        for (Process process : readyQueue) {
+            output += process.getProcessName()
+                    + "\n---Arrival time:    " + process.getArrivalTime()
+                    + "\n---Start time:      " + process.getStartTime()
+                    + "\n---Completion time: " + process.getCompletionTime()
+                    + "\n---Wait time:       " + process.getWaitTime() 
+                    + "\n---Turnaround time: " + process.getTurnAroundTime() + "\n\n";
+
         }
 
         output += "\nAverage wait time: " + calculateAverageWaitTime() + ".\n\n";
@@ -218,6 +222,11 @@ public class RRQueue extends ProcessQueue {
     @Override
     public int getNumberOfProcesses() {
         return initialList.size();
+    }
+    
+    public void setQuantum(int quantum)
+    {
+        this.quantum = quantum;
     }
 
     private int quantum = 0;
