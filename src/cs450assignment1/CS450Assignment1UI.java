@@ -15,12 +15,14 @@ import java.util.Random;
  *
  * @author Paul
  */
-public class CS450Assignment1UI extends javax.swing.JFrame {
+public class CS450Assignment1UI extends javax.swing.JFrame
+{
 
     /**
      * Creates new form CS450Assignment1UI
      */
-    public CS450Assignment1UI() {
+    public CS450Assignment1UI()
+    {
         this.totalWaitTimeRR = 0;
         this.totalWaitTimeFCFS = 0;
         this.initialProcessList = new ArrayList<>();
@@ -39,7 +41,8 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         buttonGroupProcessRun = new javax.swing.ButtonGroup();
         jDialogAbout = new javax.swing.JDialog();
@@ -94,8 +97,10 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTextAreaAbout);
 
         jButtonAboutClose.setText("Close");
-        jButtonAboutClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonAboutClose.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonAboutCloseActionPerformed(evt);
             }
         });
@@ -128,7 +133,6 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 0, 750, 800));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocation(getLocation());
-        setLocationByPlatform(true);
         setMaximumSize(new java.awt.Dimension(750, 1500));
         setMinimumSize(new java.awt.Dimension(745, 800));
         setPreferredSize(new java.awt.Dimension(745, 800));
@@ -151,15 +155,19 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         jComboBoxProcessNum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
         jComboBoxProcessNum.setToolTipText("The number of processes to utilize.");
         jComboBoxProcessNum.setBorder(null);
-        jComboBoxProcessNum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jComboBoxProcessNum.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jComboBoxProcessNumActionPerformed(evt);
             }
         });
 
         jComboBoxQuantum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
-        jComboBoxQuantum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jComboBoxQuantum.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jComboBoxQuantumActionPerformed(evt);
             }
         });
@@ -169,15 +177,19 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         jCheckBoxSaveToFile.setText("Save comparison to file");
 
         jButtonClearProcessData.setText("Clear Output");
-        jButtonClearProcessData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonClearProcessData.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonClearProcessDataActionPerformed(evt);
             }
         });
 
         jButtonGenerateProcess.setText("Generate Data");
-        jButtonGenerateProcess.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonGenerateProcess.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonGenerateProcessActionPerformed(evt);
             }
         });
@@ -188,8 +200,10 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
 
         jComboBoxNumSets.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
         jComboBoxNumSets.setToolTipText("The number of data sets to calculate when using the compare option.");
-        jComboBoxNumSets.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jComboBoxNumSets.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jComboBoxNumSetsActionPerformed(evt);
             }
         });
@@ -284,15 +298,19 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         jRadioButtonComparator.setText("Compare");
 
         jButtonRun.setText("Run");
-        jButtonRun.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonRun.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonRunActionPerformed(evt);
             }
         });
 
         jButtonClearOutput.setText("Clear Output");
-        jButtonClearOutput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonClearOutput.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonClearOutputActionPerformed(evt);
             }
         });
@@ -364,8 +382,10 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         jMenuFile.setText("File");
 
         jMenuItemAbout.setText("About");
-        jMenuItemAbout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemAbout.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jMenuItemAboutActionPerformed(evt);
             }
         });
@@ -373,8 +393,10 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
 
         jMenuItemQuit.setText("Close");
         jMenuItemQuit.setToolTipText("Closes the application.");
-        jMenuItemQuit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemQuit.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jMenuItemQuitActionPerformed(evt);
             }
         });
@@ -447,7 +469,8 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
 
         jTextAreaProcessData.setText("");
 
-        for (int i = 0; i < numberOfProcesses; i++) {
+        for (int i = 0; i < numberOfProcesses; i++)
+        {
             jTextAreaProcessData.setText(jTextAreaProcessData.getText()
                     + initialProcessList.get(i).getProcessName()
                     + "\r\n---Arrival time:  " + initialProcessList.get(i).getArrivalTime()
@@ -488,33 +511,43 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(CS450Assignment1UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(CS450Assignment1UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(CS450Assignment1UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(CS450Assignment1UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
                 new CS450Assignment1UI().setVisible(true);
             }
         });
@@ -572,14 +605,16 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
 
     // End of user declaration
     // User method declaration
-    private void setupList() {
+    private void setupList()
+    {
         int bt = 0;
         int pr = 0;
         random = new Random();
         initialProcessList.clear();
 
         // Create a new process and store it in the initial list
-        for (int i = 1; i <= numberOfProcesses; i++) {
+        for (int i = 1; i <= numberOfProcesses; i++)
+        {
             releaseTime += random.nextInt(10);
             bt = random.nextInt(5) + 3;
             pr = random.nextInt(numberOfProcesses / 2);
@@ -592,7 +627,8 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         releaseTime = 0;
     }
 
-    private void setupAlgorithms() {
+    private void setupAlgorithms()
+    {
         System.out.println("Setting up FCFSQueue.");
         fcfs = new FCFSQueue(initialProcessList);
         fcfs.setupAlgorithm();
@@ -605,17 +641,20 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
 
     }
 
-    private void runComparator() {
+    private void runComparator()
+    {
         String processOutput = "";
         String algorithmOutput = "";
 
-        for (int i = 0; i < numberOfSets; i++) {
+        for (int i = 0; i < numberOfSets; i++)
+        {
 
             setupList();
 
             processOutput += "--Start of Set #" + (i + 1) + "--\r\n\r\n";
             jTextAreaProcessData.setText(jTextAreaProcessData.getText() + processOutput);
-            for (int j = 0; j < numberOfProcesses; j++) {
+            for (int j = 0; j < numberOfProcesses; j++)
+            {
                 processOutput += initialProcessList.get(j).getProcessName()
                         + "\r\n---Arrival time:  " + initialProcessList.get(j).getArrivalTime()
                         + "\r\n---Burst time:    " + initialProcessList.get(j).getBurstTime()
@@ -630,7 +669,8 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
             totalWaitTimeRR += rr.calculateTotalWaitTime();
             totalWaitTimeFCFS += fcfs.calculateTotalWaitTime();
 
-            if (jCheckBoxVerbose.isSelected()) {
+            if (jCheckBoxVerbose.isSelected())
+            {
                 algorithmOutput += "--Start of Set #" + (i + 1) + "--\r\n\r\n";
 
                 algorithmOutput += "---Start of First Come First Serve Algorithm---\r\n\r\n"
@@ -652,55 +692,67 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
         totalWaitTimeRR = 0;
         totalWaitTimeFCFS = 0;
 
-        if (jCheckBoxSaveToFile.isSelected()) {
+        if (jCheckBoxSaveToFile.isSelected())
+        {
             File file = new File("./output.txt");
             PrintWriter printWriter = null;
 
-            try {
+            try
+            {
 
                 printWriter = new PrintWriter(file);
                 printWriter.println(processOutput);
                 printWriter.println(algorithmOutput);
 
-            } catch (FileNotFoundException e) {
+            } catch (FileNotFoundException e)
+            {
                 System.out.println("File not found.");
-            } finally {
+            } finally
+            {
                 printWriter.close();
             }
         }
 
     }
 
-    private void generateAlgorithmOutput() {
+    private void generateAlgorithmOutput()
+    {
 
         String output = "";
 
-        try {
-            if (initialProcessList.isEmpty() && !jRadioButtonComparator.isSelected()) {
+        try
+        {
+            if (initialProcessList.isEmpty() && !jRadioButtonComparator.isSelected())
+            {
                 jTextAreaOutput.setText("Process list is empty.\r\nPlease generate process data first.\r\n");
-            } else {
+            } else
+            {
 
-                if (jRadioButtonFCFS.isSelected()) {
+                if (jRadioButtonFCFS.isSelected())
+                {
 
                     setupAlgorithms();
                     output = "---Start of First Come First Serve Algorithm---\r\n\r\n" + fcfs.getOutputText() + "\r\nAverage wait time: "
                             + fcfs.calculateAverageWaitTime() + "\r\n\r\n" + "----End of First Come First Serve Algorithm----\r\n\r\n";
 
                     jTextAreaOutput.setText(jTextAreaOutput.getText() + output);
-                } else if (jRadioButtonRR.isSelected()) {
+                } else if (jRadioButtonRR.isSelected())
+                {
 
                     setupAlgorithms();
                     output = "----Start of Round Robin Algorithm----\r\n\r\n" + ".\r\n\r\n" + rr.getOutputText() + "\r\nAverage wait time: "
                             + rr.calculateAverageWaitTime() + "\r\n\r\n----End of Round Robin Algorithm----\r\n\r\n";
 
                     jTextAreaOutput.setText(jTextAreaOutput.getText() + output);
-                } else if (jRadioButtonComparator.isSelected()) {
+                } else if (jRadioButtonComparator.isSelected())
+                {
 
                     runComparator();
                 }
             }
 
-        } catch (NullPointerException e) {
+        } catch (NullPointerException e)
+        {
             jTextAreaOutput.setText(jTextAreaOutput.getText() + "Please generate process data first.\r\n");
         }
     }
