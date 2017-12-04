@@ -48,6 +48,10 @@ public abstract class ProcessQueue
      *
      */
     abstract void printReadyProcessInformation();
+    
+    abstract String getOutputText();
+    
+    abstract int getNumberOfProcesses();
 
     /**
      *
