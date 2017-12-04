@@ -5,7 +5,6 @@
  */
 package cs450assignment1;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
