@@ -1,4 +1,4 @@
-/*
+/**
  * This class serves as a container for data pertaining to a process
  * used for the CPU scheduler. This class is derived from the parent
  * class Process.
