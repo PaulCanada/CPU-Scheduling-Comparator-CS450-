@@ -614,40 +614,46 @@ public class CS450Assignment1UI extends javax.swing.JFrame {
     }
 
     private void runComparator() {
-        String output = "";
+        String processOutput = "";
+        String algorithmOutput = "";
 
         for (int i = 0; i < numberOfSets; i++) {
 
             setupList();
 
-            jTextAreaProcessData.setText(jTextAreaProcessData.getText() + "--Start of Set #" + (i + 1) + "--\n\n");
+            processOutput += "--Start of Set #" + (i + 1) + "--\n\n";
+            jTextAreaProcessData.setText(jTextAreaProcessData.getText() + processOutput);
             for (int j = 0; j < numberOfProcesses; j++) {
-                jTextAreaProcessData.setText(jTextAreaProcessData.getText()
-                        + initialProcessList.get(j).getProcessName()
+                processOutput += initialProcessList.get(j).getProcessName()
                         + "\n---Arrival time:  " + initialProcessList.get(j).getArrivalTime()
                         + "\n---Burst time:    " + initialProcessList.get(j).getBurstTime()
-                        + "\n---Priority:          " + initialProcessList.get(j).getPriority() + "\n");
+                        + "\n---Priority:          " + initialProcessList.get(j).getPriority() + "\n";
+
+                jTextAreaProcessData.setText(jTextAreaProcessData.getText() + processOutput);
             }
-            jTextAreaProcessData.setText(jTextAreaProcessData.getText() + "\n--End of Set #" + (i + 1) + "--\n\n");
+            processOutput += "\n--End of Set #" + (i + 1) + "--\n\n";
+            jTextAreaProcessData.setText(jTextAreaProcessData.getText() + processOutput);
 
             setupAlgorithms();
             totalWaitTimeRR += rr.calculateTotalWaitTime();
             totalWaitTimeFCFS += fcfs.calculateTotalWaitTime();
 
-            output += "---Start of First Come First Serve Algorithm---\n\n"
+            algorithmOutput += "---Start of First Come First Serve Algorithm---\n\n"
                     + fcfs.getOutputText() + "\nAverage wait time: " + fcfs.calculateAverageWaitTime() + ".\n\n" + "----End of First Come First Serve Algorithm----\n\n";
-            output += "----Start of Round Robin Algorithm----\n\n"
+            algorithmOutput += "----Start of Round Robin Algorithm----\n\n"
                     + ".\n\n" + rr.getOutputText() + "\nAverage wait time: " + rr.calculateAverageWaitTime() + "\n\n----End of Round Robin Algorithm----\n\n";
 
             if (jCheckBoxVerbose.isSelected()) {
-                jTextAreaOutput.setText(jTextAreaOutput.getText() + output);
+                jTextAreaOutput.setText(jTextAreaOutput.getText() + algorithmOutput);
 
             }
 
         }
 
-        jTextAreaOutput.setText(jTextAreaOutput.getText() + "\nAverage wait times:\nFirst Come First Serve: "
-                + ((float) (totalWaitTimeFCFS / (float) numberOfProcesses) / numberOfSets) + "\nRound Robin: " + ((float) (totalWaitTimeRR / (float) numberOfProcesses) / numberOfSets) + "\n");
+        algorithmOutput += "\nAverage wait time for all data sets:\nFirst Come First Serve: "
+                + ((float) (totalWaitTimeFCFS / (float) numberOfProcesses) / numberOfSets) + "\nRound Robin: " + ((float) (totalWaitTimeRR / (float) numberOfProcesses) / numberOfSets) + "\n";
+
+        jTextAreaOutput.setText(jTextAreaOutput.getText() + algorithmOutput);
 
         totalWaitTimeRR = 0;
         totalWaitTimeFCFS = 0;
