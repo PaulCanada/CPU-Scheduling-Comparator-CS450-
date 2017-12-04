@@ -169,9 +169,6 @@ public class FCFSQueue extends ProcessQueue {
                     + "\n---Turnaround time: " + process.getTurnAroundTime() + "\n\n";
 
         }
-
-        output += "\nAverage wait time: " + calculateAverageWaitTime() + ".\n\n";
-
         return output;
     }
 

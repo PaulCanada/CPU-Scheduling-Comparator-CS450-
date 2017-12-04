@@ -111,16 +111,11 @@ public class RRQueue extends ProcessQueue {
 
                             currentProcess.setRemainingTime(0);
                             currentProcess.setTurnAroundTime(currentProcess.getWaitTime() + currentProcess.getBurstTime());
+                            
+                            currentProcess.setCompletionStatus(true);
 
                         }
 
-                    }
-
-                    // System.out.println("current process remaining time: " + currentProcess.getRemainingTime());
-                    // If the remaining time of the process is 0, then the process
-                    // is complete.
-                    if (currentProcess.getRemainingTime() == 0) {
-                        currentProcess.setCompletionStatus(true);
                     }
 
                     try {
@@ -213,9 +208,6 @@ public class RRQueue extends ProcessQueue {
                     + "\n---Turnaround time: " + process.getTurnAroundTime() + "\n\n";
 
         }
-
-        output += "\nAverage wait time: " + calculateAverageWaitTime() + ".\n\n";
-
         return output;
     }
 
