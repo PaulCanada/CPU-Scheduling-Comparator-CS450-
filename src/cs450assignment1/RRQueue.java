@@ -87,12 +87,6 @@ public class RRQueue extends ProcessQueue {
                     if (currentProcess.getStartTime() == -1) {
                         currentProcess.setStartTime(currentTime);
                         currentProcess.setRemainingTime(currentProcess.getBurstTime());
-                        
-                        if ((i == readyQueue.size() - 1) && (currentProcess.getStartTime() == readyQueue.get(i - 1).getCompletionTime())) {
-                            currentProcess.setStartTime(currentProcess.getStartTime() + 1);
-                            currentTime++;
-                        }
-                        
                     }
 
                     // If the remaining time is greater than 0, then the process is not yet complete.
