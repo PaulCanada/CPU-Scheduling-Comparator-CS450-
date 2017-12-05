@@ -106,11 +106,11 @@ public class RRQueue extends ProcessQueue {
                         {
                             currentTime += currentProcess.getRemainingTime();
                             currentProcess.setCompletionTime(currentTime);
+                            currentProcess.setTurnAroundTime(currentProcess.getCompletionTime() - currentProcess.getArrivalTime());
 
-                            currentProcess.setWaitTime(currentProcess.getCompletionTime() - currentProcess.getStartTime() - currentProcess.getBurstTime());
+                            currentProcess.setWaitTime(currentProcess.getTurnAroundTime() - currentProcess.getBurstTime());
 
                             currentProcess.setRemainingTime(0);
-                            currentProcess.setTurnAroundTime(currentProcess.getWaitTime() + currentProcess.getBurstTime());
                             
                             currentProcess.setCompletionStatus(true);
 
