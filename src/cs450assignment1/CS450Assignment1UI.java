@@ -660,10 +660,10 @@ public class CS450Assignment1UI extends javax.swing.JFrame
                         + "\r\n---Burst time:    " + initialProcessList.get(j).getBurstTime()
                         + "\r\n---Priority:      " + initialProcessList.get(j).getPriority() + "\r\n\r\n";
 
-                jTextAreaProcessData.setText(jTextAreaProcessData.getText() + processOutput);
+                //jTextAreaProcessData.setText(jTextAreaProcessData.getText() + processOutput);
             }
             processOutput += "\r\n--End of Set #" + (i + 1) + "--\r\n\r\n";
-            jTextAreaProcessData.setText(jTextAreaProcessData.getText() + processOutput);
+            //jTextAreaProcessData.setText(jTextAreaProcessData.getText() + processOutput);
 
             setupAlgorithms();
             totalWaitTimeRR += rr.calculateTotalWaitTime();
@@ -687,7 +687,8 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         algorithmOutput += "\r\nAverage wait time for all data sets:\r\nFirst Come First Serve: "
                 + ((float) (totalWaitTimeFCFS / (float) numberOfProcesses) / numberOfSets) + "\r\nRound Robin: " + ((float) (totalWaitTimeRR / (float) numberOfProcesses) / numberOfSets) + "\r\n";
 
-        jTextAreaOutput.setText(jTextAreaOutput.getText() + algorithmOutput);
+        jTextAreaProcessData.setText(processOutput);
+        jTextAreaOutput.setText(algorithmOutput);
 
         totalWaitTimeRR = 0;
         totalWaitTimeFCFS = 0;
@@ -718,6 +719,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
     private void generateAlgorithmOutput()
     {
 
+        jTextAreaOutput.setText("");
         String output = "";
 
         try
