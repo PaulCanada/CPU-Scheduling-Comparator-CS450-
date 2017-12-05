@@ -20,14 +20,11 @@ public class RRQueue extends ProcessQueue {
         initialList = new ArrayList<>();
         readyQueue = new ArrayList<>();
         this.quantum = quantum;
-        System.out.println("Start");
 
         for (int i = 0; i < processList.size(); i++) {
             initialList.add(new ExtendedProcess(processList.get(i)));
         }
         numberOfProcesses = initialList.size();
-
-        System.out.println("End");
     }
 
     /**
@@ -107,7 +104,7 @@ public class RRQueue extends ProcessQueue {
                             break;
                         }
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println("Index out of bounds in RR queue. Caught.");
+                        //System.out.println("Index out of bounds in RR queue. Caught.");
                         break;
                     }
                 }
