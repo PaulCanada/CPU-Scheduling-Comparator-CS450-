@@ -16,6 +16,13 @@ import java.util.Iterator;
 public class RRQueue extends ProcessQueue
 {
 
+    /**
+     * Constructor for RRQueue object. Takes in a list of ExtendedProcesses and
+     * a quantum to use as a time slice.
+     *
+     * @param processList The list of ExtendedProcesses to use.
+     * @param quantum The time slice value to use.
+     */
     public RRQueue(ArrayList<Process> processList, int quantum)
     {
         initialList = new ArrayList<>();

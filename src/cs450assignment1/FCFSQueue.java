@@ -7,10 +7,7 @@
 package cs450assignment1;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 
 /**
  *
@@ -19,6 +16,11 @@ import java.util.Random;
 public class FCFSQueue extends ProcessQueue
 {
 
+    /**
+     * Constructor for an FCFS object. Takes in a list of Processes to use.
+     *
+     * @param processList The list of Processes to use.
+     */
     public FCFSQueue(ArrayList<Process> processList)
     {
         initialList = new ArrayList<>();
