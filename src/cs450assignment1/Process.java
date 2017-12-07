@@ -1,6 +1,6 @@
 /**
  * This class serves as a container for data pertaining to a process
- * used for the CPU scheduler. 
+ * used for the CPU scheduler.
  *
  */
 package cs450assignment1;
@@ -14,11 +14,11 @@ public class Process implements Comparable
 
     /**
      * Constructor for Process object given input values.
-     * 
-     * @param name          Name of the process.
-     * @param burstTime     Burst time of the process.
-     * @param priority      Priority of the process.
-     * @param arrivalTime   Arrival time of the process.
+     *
+     * @param name Name of the process.
+     * @param burstTime Burst time of the process.
+     * @param priority Priority of the process.
+     * @param arrivalTime Arrival time of the process.
      */
     public Process(String name, int burstTime, int priority, int arrivalTime)
     {
@@ -29,10 +29,10 @@ public class Process implements Comparable
     }
 
     /**
-     * Constructor for Process object that will copy data from a 
-     * secondary Process object.
-     * 
-     * @param toCopy 
+     * Constructor for Process object that will copy data from a secondary
+     * Process object.
+     *
+     * @param toCopy
      */
     public Process(Process toCopy)
     {
@@ -45,9 +45,9 @@ public class Process implements Comparable
     /**
      * Overridable compareTo for comparing two Process objects based on their
      * arrival time.
-     * 
+     *
      * @param other Process object to compare against.
-     * @return      Whether this object has a smaller arrival time than other.
+     * @return Whether this object has a smaller arrival time than other.
      */
     @Override
     public int compareTo(Object other)
@@ -59,7 +59,7 @@ public class Process implements Comparable
 
     /**
      * This method will return the name of the current Process.
-     * 
+     *
      * @return The name of the Process object.
      */
     public String getProcessName()
@@ -69,7 +69,7 @@ public class Process implements Comparable
 
     /**
      * This method will return the burst time of the current Process.
-     * 
+     *
      * @return The burst time of the Process object.
      */
     public int getBurstTime()
@@ -79,7 +79,7 @@ public class Process implements Comparable
 
     /**
      * This method will return the priority value of the current Process.
-     * 
+     *
      * @return The priority value of the Process object.
      */
     public int getPriority()
@@ -88,8 +88,8 @@ public class Process implements Comparable
     }
 
     /**
-     * This method will return the time that the current Process arrived at. 
-     * 
+     * This method will return the time that the current Process arrived at.
+     *
      * @return The arrival time of the Process object.
      */
     public int getArrivalTime()
@@ -99,7 +99,7 @@ public class Process implements Comparable
 
     /**
      * This method will set the arrival time of this Process to the input.
-     * 
+     *
      * @param arrivalTime The time at which the process arrived.
      */
     public void setArrivalTime(int arrivalTime)
@@ -110,7 +110,7 @@ public class Process implements Comparable
     /**
      * This method will return the total time this Process has waited until it
      * has completed.
-     * 
+     *
      * @return The time the Process has waited until its completion.
      */
     public int getWaitTime()
@@ -120,7 +120,7 @@ public class Process implements Comparable
 
     /**
      * This method will set the time the Process has waited to the input.
-     * 
+     *
      * @param waitTime The total time the Process has waited.
      */
     public void setWaitTime(int waitTime)
@@ -130,7 +130,7 @@ public class Process implements Comparable
 
     /**
      * This method will return the total time the Process took to complete.
-     * 
+     *
      * @return The total time the Process took to complete.
      */
     public int getTurnAroundTime()
@@ -140,7 +140,7 @@ public class Process implements Comparable
 
     /**
      * This method will set the turn around time for the Process to the input.
-     * 
+     *
      * @param turnAroundTime The total time the process took to complete.
      */
     public void setTurnAroundTime(int turnAroundTime)
@@ -150,7 +150,7 @@ public class Process implements Comparable
 
     /**
      * This method will return the time at which the Process has completed.
-     * 
+     *
      * @return The time the Process completed.
      */
     public int getCompletionTime()
@@ -160,7 +160,7 @@ public class Process implements Comparable
 
     /**
      * This method will set the time the Process completed to the input.
-     * 
+     *
      * @param completionTime The time the Process completed.
      */
     public void setCompletionTime(int completionTime)
@@ -170,7 +170,7 @@ public class Process implements Comparable
 
     /**
      * This method will return the time at which the Process started.
-     * 
+     *
      * @return The time the Process started.
      */
     public int getStartTime()
@@ -180,7 +180,7 @@ public class Process implements Comparable
 
     /**
      * This method will set the time that the Process started to the input.
-     * 
+     *
      * @param startTime The time the Process started.
      */
     public void setStartTime(int startTime)

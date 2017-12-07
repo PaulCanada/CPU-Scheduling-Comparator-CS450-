@@ -1,7 +1,7 @@
 /**
  * This class contains information and methods that will perform the Round Robin
  * algorithm for a set of ExtendedProcess objects.
- * 
+ *
  * @see cs450Assignment1.ExtendedProcess
  */
 package cs450assignment1;
@@ -13,27 +13,31 @@ import java.util.Iterator;
  *
  * @author Paul Canada (https://github.com/PaulCanada)
  */
-public class RRQueue extends ProcessQueue {
+public class RRQueue extends ProcessQueue
+{
 
-    public RRQueue(ArrayList<Process> processList, int quantum) {
+    public RRQueue(ArrayList<Process> processList, int quantum)
+    {
         initialList = new ArrayList<>();
         readyQueue = new ArrayList<>();
         this.quantum = quantum;
 
-        for (int i = 0; i < processList.size(); i++) {
+        for (int i = 0; i < processList.size(); i++)
+        {
             initialList.add(new ExtendedProcess(processList.get(i)));
         }
         numberOfProcesses = initialList.size();
     }
 
     /**
-     * This method overrides the abstract method from ProcessQueue.
-     * This method will handle the algorithm setup and completion for Round Robin.
-     * 
+     * This method overrides the abstract method from ProcessQueue. This method
+     * will handle the algorithm setup and completion for Round Robin.
+     *
      * @see cs450Assignment1.ProcessQueue
      */
     @Override
-    public void setupAlgorithm() {
+    public void setupAlgorithm()
+    {
         // Clear the ready queue to start fresh.
         readyQueue.clear();
 
@@ -45,38 +49,39 @@ public class RRQueue extends ProcessQueue {
         ExtendedProcess currentProcess;
 
         // Loop through until all processes are finished.
-        while (hasUnfinishedProcess(readyQueue)) {
+        while (hasUnfinishedProcess(readyQueue))
+        {
             // Loop through all processes in readyQueue.
-            for (int i = 0; i < readyQueue.size(); i++) {
+            for (int i = 0; i < readyQueue.size(); i++)
+            {
                 currentProcess = readyQueue.get(i);
 
                 // If the process is already done, skip it.
-                if (!currentProcess.getCompletionStatus()) {
+                if (!currentProcess.getCompletionStatus())
+                {
                     // If the current time is less than the arrival time of the process, increment the current time and skip the whole process.
-                    if (currentTime < currentProcess.getArrivalTime()) {
-                        /**
-                         * TODO: Determine if the CPU will advance a whole
-                         * quantum, or just increment by 1. This affects start
-                         * and completion time of the process.
-                         */
-                        //currentTime += quantum; // Advance by whole quantum
+                    if (currentTime < currentProcess.getArrivalTime())
+                    {
                         currentTime++; // Advance by 1
                         break;
                     }
 
                     // If the startTime of the process is -1, this is the first time seeing 
                     // the process. Set values.
-                    if (currentProcess.getStartTime() == -1) {
+                    if (currentProcess.getStartTime() == -1)
+                    {
                         currentProcess.setStartTime(currentTime);
                         currentProcess.setRemainingTime(currentProcess.getBurstTime());
                     }
 
                     // If the remaining time is greater than 0, then the process is not yet complete.
-                    if (currentProcess.getRemainingTime() > 0) {
+                    if (currentProcess.getRemainingTime() > 0)
+                    {
 
                         // If the remaining time is greater than the quantum, increase current
                         // time by quantum and reduce remaining time by quantum.
-                        if (currentProcess.getRemainingTime() > quantum) {
+                        if (currentProcess.getRemainingTime() > quantum)
+                        {
                             // Increment current time by quantum
                             currentTime += quantum;
 
@@ -89,22 +94,22 @@ public class RRQueue extends ProcessQueue {
                             currentTime += currentProcess.getRemainingTime();
                             currentProcess.setCompletionTime(currentTime);
                             currentProcess.setTurnAroundTime(currentProcess.getCompletionTime() - currentProcess.getArrivalTime());
-
                             currentProcess.setWaitTime(currentProcess.getTurnAroundTime() - currentProcess.getBurstTime());
-
                             currentProcess.setRemainingTime(0);
-                            
                             currentProcess.setCompletionStatus(true);
 
                         }
 
                     }
 
-                    try {
-                        if (currentTime < readyQueue.get(i + 1).getArrivalTime()) {
+                    try
+                    {
+                        if (currentTime < readyQueue.get(i + 1).getArrivalTime())
+                        {
                             break;
                         }
-                    } catch (IndexOutOfBoundsException e) {
+                    } catch (IndexOutOfBoundsException e)
+                    {
                         //System.out.println("Index out of bounds in RR queue. Caught.");
                         break;
                     }
@@ -115,15 +120,17 @@ public class RRQueue extends ProcessQueue {
     }
 
     /**
-     * This method will calculate and return the total wait time
-     * for all Processes in the list.
-     * 
+     * This method will calculate and return the total wait time for all
+     * Processes in the list.
+     *
      * @return The total wait time for all ExtendedProcess objects.
      */
     @Override
-    public int calculateTotalWaitTime() {
+    public int calculateTotalWaitTime()
+    {
         int total = 0;
-        for (Iterator<ExtendedProcess> it = readyQueue.iterator(); it.hasNext();) {
+        for (Iterator<ExtendedProcess> it = readyQueue.iterator(); it.hasNext();)
+        {
             ExtendedProcess process = it.next();
             total += process.getWaitTime();
         }
@@ -132,13 +139,14 @@ public class RRQueue extends ProcessQueue {
     }
 
     /**
-     * This method will calculate and return the average wait time
-     * for all Processes in the list.
-     * 
+     * This method will calculate and return the average wait time for all
+     * Processes in the list.
+     *
      * @return The average wait time for all ExtendedProcess objects.
      */
     @Override
-    public float calculateAverageWaitTime() {
+    public float calculateAverageWaitTime()
+    {
         float average = 0;
 
         for (ExtendedProcess process : readyQueue)
@@ -150,15 +158,19 @@ public class RRQueue extends ProcessQueue {
     }
 
     /**
-     * This method will handle checking if there are any ExtendedProcesses in the
-     * list that have yet to be completed.
+     * This method will handle checking if there are any ExtendedProcesses in
+     * the list that have yet to be completed.
      *
-     * @param list  The list of ExtendedProcess objects to check.
-     * @return      True if there is an unfinished process, false if all ExtendedProcesses have been completed.
+     * @param list The list of ExtendedProcess objects to check.
+     * @return True if there is an unfinished process, false if all
+     * ExtendedProcesses have been completed.
      */
-    public boolean hasUnfinishedProcess(ArrayList<ExtendedProcess> list) {
-        for (ExtendedProcess process : list) {
-            if (!process.getCompletionStatus()) {
+    public boolean hasUnfinishedProcess(ArrayList<ExtendedProcess> list)
+    {
+        for (ExtendedProcess process : list)
+        {
+            if (!process.getCompletionStatus())
+            {
                 return true;
             }
         }
@@ -168,21 +180,23 @@ public class RRQueue extends ProcessQueue {
 
     /**
      * This method will handle sending output text from the completed algorithm
-     * to the UI. This will allow the UI to update the TextAreaOuput with the 
+     * to the UI. This will allow the UI to update the TextAreaOuput with the
      * completed algorithm data.
-     * 
+     *
      * @return The text output from running the algorithm.
      */
     @Override
-    public String getOutputText() {
+    public String getOutputText()
+    {
         String output = "";
 
-        for (Process process : readyQueue) {
+        for (Process process : readyQueue)
+        {
             output += process.getProcessName()
                     + "\r\n---Arrival time:    " + process.getArrivalTime()
                     + "\r\n---Start time:      " + process.getStartTime()
                     + "\r\n---Completion time: " + process.getCompletionTime()
-                    + "\r\n---Wait time:       " + process.getWaitTime() 
+                    + "\r\n---Wait time:       " + process.getWaitTime()
                     + "\r\n---Turnaround time: " + process.getTurnAroundTime() + "\r\n\r\n";
 
         }
@@ -191,18 +205,19 @@ public class RRQueue extends ProcessQueue {
 
     /**
      * This method will return the total number of Processes in the list.
-     * 
+     *
      * @return The total number of Process objects in the list.
      */
     @Override
-    public int getNumberOfProcesses() {
+    public int getNumberOfProcesses()
+    {
         return initialList.size();
     }
-    
+
     /**
-     * This method will handle setting the quantum value (read: time slice)
-     * for use with Round Robin.
-     * 
+     * This method will handle setting the quantum value (read: time slice) for
+     * use with Round Robin.
+     *
      * @param quantum The time slice value to use.
      */
     public void setQuantum(int quantum)
