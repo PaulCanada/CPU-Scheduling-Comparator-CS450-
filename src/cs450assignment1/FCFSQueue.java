@@ -1,7 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+* This class contains information and methods that will perform the First Come
+* First Serve algorithm for a set of Processes.
+* 
+* @see cs450Assignment1.Process
  */
 package cs450assignment1;
 
@@ -17,15 +18,6 @@ import java.util.Random;
  */
 public class FCFSQueue extends ProcessQueue {
 
-    public FCFSQueue(int numberOfProcesses, String type) {
-        random = new Random();
-        initialList = new ArrayList<>();
-        readyQueue = new ArrayList<>();
-        this.type = type;
-
-        setupInitialList(numberOfProcesses, type);
-    }
-
     public FCFSQueue(ArrayList<Process> processList) {
         initialList = new ArrayList<>();
         readyQueue = new ArrayList<>();
@@ -35,52 +27,12 @@ public class FCFSQueue extends ProcessQueue {
         numberOfProcesses = initialList.size();
     }
 
-    // Testing constructor
-    /**
-     *
-     */
-    public FCFSQueue() {
-        type = "FCFS";
-        random = new Random();
-
-        initialList = new ArrayList<>();
-        readyQueue = new ArrayList<>();
-
-        //FCFS
-        initialList.add(new Process("P0", 6, 1, 0));
-        initialList.add(new Process("P1", 4, 0, 5));
-        initialList.add(new Process("P2", 3, 0, 7));
-        initialList.add(new Process("P3", 4, 1, 13));
-
-        //FCFS
-        /*
-        initialList.add(new Process("P0", 4, 1, 0));
-        initialList.add(new Process("P1", 3, 0, 5));
-        initialList.add(new Process("P2", 3, 0, 10));
-        initialList.add(new Process("P3", 7, 1, 11));
-         */
-        numberOfProcesses = initialList.size();
-
-    }
 
     /**
-     *
-     * @param numberOfProcesses
-     * @param type
-     */
-    @Override
-    public void setupInitialList(int numberOfProcesses, String type) {
-        this.numberOfProcesses = numberOfProcesses;
-
-        for (int i = 0; i < this.numberOfProcesses; i++) {
-            initialList.add(new Process("P" + i, random.nextInt(5) + 3, random.nextInt(numberOfProcesses / 2), random.nextInt(30)));
-        }
-
-        Collections.sort(initialList);
-    }
-
-    /**
-     *
+     * This method overrides the abstract method from ProcessQueue.
+     * This method will handle the algorithm setup and completion for FCFS.
+     * 
+     * @see cs450Assignment1.ProcessQueue
      */
     @Override
     public void setupAlgorithm() {
@@ -104,20 +56,25 @@ public class FCFSQueue extends ProcessQueue {
                 currentProcess.setWaitTime(0);
                 currentProcess.setTurnAroundTime(currentProcess.getBurstTime());
 
-            } else {
+            } 
+            // Otherwise, calculate service time based on prior Process's data.
+            else {
                 serviceTime = readyQueue.get(i - 1).getArrivalTime() + readyQueue.get(i - 1).getBurstTime() + readyQueue.get(i - 1).getWaitTime();
                 currentProcess.setWaitTime(serviceTime - currentProcess.getArrivalTime());
                 currentProcess.setStartTime(currentProcess.getWaitTime() + currentProcess.getArrivalTime());
             }
 
+            // Set turn around time and completion time for this process.
             currentProcess.setTurnAroundTime(currentProcess.getWaitTime() + currentProcess.getBurstTime());
             currentProcess.setCompletionTime(currentProcess.getStartTime() + currentProcess.getBurstTime());
         }
     }
 
     /**
-     *
-     * @return
+     * This method will calculate and return the total wait time for all Processes 
+     * in the list.
+     * 
+     * @return The total wait time for all Process objects.
      */
     @Override
     public int calculateTotalWaitTime() {
@@ -130,33 +87,25 @@ public class FCFSQueue extends ProcessQueue {
         return total;
     }
 
+    /**
+     * This method will calculate and return the average wait time for all Processes
+     * in the list.
+     * 
+     * @return The average wait time for all Process objects.
+     */
     @Override
     public float calculateAverageWaitTime() {
         return (float) calculateTotalWaitTime() / numberOfProcesses;
     }
 
-    @Override
-    public void printInitialProcessInformation() {
-        System.out.println("Initial process information:");
-        for (Iterator<Process> it = initialList.iterator(); it.hasNext();) {
-            Process process = it.next();
-            System.out.println("Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
-                    + ", Arrival time: " + process.getArrivalTime());
-        }
-    }
-
-    @Override
-    public void printReadyProcessInformation() {
-        System.out.println("Ready process information:");
-        for (Iterator<Process> it = readyQueue.iterator(); it.hasNext();) {
-            Process process = it.next();
-            System.out.println("Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
-                    + ", Arrival time: " + process.getArrivalTime() + ", Wait time: " + process.getWaitTime() + ", Start time: " + process.getStartTime()
-                    + ", Completion time: " + process.getCompletionTime() + ", Turn around time: " + process.getTurnAroundTime());
-        }
-    }
-
-    @Override
+    /**
+     * This method will handle sending output text from the completed algorithm
+     * to the UI. This will allow the UI to update the TextAreaOuput with the 
+     * completed algorithm data.
+     * 
+     * @return The text output from running the algorithm.
+     */ 
+   @Override
     public String getOutputText() {
         String output = "";
 
@@ -172,7 +121,12 @@ public class FCFSQueue extends ProcessQueue {
         return output;
     }
 
-    @Override
+    /**
+     * This method will return the total number of Processes in the list.
+     * 
+     * @return The total number of Process objects in the list.
+     */ 
+   @Override
     public int getNumberOfProcesses() {
         return initialList.size();
     }

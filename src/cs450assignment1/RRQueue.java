@@ -1,14 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This class contains information and methods that will perform the Round Robin
+ * algorithm for a set of ExtendedProcess objects.
+ * 
+ * @see cs450Assignment1.ExtendedProcess
  */
 package cs450assignment1;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.Random;
 
 /**
  *
@@ -20,35 +19,18 @@ public class RRQueue extends ProcessQueue {
         initialList = new ArrayList<>();
         readyQueue = new ArrayList<>();
         this.quantum = quantum;
-        System.out.println("Start");
 
         for (int i = 0; i < processList.size(); i++) {
             initialList.add(new ExtendedProcess(processList.get(i)));
         }
         numberOfProcesses = initialList.size();
-
-        System.out.println("End");
     }
 
     /**
-     *
-     * @param numberOfProcesses
-     * @param type
-     */
-    @Override
-    public void setupInitialList(int numberOfProcesses, String type) {
-        this.numberOfProcesses = numberOfProcesses;
-
-        for (int i = 0; i < this.numberOfProcesses; i++) {
-            initialList.add(new ExtendedProcess("P" + i, random.nextInt(5) + 3, random.nextInt(numberOfProcesses / 2), random.nextInt(30)));
-        }
-
-        Collections.sort(initialList);
-    }
-
-    /**
-     *
-     * @param quantum
+     * This method overrides the abstract method from ProcessQueue.
+     * This method will handle the algorithm setup and completion for Round Robin.
+     * 
+     * @see cs450Assignment1.ProcessQueue
      */
     @Override
     public void setupAlgorithm() {
@@ -123,7 +105,7 @@ public class RRQueue extends ProcessQueue {
                             break;
                         }
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println("Index out of bounds in RR queue. Caught.");
+                        //System.out.println("Index out of bounds in RR queue. Caught.");
                         break;
                     }
                 }
@@ -133,8 +115,10 @@ public class RRQueue extends ProcessQueue {
     }
 
     /**
-     *
-     * @return
+     * This method will calculate and return the total wait time
+     * for all Processes in the list.
+     * 
+     * @return The total wait time for all ExtendedProcess objects.
      */
     @Override
     public int calculateTotalWaitTime() {
@@ -147,12 +131,18 @@ public class RRQueue extends ProcessQueue {
         return total;
     }
 
+    /**
+     * This method will calculate and return the average wait time
+     * for all Processes in the list.
+     * 
+     * @return The average wait time for all ExtendedProcess objects.
+     */
     @Override
     public float calculateAverageWaitTime() {
         float average = 0;
 
-        for (Iterator<ExtendedProcess> it = readyQueue.iterator(); it.hasNext();) {
-            ExtendedProcess process = it.next();
+        for (ExtendedProcess process : readyQueue)
+        {
             average += process.getWaitTime();
         }
 
@@ -160,9 +150,11 @@ public class RRQueue extends ProcessQueue {
     }
 
     /**
+     * This method will handle checking if there are any ExtendedProcesses in the
+     * list that have yet to be completed.
      *
-     * @param list
-     * @return
+     * @param list  The list of ExtendedProcess objects to check.
+     * @return      True if there is an unfinished process, false if all ExtendedProcesses have been completed.
      */
     public boolean hasUnfinishedProcess(ArrayList<ExtendedProcess> list) {
         for (ExtendedProcess process : list) {
@@ -174,27 +166,13 @@ public class RRQueue extends ProcessQueue {
         return false;
     }
 
-    @Override
-    public void printInitialProcessInformation() {
-        System.out.println("Initial process information:");
-        for (Iterator<ExtendedProcess> it = initialList.iterator(); it.hasNext();) {
-            ExtendedProcess process = it.next();
-            System.out.println("Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
-                    + ", Arrival time: " + process.getArrivalTime());
-        }
-    }
-
-    @Override
-    public void printReadyProcessInformation() {
-        System.out.println("Ready process information:");
-        for (Iterator<ExtendedProcess> it = readyQueue.iterator(); it.hasNext();) {
-            ExtendedProcess process = it.next();
-            System.out.println("Process name: " + process.getProcessName() + ", Burst time: " + process.getBurstTime() + ", Priority: " + process.getPriority()
-                    + ", Arrival time: " + process.getArrivalTime() + ", Wait time: " + process.getWaitTime() + ", Start time: " + process.getStartTime()
-                    + ", Completion time: " + process.getCompletionTime() + ", Turn around time: " + process.getTurnAroundTime());
-        }
-    }
-
+    /**
+     * This method will handle sending output text from the completed algorithm
+     * to the UI. This will allow the UI to update the TextAreaOuput with the 
+     * completed algorithm data.
+     * 
+     * @return The text output from running the algorithm.
+     */
     @Override
     public String getOutputText() {
         String output = "";
@@ -211,16 +189,28 @@ public class RRQueue extends ProcessQueue {
         return output;
     }
 
+    /**
+     * This method will return the total number of Processes in the list.
+     * 
+     * @return The total number of Process objects in the list.
+     */
     @Override
     public int getNumberOfProcesses() {
         return initialList.size();
     }
     
+    /**
+     * This method will handle setting the quantum value (read: time slice)
+     * for use with Round Robin.
+     * 
+     * @param quantum The time slice value to use.
+     */
     public void setQuantum(int quantum)
     {
         this.quantum = quantum;
     }
 
+    // Class variables.
     private int quantum = 0;
     private ArrayList<ExtendedProcess> initialList;
     private ArrayList<ExtendedProcess> readyQueue;
