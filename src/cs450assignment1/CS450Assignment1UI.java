@@ -8,7 +8,9 @@ package cs450assignment1;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -437,6 +439,10 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * This method handles performing actions when the Quit menu item is called. 
+     * @param evt 
+     */
     private void jMenuItemQuitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemQuitActionPerformed
     {//GEN-HEADEREND:event_jMenuItemQuitActionPerformed
         // Close out of the application
@@ -445,20 +451,15 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
     private void jMenuItemAboutActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemAboutActionPerformed
     {//GEN-HEADEREND:event_jMenuItemAboutActionPerformed
-        // TODO add your handling code here:
-
         jDialogAbout.setVisible(true);
-        //JDialog.showMessageDialog(this, "Poop");
     }//GEN-LAST:event_jMenuItemAboutActionPerformed
 
     private void jButtonAboutCloseActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonAboutCloseActionPerformed
     {//GEN-HEADEREND:event_jButtonAboutCloseActionPerformed
-        // TODO add your handling code here:
         jDialogAbout.dispose();
     }//GEN-LAST:event_jButtonAboutCloseActionPerformed
 
     private void jButtonClearProcessDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearProcessDataActionPerformed
-        // TODO add your handling code here:
         jTextAreaProcessData.setText("");
     }//GEN-LAST:event_jButtonClearProcessDataActionPerformed
 
@@ -481,29 +482,24 @@ public class CS450Assignment1UI extends javax.swing.JFrame
     }//GEN-LAST:event_jButtonGenerateProcessActionPerformed
 
     private void jComboBoxQuantumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxQuantumActionPerformed
-        // TODO add your handling code here:
         quantum = Integer.parseInt((String) jComboBoxQuantum.getSelectedItem());
         jTextAreaProcessData.setText(jTextAreaProcessData.getText() + "Setting quantum to: " + Integer.toString(quantum) + ".\n");
     }//GEN-LAST:event_jComboBoxQuantumActionPerformed
 
     private void jComboBoxProcessNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProcessNumActionPerformed
-        // TODO add your handling code here:
         numberOfProcesses = Integer.parseInt((String) jComboBoxProcessNum.getSelectedItem());
         jTextAreaProcessData.setText(jTextAreaProcessData.getText() + "Setting number of processes to: " + Integer.toString(numberOfProcesses) + ".\n");
     }//GEN-LAST:event_jComboBoxProcessNumActionPerformed
 
     private void jButtonClearOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearOutputActionPerformed
-        // TODO add your handling code here:
         jTextAreaOutput.setText("");
     }//GEN-LAST:event_jButtonClearOutputActionPerformed
 
     private void jButtonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRunActionPerformed
-        // TODO add your handling code here:
         generateAlgorithmOutput();
     }//GEN-LAST:event_jButtonRunActionPerformed
 
     private void jComboBoxNumSetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNumSetsActionPerformed
-        // TODO add your handling code here:
         this.numberOfSets = Integer.parseInt((String) jComboBoxNumSets.getSelectedItem());
         jTextAreaProcessData.setText(jTextAreaProcessData.getText() + "Setting number of sets to: " + Integer.toString(this.numberOfSets) + ".\n");
     }//GEN-LAST:event_jComboBoxNumSetsActionPerformed
@@ -595,8 +591,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
     private Random random;
     private int numberOfProcesses = 0;
     private int quantum = 0;
-    private ArrayList<Process> initialProcessList;
-    private ArrayList<ExtendedProcess> initialEProcessList;
+    private final ArrayList<Process> initialProcessList;
     private FCFSQueue fcfs;
     private RRQueue rr;
     private int numberOfSets;
@@ -605,6 +600,22 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
     // End of user declaration
     // User method declaration
+    
+    private void testSetup()
+    {
+        initialProcessList.add(new Process("P1", 7, 1, 3));
+        initialProcessList.add(new Process("P2", 5, 1, 5));
+        initialProcessList.add(new Process("P3", 4, 1, 9));
+        initialProcessList.add(new Process("P4", 4, 1, 15));
+        initialProcessList.add(new Process("P5", 6, 1, 21));
+        initialProcessList.add(new Process("P6", 3, 1, 30));
+        initialProcessList.add(new Process("P7", 7, 1, 36));
+        initialProcessList.add(new Process("P8", 5, 1, 37));
+        initialProcessList.add(new Process("P9", 3, 1, 39));
+        initialProcessList.add(new Process("P10", 5, 1, 48));
+        
+    }
+    
     private void setupList()
     {
         int bt = 0;
@@ -615,29 +626,41 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         // Create a new process and store it in the initial list
         for (int i = 1; i <= numberOfProcesses; i++)
         {
-            releaseTime += random.nextInt(10);
+            releaseTime += random.nextInt(10) + 1;
             bt = random.nextInt(5) + 3;
             pr = random.nextInt(numberOfProcesses / 2);
 
             initialProcessList.add(new Process("P" + i, bt, pr, releaseTime));
-
         }
-
         // Reset release time for fresh processes in the future
         releaseTime = 0;
     }
 
     private void setupAlgorithms()
     {
-        System.out.println("Setting up FCFSQueue.");
-        fcfs = new FCFSQueue(initialProcessList);
-        fcfs.setupAlgorithm();
-        System.out.println("Done setting up FCFSQueue.");
-
-        System.out.println("Setting up RRQueue.");
-        rr = new RRQueue(initialProcessList, quantum);
-        rr.setupAlgorithm();
-        System.out.println("Done setting up RRQueue.");
+        if (jRadioButtonFCFS.isSelected())
+        {
+            System.out.println("Setting up FCFSQueue.");
+            fcfs = new FCFSQueue(initialProcessList);
+            fcfs.setupAlgorithm();
+            System.out.println("Done setting up FCFSQueue.");
+        } else if (jRadioButtonRR.isSelected())
+        {
+            System.out.println("Setting up RRQueue.");
+            rr = new RRQueue(initialProcessList, quantum);
+            rr.setupAlgorithm();
+            System.out.println("Done setting up RRQueue.");
+        } else
+        {
+            System.out.println("Setting up FCFSQueue.");
+            fcfs = new FCFSQueue(initialProcessList);
+            fcfs.setupAlgorithm();
+            System.out.println("Done setting up FCFSQueue.");
+            System.out.println("Setting up RRQueue.");
+            rr = new RRQueue(initialProcessList, quantum);
+            rr.setupAlgorithm();
+            System.out.println("Done setting up RRQueue.");
+        }
 
     }
 
@@ -645,6 +668,8 @@ public class CS450Assignment1UI extends javax.swing.JFrame
     {
         String processOutput = "";
         String algorithmOutput = "";
+        jTextAreaOutput.setText("");
+        jTextAreaProcessData.setText("");
 
         for (int i = 0; i < numberOfSets; i++)
         {
@@ -695,22 +720,18 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
         if (jCheckBoxSaveToFile.isSelected())
         {
-            File file = new File("./output.txt");
-            PrintWriter printWriter = null;
-
+            String fileName = "output-" + new SimpleDateFormat("yyyyMMddHHmm'.txt'").format(new Date());
+            File file = new File("./" + fileName + ".txt");
+            
             try
-            {
+            (PrintWriter printWriter = new PrintWriter(file)) {
 
-                printWriter = new PrintWriter(file);
                 printWriter.println(processOutput);
                 printWriter.println(algorithmOutput);
 
             } catch (FileNotFoundException e)
             {
                 System.out.println("File not found.");
-            } finally
-            {
-                printWriter.close();
             }
         }
 
