@@ -56,12 +56,15 @@ public class FCFSQueue extends ProcessQueue {
                 currentProcess.setWaitTime(0);
                 currentProcess.setTurnAroundTime(currentProcess.getBurstTime());
 
-            } else {
+            } 
+            // Otherwise, calculate service time based on prior Process's data.
+            else {
                 serviceTime = readyQueue.get(i - 1).getArrivalTime() + readyQueue.get(i - 1).getBurstTime() + readyQueue.get(i - 1).getWaitTime();
                 currentProcess.setWaitTime(serviceTime - currentProcess.getArrivalTime());
                 currentProcess.setStartTime(currentProcess.getWaitTime() + currentProcess.getArrivalTime());
             }
 
+            // Set turn around time and completion time for this process.
             currentProcess.setTurnAroundTime(currentProcess.getWaitTime() + currentProcess.getBurstTime());
             currentProcess.setCompletionTime(currentProcess.getStartTime() + currentProcess.getBurstTime());
         }
