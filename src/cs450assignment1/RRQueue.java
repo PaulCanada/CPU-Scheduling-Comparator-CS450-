@@ -72,6 +72,12 @@ public class RRQueue extends ProcessQueue
                     {
                         currentProcess.setStartTime(currentTime);
                         currentProcess.setRemainingTime(currentProcess.getBurstTime());
+                        
+                        if (i != 0 && currentProcess.getStartTime() == readyQueue.get(i - 1).getCompletionTime())
+                        {
+                            currentTime++;
+                            currentProcess.setStartTime(currentTime);
+                        }
                     }
 
                     // If the remaining time is greater than 0, then the process is not yet complete.
@@ -110,7 +116,6 @@ public class RRQueue extends ProcessQueue
                         }
                     } catch (IndexOutOfBoundsException e)
                     {
-                        //System.out.println("Index out of bounds in RR queue. Caught.");
                         break;
                     }
                 }
@@ -227,7 +232,7 @@ public class RRQueue extends ProcessQueue
 
     // Class variables.
     private int quantum = 0;
-    private ArrayList<ExtendedProcess> initialList;
+    private final ArrayList<ExtendedProcess> initialList;
     private ArrayList<ExtendedProcess> readyQueue;
 
 }
