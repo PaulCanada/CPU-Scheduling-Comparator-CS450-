@@ -1,7 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+* This class contains information and methods that will perform the First Come
+* First Serve algorithm for a set of Processes.
+* 
+* @see cs450Assignment1.Process
  */
 package cs450assignment1;
 
@@ -28,7 +29,10 @@ public class FCFSQueue extends ProcessQueue {
 
 
     /**
+     * This method overrides the abstract method from ProcessQueue.
+     * This method will handle the algorithm setup and completion for FCFS.
      * 
+     * @see cs450Assignment1.ProcessQueue
      */
     @Override
     public void setupAlgorithm() {
@@ -64,8 +68,10 @@ public class FCFSQueue extends ProcessQueue {
     }
 
     /**
-     *
-     * @return
+     * This method will calculate and return the total wait time for all Processes 
+     * in the list.
+     * 
+     * @return The total wait time for all Process objects.
      */
     @Override
     public int calculateTotalWaitTime() {
@@ -78,12 +84,25 @@ public class FCFSQueue extends ProcessQueue {
         return total;
     }
 
+    /**
+     * This method will calculate and return the average wait time for all Processes
+     * in the list.
+     * 
+     * @return The average wait time for all Process objects.
+     */
     @Override
     public float calculateAverageWaitTime() {
         return (float) calculateTotalWaitTime() / numberOfProcesses;
     }
 
-    @Override
+    /**
+     * This method will handle sending output text from the completed algorithm
+     * to the UI. This will allow the UI to update the TextAreaOuput with the 
+     * completed algorithm data.
+     * 
+     * @return The text output from running the algorithm.
+     */ 
+   @Override
     public String getOutputText() {
         String output = "";
 
@@ -99,7 +118,12 @@ public class FCFSQueue extends ProcessQueue {
         return output;
     }
 
-    @Override
+    /**
+     * This method will return the total number of Processes in the list.
+     * 
+     * @return The total number of Process objects in the list.
+     */ 
+   @Override
     public int getNumberOfProcesses() {
         return initialList.size();
     }
