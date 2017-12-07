@@ -8,7 +8,9 @@ package cs450assignment1;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -468,7 +470,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
     private void jButtonGenerateProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerateProcessActionPerformed
         System.out.println("Setting up initial list.");
-        setupList();
+        test();
         System.out.println("Done setting up initial List.");
 
         jTextAreaProcessData.setText("");
@@ -609,6 +611,22 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
     // End of user declaration
     // User method declaration
+    
+    private void test()
+    {
+        initialProcessList.add(new Process("P1", 7, 1, 3));
+        initialProcessList.add(new Process("P2", 5, 1, 5));
+        initialProcessList.add(new Process("P3", 4, 1, 9));
+        initialProcessList.add(new Process("P4", 4, 1, 15));
+        initialProcessList.add(new Process("P5", 6, 1, 21));
+        initialProcessList.add(new Process("P6", 3, 1, 30));
+        initialProcessList.add(new Process("P7", 7, 1, 36));
+        initialProcessList.add(new Process("P8", 5, 1, 37));
+        initialProcessList.add(new Process("P9", 3, 1, 39));
+        initialProcessList.add(new Process("P1", 5, 1, 48));
+        
+    }
+    
     private void setupList()
     {
         int bt = 0;
@@ -633,15 +651,19 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
     private void setupAlgorithms()
     {
-        System.out.println("Setting up FCFSQueue.");
-        fcfs = new FCFSQueue(initialProcessList);
-        fcfs.setupAlgorithm();
-        System.out.println("Done setting up FCFSQueue.");
-
-        System.out.println("Setting up RRQueue.");
-        rr = new RRQueue(initialProcessList, quantum);
-        rr.setupAlgorithm();
-        System.out.println("Done setting up RRQueue.");
+        if (jRadioButtonFCFS.isSelected())
+        {
+            System.out.println("Setting up FCFSQueue.");
+            fcfs = new FCFSQueue(initialProcessList);
+            fcfs.setupAlgorithm();
+            System.out.println("Done setting up FCFSQueue.");
+        } else
+        {
+            System.out.println("Setting up RRQueue.");
+            rr = new RRQueue(initialProcessList, quantum);
+            rr.setupAlgorithm();
+            System.out.println("Done setting up RRQueue.");
+        }
 
     }
 
@@ -701,7 +723,8 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
         if (jCheckBoxSaveToFile.isSelected())
         {
-            File file = new File("./output.txt");
+            String fileName = "output" + new SimpleDateFormat("yyyyMMddHHmm'.txt'").format(new Date());
+            File file = new File("./" + fileName + ".txt");
             PrintWriter printWriter = null;
 
             try

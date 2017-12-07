@@ -57,7 +57,7 @@ public class FCFSQueue extends ProcessQueue
             currentProcess = readyQueue.get(i);
 
             // If first process in queue or if the process arrived after the prior process has already completed, set defaults
-            if (i == 0 || (readyQueue.get(i - 1).getBurstTime() + readyQueue.get(i - 1).getArrivalTime() < currentProcess.getArrivalTime()))
+            if (i == 0 || (readyQueue.get(i - 1).getTurnAroundTime() + readyQueue.get(i - 1).getArrivalTime() < currentProcess.getArrivalTime()))
             {
                 currentProcess.setStartTime(currentProcess.getArrivalTime());
                 currentProcess.setWaitTime(0);
