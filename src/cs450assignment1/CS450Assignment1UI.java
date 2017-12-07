@@ -720,7 +720,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
         if (jCheckBoxSaveToFile.isSelected())
         {
-            String fileName = "output-" + new SimpleDateFormat("HHmm'.txt'").format(new Date());
+            String fileName = "output-" + new SimpleDateFormat("yyyyMMddHHmm'.txt'").format(new Date());
             File file = new File("./" + fileName + ".txt");
             
             try
