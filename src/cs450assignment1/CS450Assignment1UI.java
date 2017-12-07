@@ -437,6 +437,10 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * This method handles performing actions when the Quit menu item is called. 
+     * @param evt 
+     */
     private void jMenuItemQuitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemQuitActionPerformed
     {//GEN-HEADEREND:event_jMenuItemQuitActionPerformed
         // Close out of the application
@@ -645,6 +649,8 @@ public class CS450Assignment1UI extends javax.swing.JFrame
     {
         String processOutput = "";
         String algorithmOutput = "";
+        jTextAreaOutput.setText("");
+        jTextAreaProcessData.setText("");
 
         for (int i = 0; i < numberOfSets; i++)
         {
