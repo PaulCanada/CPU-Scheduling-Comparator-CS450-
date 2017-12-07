@@ -1,14 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This class contains information and methods that will perform the Round Robin
+ * algorithm for a set of ExtendedProcess objects.
+ * 
+ * @see cs450Assignment1.ExtendedProcess
  */
 package cs450assignment1;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.Random;
 
 /**
  *
@@ -28,8 +27,10 @@ public class RRQueue extends ProcessQueue {
     }
 
     /**
-     *
-     * @param quantum
+     * This method overrides the abstract method from ProcessQueue.
+     * This method will handle the algorithm setup and completion for Round Robin.
+     * 
+     * @see cs450Assignment1.ProcessQueue
      */
     @Override
     public void setupAlgorithm() {
@@ -114,8 +115,10 @@ public class RRQueue extends ProcessQueue {
     }
 
     /**
-     *
-     * @return
+     * This method will calculate and return the total wait time
+     * for all Processes in the list.
+     * 
+     * @return The total wait time for all ExtendedProcess objects.
      */
     @Override
     public int calculateTotalWaitTime() {
@@ -128,12 +131,18 @@ public class RRQueue extends ProcessQueue {
         return total;
     }
 
+    /**
+     * This method will calculate and return the average wait time
+     * for all Processes in the list.
+     * 
+     * @return The average wait time for all ExtendedProcess objects.
+     */
     @Override
     public float calculateAverageWaitTime() {
         float average = 0;
 
-        for (Iterator<ExtendedProcess> it = readyQueue.iterator(); it.hasNext();) {
-            ExtendedProcess process = it.next();
+        for (ExtendedProcess process : readyQueue)
+        {
             average += process.getWaitTime();
         }
 
@@ -141,9 +150,11 @@ public class RRQueue extends ProcessQueue {
     }
 
     /**
+     * This method will handle checking if there are any ExtendedProcesses in the
+     * list that have yet to be completed.
      *
-     * @param list
-     * @return
+     * @param list  The list of ExtendedProcess objects to check.
+     * @return      True if there is an unfinished process, false if all ExtendedProcesses have been completed.
      */
     public boolean hasUnfinishedProcess(ArrayList<ExtendedProcess> list) {
         for (ExtendedProcess process : list) {
@@ -155,6 +166,13 @@ public class RRQueue extends ProcessQueue {
         return false;
     }
 
+    /**
+     * This method will handle sending output text from the completed algorithm
+     * to the UI. This will allow the UI to update the TextAreaOuput with the 
+     * completed algorithm data.
+     * 
+     * @return The text output from running the algorithm.
+     */
     @Override
     public String getOutputText() {
         String output = "";
@@ -171,16 +189,28 @@ public class RRQueue extends ProcessQueue {
         return output;
     }
 
+    /**
+     * This method will return the total number of Processes in the list.
+     * 
+     * @return The total number of Process objects in the list.
+     */
     @Override
     public int getNumberOfProcesses() {
         return initialList.size();
     }
     
+    /**
+     * This method will handle setting the quantum value (read: time slice)
+     * for use with Round Robin.
+     * 
+     * @param quantum The time slice value to use.
+     */
     public void setQuantum(int quantum)
     {
         this.quantum = quantum;
     }
 
+    // Class variables.
     private int quantum = 0;
     private ArrayList<ExtendedProcess> initialList;
     private ArrayList<ExtendedProcess> readyQueue;
