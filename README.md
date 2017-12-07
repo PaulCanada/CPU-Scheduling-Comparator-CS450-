@@ -10,9 +10,10 @@ This is achieved by creating processes with data such as:
   - Priority
   
 With this data and a list of processes, we can compute the time that each process must wait using both algorithms. Upon calculating the wait time, we can also compute:
-  - Start time ; The time at which the process starts "executing" (Arrival time - Wait time)
+  - Start time ; The time at which the process starts "executing" 
   - Completion ; The time at which the process has finished "executing" (Start time + Burst time)
   - Turn around time ; The time between when the process arrived and when the process finishes "executing" (Completion time - Arrival time)
+   - Wait Time ; The total time the process has to wait before finishing (Turnaround time - Burst time)
   
   
 If time permits, I will try to accomplish other CPU scheduling algorithms into this program.
