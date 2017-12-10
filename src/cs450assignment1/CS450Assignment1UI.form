@@ -112,6 +112,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="CS450 Assignment 1"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="69" green="69" id="Control Dk Shadow" palette="2" red="69" type="palette"/>
     </Property>
