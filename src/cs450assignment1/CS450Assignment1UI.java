@@ -25,12 +25,16 @@ public class CS450Assignment1UI extends javax.swing.JFrame
      */
     public CS450Assignment1UI()
     {
+        // Initialized variables as defaults
+        this.numberOfProcesses = 0;
+        this.quantum = 0;
         this.totalWaitTimeRR = 0;
         this.totalWaitTimeFCFS = 0;
         this.initialProcessList = new ArrayList<>();
 
         initComponents();
 
+        // Get start values from first item 
         this.numberOfProcesses = Integer.parseInt((String) jComboBoxProcessNum.getSelectedItem());
         this.quantum = Integer.parseInt((String) jComboBoxQuantum.getSelectedItem());
         this.numberOfSets = Integer.parseInt((String) jComboBoxNumSets.getSelectedItem());
@@ -43,7 +47,8 @@ public class CS450Assignment1UI extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         buttonGroupProcessRun = new javax.swing.ButtonGroup();
         jDialogAbout = new javax.swing.JDialog();
@@ -98,8 +103,10 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jScrollPane2.setViewportView(jTextAreaAbout);
 
         jButtonAboutClose.setText("Close");
-        jButtonAboutClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonAboutClose.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonAboutCloseActionPerformed(evt);
             }
         });
@@ -154,15 +161,19 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jComboBoxProcessNum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
         jComboBoxProcessNum.setToolTipText("The number of processes to utilize.");
         jComboBoxProcessNum.setBorder(null);
-        jComboBoxProcessNum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jComboBoxProcessNum.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jComboBoxProcessNumActionPerformed(evt);
             }
         });
 
         jComboBoxQuantum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
-        jComboBoxQuantum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jComboBoxQuantum.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jComboBoxQuantumActionPerformed(evt);
             }
         });
@@ -172,15 +183,19 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jCheckBoxSaveToFile.setText("Save comparison to file");
 
         jButtonClearProcessData.setText("Clear Output");
-        jButtonClearProcessData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonClearProcessData.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonClearProcessDataActionPerformed(evt);
             }
         });
 
         jButtonGenerateProcess.setText("Generate Data");
-        jButtonGenerateProcess.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonGenerateProcess.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonGenerateProcessActionPerformed(evt);
             }
         });
@@ -191,8 +206,10 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
         jComboBoxNumSets.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" }));
         jComboBoxNumSets.setToolTipText("The number of data sets to calculate when using the compare option.");
-        jComboBoxNumSets.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jComboBoxNumSets.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jComboBoxNumSetsActionPerformed(evt);
             }
         });
@@ -287,15 +304,19 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jRadioButtonComparator.setText("Compare");
 
         jButtonRun.setText("Run");
-        jButtonRun.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonRun.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonRunActionPerformed(evt);
             }
         });
 
         jButtonClearOutput.setText("Clear Output");
-        jButtonClearOutput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonClearOutput.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonClearOutputActionPerformed(evt);
             }
         });
@@ -367,8 +388,10 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jMenuFile.setText("File");
 
         jMenuItemAbout.setText("About");
-        jMenuItemAbout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemAbout.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jMenuItemAboutActionPerformed(evt);
             }
         });
@@ -376,8 +399,10 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
         jMenuItemQuit.setText("Close");
         jMenuItemQuit.setToolTipText("Closes the application.");
-        jMenuItemQuit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemQuit.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jMenuItemQuitActionPerformed(evt);
             }
         });
@@ -504,20 +529,16 @@ public class CS450Assignment1UI extends javax.swing.JFrame
                     break;
                 }
             }
-        }
-        catch (ClassNotFoundException ex)
+        } catch (ClassNotFoundException ex)
         {
             java.util.logging.Logger.getLogger(CS450Assignment1UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (InstantiationException ex)
+        } catch (InstantiationException ex)
         {
             java.util.logging.Logger.getLogger(CS450Assignment1UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (IllegalAccessException ex)
+        } catch (IllegalAccessException ex)
         {
             java.util.logging.Logger.getLogger(CS450Assignment1UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (javax.swing.UnsupportedLookAndFeelException ex)
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
             java.util.logging.Logger.getLogger(CS450Assignment1UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
@@ -573,17 +594,20 @@ public class CS450Assignment1UI extends javax.swing.JFrame
     // User variable declaration
     private static int releaseTime = 0;
     private Random random;
-    private int numberOfProcesses = 0;
-    private int quantum = 0;
+    private int numberOfProcesses;
+    private int quantum;
     private final ArrayList<Process> initialProcessList;
     private FCFSQueue fcfs;
     private RRQueue rr;
     private int numberOfSets;
     private int totalWaitTimeRR;
     private int totalWaitTimeFCFS;
-
     // End of user declaration
+
     // User method declaration
+    /**
+     * This method serves as a test setup for testing manual inputted Processes.
+     */
     private void testSetup()
     {
         initialProcessList.add(new Process("P1", 7, 1, 3));
@@ -599,6 +623,14 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
     }
 
+    /**
+     * This method serves as the main setup for randomly generated Processes.
+     * The user will press the "Generate New Processes" button, and will
+     * randomly create new Processes depending on how many Processes are
+     * selected in the "Number Of Processes" combo box.
+     *
+     * @see cs450Assignment1.setupAlgorithms()
+     */
     private void setupList()
     {
         int bt = 0;
@@ -619,8 +651,12 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         releaseTime = 0;
     }
 
+    /**
+     * This method handles which of the algorithms to setup for processing.
+     */
     private void setupAlgorithms()
     {
+        // Perform FCFS algorithm.
         if (jRadioButtonFCFS.isSelected())
         {
             System.out.println("Setting up FCFSQueue.");
@@ -628,6 +664,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
             fcfs.setupAlgorithm();
             System.out.println("Done setting up FCFSQueue.");
         }
+        // Perform RR algorithm.
         else if (jRadioButtonRR.isSelected())
         {
             System.out.println("Setting up RRQueue.");
@@ -635,6 +672,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
             rr.setupAlgorithm();
             System.out.println("Done setting up RRQueue.");
         }
+        // Perform comparison on FCFS and RR algorithms.
         else
         {
             System.out.println("Setting up FCFSQueue.");
@@ -649,6 +687,13 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
     }
 
+    /**
+     * This method handles running the comparison of the FCFS and RR algorithms.
+     * This method will handle the output of each algorithm, with the
+     * possibility of saving the output to a file if the option if checked.
+     *
+     * @see cs450Assignment1.setupAlgorithms()
+     */
     private void runComparator()
     {
         String processOutput = "";
@@ -714,10 +759,9 @@ public class CS450Assignment1UI extends javax.swing.JFrame
                 printWriter.println(processOutput);
                 printWriter.println(algorithmOutput);
 
-            }
-            catch (FileNotFoundException e)
+            } catch (FileNotFoundException e)
             {
-                System.out.println("File not found.");
+                System.out.println("Error opening PrintWriter.");
             }
         }
 
@@ -725,7 +769,6 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
     private void generateAlgorithmOutput()
     {
-
         jTextAreaOutput.setText("");
         String output = "";
 
@@ -763,8 +806,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
                 }
             }
 
-        }
-        catch (NullPointerException e)
+        } catch (NullPointerException e)
         {
             jTextAreaOutput.setText(jTextAreaOutput.getText() + "Please generate process data first.\r\n");
         }
