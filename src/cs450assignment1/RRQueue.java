@@ -95,7 +95,8 @@ public class RRQueue extends ProcessQueue
                             // Decrement process's remaining time by quantum
                             currentProcess.setRemainingTime(currentProcess.getRemainingTime() - quantum);
 
-                        } else // Otherwise, the remaining time is less than the quantum and we need to set
+                        }
+                        else // Otherwise, the remaining time is less than the quantum and we need to set
                         // ending values.
                         {
                             currentTime += currentProcess.getRemainingTime();
