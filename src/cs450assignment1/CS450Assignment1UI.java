@@ -14,8 +14,8 @@ import java.util.Date;
 import java.util.Random;
 
 /**
- *
- * @author Paul
+ * @date 11/29/2017
+ * @author Paul Canada (https://github.com/PaulCanada)
  */
 public class CS450Assignment1UI extends javax.swing.JFrame
 {
@@ -135,6 +135,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CS450 Assignment 1");
         setBackground(java.awt.SystemColor.controlDkShadow);
         setBounds(new java.awt.Rectangle(0, 0, 750, 800));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -641,8 +642,8 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         // Create a new process and store it in the initial list
         for (int i = 1; i <= numberOfProcesses; i++)
         {
-            releaseTime += random.nextInt(10) + 1;
-            bt = random.nextInt(5) + 3;
+            releaseTime += random.nextInt(15) + 1;
+            bt = random.nextInt(15) + 3;
             pr = random.nextInt(numberOfProcesses / 2);
 
             initialProcessList.add(new Process("P" + i, bt, pr, releaseTime));
@@ -701,6 +702,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jTextAreaOutput.setText("");
         jTextAreaProcessData.setText("");
 
+        // Generate algorithm data numberOfSets times.
         for (int i = 0; i < numberOfSets; i++)
         {
 
@@ -724,6 +726,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
             totalWaitTimeRR += rr.calculateTotalWaitTime();
             totalWaitTimeFCFS += fcfs.calculateTotalWaitTime();
 
+            // If check box for verbose is selected, output all algorithm output to console and to save file if save file is toggled.
             if (jCheckBoxVerbose.isSelected())
             {
                 algorithmOutput += "--Start of Set #" + (i + 1) + "--\r\n\r\n";
@@ -745,9 +748,11 @@ public class CS450Assignment1UI extends javax.swing.JFrame
         jTextAreaProcessData.setText(processOutput);
         jTextAreaOutput.setText(algorithmOutput);
 
+        // Reset total wait times for next comparison.
         totalWaitTimeRR = 0;
         totalWaitTimeFCFS = 0;
 
+        // If check box for saving to file is selected, write all output to a file.
         if (jCheckBoxSaveToFile.isSelected())
         {
             String fileName = "output-" + new SimpleDateFormat("yyyyMMddHHmm'.txt'").format(new Date());
@@ -767,6 +772,11 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
     }
 
+    /**
+     * This method handles generating the proper algorithm output and updating
+     * the TextArea's (jTextAreaOutput and jTextAreaProcessData). This is used
+     * for single run algorithm mode.
+     */
     private void generateAlgorithmOutput()
     {
         jTextAreaOutput.setText("");
@@ -774,13 +784,14 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
         try
         {
+            // If not running comparator and no process data is generated, user must first generate data.
             if (initialProcessList.isEmpty() && !jRadioButtonComparator.isSelected())
             {
                 jTextAreaOutput.setText("Process list is empty.\r\nPlease generate process data first.\r\n");
             }
             else
             {
-
+                // Handle when FCFS radio button is toggled.
                 if (jRadioButtonFCFS.isSelected())
                 {
 
@@ -790,6 +801,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
                     jTextAreaOutput.setText(jTextAreaOutput.getText() + output);
                 }
+                // Handle when RR radio button is toggled.
                 else if (jRadioButtonRR.isSelected())
                 {
 
@@ -799,6 +811,7 @@ public class CS450Assignment1UI extends javax.swing.JFrame
 
                     jTextAreaOutput.setText(jTextAreaOutput.getText() + output);
                 }
+                // Handle when the compare algorithm radio button is toggled.
                 else if (jRadioButtonComparator.isSelected())
                 {
 
