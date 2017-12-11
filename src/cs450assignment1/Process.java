@@ -6,7 +6,6 @@
 package cs450assignment1;
 
 /**
- * @date 11/11/2017
  * @author Paul Canada (https://github.com/PaulCanada)
  */
 public class Process implements Comparable
@@ -32,7 +31,7 @@ public class Process implements Comparable
      * Constructor for Process object that will copy data from a secondary
      * Process object.
      *
-     * @param toCopy
+     * @param toCopy    The Process object to copy data from.
      */
     public Process(Process toCopy)
     {

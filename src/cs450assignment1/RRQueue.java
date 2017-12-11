@@ -2,7 +2,7 @@
  * This class contains information and methods that will perform the Round Robin
  * algorithm for a set of ExtendedProcess objects.
  *
- * @see cs450Assignment1.ExtendedProcess
+ * @see ExtendedProcess
  */
 package cs450assignment1;
 
@@ -40,7 +40,7 @@ public class RRQueue extends ProcessQueue
      * This method overrides the abstract method from ProcessQueue. This method
      * will handle the algorithm setup and completion for Round Robin.
      *
-     * @see cs450Assignment1.ProcessQueue
+     * @see ProcessQueue
      */
     @Override
     public void setupAlgorithm()
