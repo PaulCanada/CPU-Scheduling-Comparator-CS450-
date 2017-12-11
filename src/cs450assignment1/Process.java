@@ -32,7 +32,7 @@ public class Process implements Comparable
      * Constructor for Process object that will copy data from a secondary
      * Process object.
      *
-     * @param toCopy
+     * @param toCopy    The Process object to copy data from.
      */
     public Process(Process toCopy)
     {
