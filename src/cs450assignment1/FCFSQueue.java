@@ -2,7 +2,7 @@
  * This class contains information and methods that will perform the First Come
  * First Serve algorithm for a set of Processes.
  *
- * @see cs450Assignment1.Process
+ * @see Process
  */
 package cs450assignment1;
 
@@ -36,7 +36,7 @@ public class FCFSQueue extends ProcessQueue
      * This method overrides the abstract method from ProcessQueue. This method
      * will handle the algorithm setup and completion for FCFS.
      *
-     * @see cs450Assignment1.ProcessQueue
+     * @see ProcessQueue
      */
     @Override
     public void setupAlgorithm()

@@ -19,7 +19,7 @@ public class ExtendedProcess extends Process {
     /**
      * Constructor for ExtendedProcess given input values.
      * Inherits from super class Process.
-     * @see cs450Assignment1.Process
+     * @see Process
      * 
      * @param name          Name of the process.
      * @param burstTime     Burst time of the process.
@@ -32,7 +32,7 @@ public class ExtendedProcess extends Process {
 
     /**
      * Constructor for ExtendedProcess to copy data from an input Process.
-     * @see cs450Assignment1.Process
+     * @see Process
      * 
      * @param toCopy        The process to copy data from.
      */
