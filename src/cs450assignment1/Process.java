@@ -6,7 +6,6 @@
 package cs450assignment1;
 
 /**
- * @date 11/11/2017
  * @author Paul Canada (https://github.com/PaulCanada)
  */
 public class Process implements Comparable

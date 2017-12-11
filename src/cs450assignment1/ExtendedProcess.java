@@ -6,12 +6,11 @@
  * time of a process, as well as a boolean value for if the process is 
  * complete.
  *
- * @see cs450Assignment1.Process
+ * @see Process
  */
 package cs450assignment1;
 
 /**
- * @date 11/11/2017
  * @author Paul Canada (https://github.com/PaulCanada)
  */
 public class ExtendedProcess extends Process {

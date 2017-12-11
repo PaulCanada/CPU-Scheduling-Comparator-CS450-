@@ -3,15 +3,14 @@
  * This class is abstract as the separate algorithm classes will override
  * its methods with their own versions.
  *
- * @see cs450Assignment1.RRQueue
- * @see cs450Assignment1.FCFSQueue
+ * @see RRQueue
+ * @see FCFSQueue
  */
 package cs450assignment1;
 
 import java.util.Random;
 
 /**
- * @date 11/15/2017
  * @author Paul Canada (https://github.com/PaulCanada)
  */
 public abstract class ProcessQueue
@@ -21,8 +20,8 @@ public abstract class ProcessQueue
      * This method will handle setting up the algorithms for the specific
      * algorithm classes.
      *
-     * @see cs450Assignment1.FCFSQueue
-     * @see cs450Assignment1.RRQueue
+     * @see FCFSQueue
+     * @see RRQueue
      */
     abstract void setupAlgorithm();
 
